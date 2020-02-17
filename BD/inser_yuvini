@@ -1,0 +1,63 @@
+insert into dbo.Empresa
+Values ('2002', 'Supermecado_Paiz', '1235', 'Col.Carrizal')
+
+insert into dbo.Empresa
+Values ('2003', 'Supermecado_La_Colonia', '1001', 'Bulevar_suyapa')
+
+insert into dbo.Empresa
+Values ('2004', 'Walmart', '1002', 'Mall_cascadas')
+
+insert into dbo.Empresa
+Values ('2005', 'Despensa_Familiar, 1003 , Col_Toracagua')
+
+insert into dbo.Empresa
+Values ('2006', 'Supermercado_Paiz2', '1004', 'Col_Guanascaste')
+
+insert into dbo.Empresa
+Values ('2007', 'Supermercado_MasxMenos', '1005', 'Col_humuya')
+
+insert into dbo.Empresa
+Values ('2008', 'Supermercado_Paca', '1006', 'Barrio_Lempira')
+
+insert into dbo.Empresa
+Values ('2009', 'Supermercado_Angeles', '1007', 'Col_Mayangue')
+
+insert into dbo.Empresa
+Values ('2010', 'Supermercado_DonBaraton', '1008', 'Hospital_Militar')
+
+insert into dbo.Empresa
+Values ('2011', 'Supermercado_DonJulio', '1008', 'Col_3_de_mayo')
+
+insert into dbo.Empresa
+Values ('2012', 'Supermecado_La_Colonia2', '1001', 'Bulevar_fuerza_armadas')
+
+
+insert  into dbo.Departamento
+values('1','Tegucigalpa' )
+
+insert  into dbo.Departamento
+values('2','Comayagua' )
+
+insert  into dbo.Departamento
+values('3','San_Pedro_sula' )
+
+insert into dbo.Municipio
+Values ('101', 'Distrito_Central', '1')
+
+insert into dbo.Municipio
+Values ('102', 'Talanga', '1')
+
+insert into dbo.Municipio
+Values ('103', 'Santa_lucia', '1')
+
+insert into dbo.Municipio
+Values ('104', 'Las_flores', '2')
+
+insert into dbo.Municipio
+Values ('105', 'Choloma', '3')
+
+insert into dbo.Municipio
+Values ('106', 'Ojojona', '1')
+
+insert into dbo.Municipio
+Values ('102', 'Valle_De_Angeles', '1')
