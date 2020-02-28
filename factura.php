@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devoluciones</title>
-    <link href="css/devoluciones.css" rel="stylesheet">
+    <link href="css/facturas.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
       ?> 
     
   
-<h1 >Devoluciones</h1>
+<h1 >Facturas</h1>
 
 
 <form  class="inf" action="">
@@ -24,17 +24,16 @@
   </div>
 </form>
 
-<div class="inf" style="font-size: 15px">
+<div class="inf align-items-center" style="font-size: 15px;">
   <div>
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo Devolucion</th>
+      <th class="text-center">Codigo del Pedido</th>
       <th class="text-center">Sucursal</th>
       <th class="text-center">Fecha</th>
-      <th class="text-center">Producto</th>
-      <th class="text-center">Cantidad</th>
-      <th class="text-center">Total Devolucion</th>
+      <th class="text-center">Total Factura</th>
+      <th class="text-center">       </th>
     </tr>
   </thead>
   <tbody>
@@ -42,9 +41,8 @@
       <th class="text-center">1</th>
       <td class="text-center">La Colonia #12</td>
       <td class="text-center">27/02/202</td>
-      <td class="text-center">Espumilla Pequeña</td>
-      <td class="text-center">10</td>
       <td class="text-center">200.00</td>
+      <td class="text-center"><a href="#" download="">Imprimir</a></td> <!-- Este boton descargara la informacion del pedido, para despues imprimirlo -->
     </tr>
   </tbody>
   </table>
