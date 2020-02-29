@@ -19,7 +19,7 @@
 
 <form  class="inf" action="">
   <div style="font-size: 20px">Empresa      
-    <select name="empresa" id="empresa">
+    <select name="empresa" id="empresa" style="margin-left: 15px; padding-left:100px;">
     Sucursal: <select name="empresa" id="empresa"></select>
   </div>
 </form>
