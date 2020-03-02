@@ -15,10 +15,10 @@
       ?> 
     
   
-<h1>Agregar Nuevo Pedido</h1>
+<h1 style="margin-left: 15px;">Pagina Principal</h1>
 
 
-<form  class="inf" action="">
+<form  class="inf" action="" style="margin-top:50px;">
 <pre>Empresa: <select name="empresa" id="empresa">
                            Sucursal: <select name="empresa" id="empresa"></select></pre>
 
