@@ -17,9 +17,10 @@
 <h1 >Devoluciones</h1>
 
 
-<form  class="inf" action="">
-  <div style="font-size: 20px">Empresa      
-    <select name="empresa" id="empresa" style="margin-left: 15px; padding-left:100px;">
+<form  class="inf form" action="">
+  <div style="font-size: 20px" class="row">
+  <label class="col-2">Empresa:</label>
+  <select name="empresa" id="empresa" style="" class="form-control  col-4">
     Sucursal: <select name="empresa" id="empresa"></select>
   </div>
 </form>

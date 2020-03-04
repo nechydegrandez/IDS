@@ -11,10 +11,10 @@
 <body>
   <!--- aqui incluyo el menu-->
     <?php
-    include ("menu.html") ;
+    include ("menu-admin.html") ;
       ?> 
     
-  <h1>Informacion del Perfil</h1>
+  <h1>Registrar Usuario</h1>
 
   <div class="inf align-items-center pr-5" style="font-size: 15px;">
     <div class="row">
@@ -43,7 +43,7 @@
        </table>
       </div>
       <div class="col-5 offset-4 mt-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Actualizar Informacion</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
