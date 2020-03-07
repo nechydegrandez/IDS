@@ -24,7 +24,7 @@
   </div>
 </form>
 
-<div class="inf align-items-center" style="font-size: 15px;">
+<div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div>
   <table class="table table-striped">
   <thead>
@@ -46,7 +46,7 @@
     </tr>
   </tbody>
   </table>
-  <nav aria-label="...">
+  <nav aria-label="..." class="ml-2">
   <ul class="pagination pagination-sm">
     <li class="page-item active" aria-current="page">
       <span class="page-link">

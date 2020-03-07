@@ -25,7 +25,7 @@
   </div>
 </form>
 
-<div class="inf" style="font-size: 15px">
+<div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div>
   <table class="table table-striped">
   <thead>
@@ -45,7 +45,7 @@
     </tr>
   </tbody>
   </table>
-  <nav aria-label="...">
+  <nav aria-label="..." class="ml-2">
   <ul class="pagination pagination-sm">
     <li class="page-item active" aria-current="page">
       <span class="page-link">
@@ -56,10 +56,12 @@
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
   </ul>
-</nav>
+  </nav>
   </div>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nueva Sucursal</button>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Nueva Sucursal</button>
+      
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -73,7 +75,7 @@
                 </div>
                 <div class="form-group">
                   <label>Direccion:</label>
-                  <input type="date" class="form-control" id="txt-fecha">
+                  <input type="text" class="form-control" id="txt-fecha" placeholder="Direccion">
                 </div>
                 <div class="form-group">
                   <label>Empresa:</label>
@@ -84,7 +86,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" onclick='alert("Informacion Actualizada Correctamente")'>Registrar Sucursal</button>
+              <button type="button" class="btn btn-primary" onclick='alert("Sucursal Registrada Correctamente")'>Registrar Sucursal</button>
             </div>
           </div>
         </div>
