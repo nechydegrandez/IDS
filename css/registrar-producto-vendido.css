@@ -1,0 +1,27 @@
+body{
+
+    background-image: url(../img/fondo.jpg);
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+   
+}
+
+h1{
+    padding-top: 25px;
+    padding-left: 470px;
+}
+
+.inf{
+    border:solid 4px #ccc;
+   
+    margin-left: 300px;
+    margin-top: 30px;
+    width: 800px;
+    height: auto;
+    color: black;
+    padding: 15px;
+    font-size: 22px;
+    background-color: white;
+
+}

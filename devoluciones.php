@@ -30,12 +30,11 @@
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo Devolucion</th>
-      <th class="text-center">Sucursal</th>
-      <th class="text-center">Fecha</th>
-      <th class="text-center">Producto</th>
-      <th class="text-center">Cantidad</th>
-      <th class="text-center">Total Devolucion</th>
+      <th class="text-center pl-0 pr-0">Codigo Devolucion</th>
+      <th class="text-center pl-0 pr-0">Sucursal</th>
+      <th class="text-center pl-0 pr-0">Fecha</th>
+      <th class="text-center pl-0 pr-0">Total Devolucion</th>
+      <th class="text-center pl-0 pr-0">Estado</th>
     </tr>
   </thead>
   <tbody>
@@ -43,9 +42,12 @@
       <th class="text-center">1</th>
       <td class="text-center">La Colonia #12</td>
       <td class="text-center">27/02/202</td>
-      <td class="text-center">Espumilla Pequeña</td>
-      <td class="text-center">10</td>
       <td class="text-center">200.00</td>
+      <td class="text-center"><select name="slc-estado" id="slc-estado" class="form-control">
+        <option value="value1">Pendiente</option> <!--No se me ocurren otras palabras -->
+        <option value="value1">Recogida</option> <!--No se me ocurren otras palabras -->
+      </select></td>
+      <td><button class="btn btn-danger btn-sm">Informe Devolucion</button></td>
     </tr>
   </tbody>
   </table>
@@ -62,7 +64,78 @@
   </ul>
 </nav>
   </div>
-  <button class="btn btn-primary btn-sm ml-2">Registrar Nueva Devolución</button>
+  <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Devolucion</button>
+      
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <h5 class="modal-title" id="exampleModalLabel">Nueva Devolucion</h5>
+            </div>
+            <div class="modal-body">
+              <form class="form">
+                <div class="form-group">
+                  <label>Empresa:</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">La Colonia</option>
+                    <option value="">Walmart</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Sucursal:</label>
+                  <select name="" id="" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label>Fecha de Devolucion:</label>
+                  <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
+                </div>
+                <div class="card-content">
+                  <div>
+                  <label>Productos:</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">Espumilla Pequeña(Walmart)</option>
+                    <option value="">Espumilla Grande(Walmart)</option>
+                    <option value="">Espumilla Pequeña(La Colonia)</option>
+                    <option value="">Espumilla Grande(La Colonia)</option>
+                  </select>
+                  <label>Cantidad:</label>
+                  <input type="number" class="form-control" id="txt-fecha" placeholder="Edad">
+                  <button class="btn btn-success mt-2">Agregar</button>
+                  </div>
+                </div>
+                <div>
+                  <table class="table table-striped">
+                    <thead>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                    </thead>
+                      
+                    <tbody>
+                      <tr>
+                      <td>Espumilla Pequeña</td>
+                      <td>10</td>
+                      <td>25.00</td>
+                      </tr>
+                      <tr>
+                      <td>Espumilla Grande</td>
+                      <td>20</td>
+                      <td>15.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" onclick='alert("Devolucion Registrada Correctamente")'>Registrar Devolucion</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 </div>
@@ -73,5 +146,6 @@
       <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     
     <script src="js/menu.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

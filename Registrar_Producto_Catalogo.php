@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empresas</title>
-    <link href="css/facturas.css" rel="stylesheet">
+    <title>Registrar Producto</title>
+    <link href="css/registrar-productos-catalogo.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -13,11 +13,10 @@
     include ("menu.html") ;
       ?> 
 
-  <div style="border-left: 2px solid rgb(58, 48, 48);"></div>
-  <div> <!--div de contenedor derecho-->
-  <div Style="margin-left: 250px; margin-top: 120px;">
-    <h1>Registrar Producto Al Catalogo de Ventas</h1>
-    <div Style="margin-top: 100px; margin-left: 55px;"> <!--contenedor de items debajo del titulo-->
+
+    <h1>Registrar Nuevo Producto</h1>
+
+    <div class="inf card align-items-center pr-5" style="font-size: 15px;"> <!--contenedor de items debajo del titulo-->
     <div class="row">
       <p>Nombre del Producto</p>
       <textarea name="body" id="edit-body" cols="50" rows="0.5" class="upd-01" aria-hidden="true" style="margin-left: 80px;">
@@ -43,17 +42,16 @@
 
   </div>
   <div class="row" style="margin-top: 15px;">
-    <button type="button" class="btn border">
+    <button type="button" class="btn btn-warning border">
     Limpiar campos  
     </button>
-    <button type="button" class="btn border" style="margin-left: 55px;">
+    <button type="button" class="btn btn-primary border" style="margin-left: 55px;">
       Agregar Productos 
       </button>
   </div>
 
-  </div><!--fin de contenedor de items de debajo del titulo-->
-  </div><!--fin div contenedor derecho-->
-</div>
-
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    
+    <script src="js/menu.js"></script>
 </body>
 </html>

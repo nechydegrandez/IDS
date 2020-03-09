@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empresas</title>
-    <link href="css/;Menu-Empleados.css" rel="stylesheet">
+    <link href="css/registrar-producto-vendido.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -13,59 +13,87 @@
     include ("menu.html") ;
       ?> 
     
-  </div><!--fin menu izquierda-->
-  <div style="border-left: 2px solid rgb(58, 48, 48);"></div>
-  <div> <!--div de contenedor derecho-->
-  <div Style="margin-left: 250px; margin-top: 120px;">
+  
     <h1>Registrar Producto Vendido</h1>
-    <div Style="margin-top: 100px; margin-left: 55px;"> <!--contenedor de items debajo del titulo-->
-    <div class="row">
-      <p>Nombre Producto</p>
-      <div class="dropdown" style="margin-left: 55px;">
-        <a class="btn btn-presionar dropdown-toggle btn-h btn-grupos" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Producto
-        </a>
-    <div class="dropdown-menu dropdown-menu-right btn-lista drop-margen" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item btn-bts" id="letra" href="#">Papas</a>
-      <a class="dropdown-item btn-bts" id="letra" href="#">Manzanas</a>
-    </div>
-    </div>
-  </div><!--fin de contenedor de producto-->
-  <div class="row" style="margin-top: 15px;">
-    <p>Cantidad</p>
-    <textarea name="body" id="edit-body" cols="12" rows="0.5" class="upd-01" aria-hidden="true" style="margin-left: 135px;">
-    </textarea>
-  </div>
-  <div class="row" style="margin-top: 15px;">
-   <p>fecha</p>
-   <div class="dropdown" style="margin-left: 55px;">
-    <a class="btn btn-presionar dropdown-toggle btn-h btn-grupos" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      dia
-    </a>
-</div>
-<div class="dropdown" style="margin-left: 5px;">
-  <a class="btn btn-presionar dropdown-toggle btn-h btn-grupos" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    mes
-  </a>
-</div>
-<div class="dropdown" style="margin-left: 5px;">
-  <a class="btn btn-presionar dropdown-toggle btn-h btn-grupos" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    año
-  </a>
-</div>
-  </div>
-  <div class="row" style="margin-top: 15px;">
-    <button type="button" class="btn border">
-    Limpiar campos  
-    </button>
-    <button type="button" class="btn border" style="margin-left: 55px;">
-      Registrar  
-      </button>
-  </div>
 
-  </div><!--fin de contenedor de items de debajo del titulo-->
-  </div><!--fin div contenedor derecho-->
-</div>
+    <div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
+  <div>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">Codigo Producto</th>
+      <th class="text-center">Nombre del Producto</th>
+      <th class="text-center">Precio</th>
+      <th class="text-center">Cantidad</th>
+      <th class="text-center">Dia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-center">1</th>
+      <td class="text-center">Espumilla Pequeña</td>
+      <td class="text-center">25.00</td>
+      <td class="text-center">72</td>
+      <td class="text-center">08/03/2020</td>
+    </tr>
+  </tbody>
+  </table>
+  <nav aria-label="..." class="ml-2">
+  <ul class="pagination pagination-sm">
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">
+        1
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  </ul>
+</nav>
+  </div>
+  <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Ventas del Dia</button>
+      
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <h5 class="modal-title" id="exampleModalLabel">Registrar Ventas del Dia</h5>
+            </div>
+            <div class="modal-body">
+              <form class="form">
+                <div class="form-group">
+                  <label>Fecha</label>
+                  <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
+                </div>
+                <div class="form-group">
+                  <label>Productos:</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">Espumilla Pequeña(Walmart)</option>
+                    <option value="">Espumilla Grande(Walmart)</option>
+                    <option value="">Espumilla Pequeña(La Colonia)</option>
+                    <option value="">Espumilla Grande(La Colonia)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Cantidad:</label>
+                  <input type="number" class="form-control" id="txt-fecha" placeholder="Cantidad">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" onclick='alert("Venta Registrada Correctamente")'>Registrar Venta</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
+
+</div>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    
+    <script src="js/menu.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
