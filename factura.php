@@ -42,7 +42,7 @@
       <td class="text-center">La Colonia #12</td>
       <td class="text-center">27/02/202</td>
       <td class="text-center">200.00</td>
-      <td class="text-center"><a href="#" download="">Imprimir</a></td> <!-- Este boton descargara la informacion del pedido, para despues imprimirlo -->
+      <td class="text-center"><a href="#" id="download" download="plantilla-factura.php">Imprimir</a></td> <!-- Este boton descargara la informacion del pedido, para despues imprimirlo -->
     </tr>
   </tbody>
   </table>
@@ -66,7 +66,8 @@
 
 
 
-      <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     
     <script src="js/menu.js"></script>
 </body>
