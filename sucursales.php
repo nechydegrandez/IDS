@@ -14,7 +14,7 @@
       ?> 
     
   
-<h1 >Sucursales</h1>
+<h1 style="color: white;">Sucursales</h1>
 
 
 <form  class="inf form" action="">

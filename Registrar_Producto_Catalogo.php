@@ -14,7 +14,7 @@
       ?> 
 
 
-    <h1>Registrar Nuevo Producto</h1>
+    <h1 style="color: white;">Registrar Nuevo Producto</h1>
 
     <div class="inf card align-items-center pr-5" style="font-size: 15px;"> <!--contenedor de items debajo del titulo-->
     <div class="row">

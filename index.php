@@ -15,7 +15,7 @@
       ?> 
     
   
-<h1 style="margin-left: 15px;">Pagina Principal</h1>
+<h1 style="margin-left: 15px; color: white;">Pagina Principal</h1>
 
 
 <form  class="inf" action="" style="margin-top:50px;">

@@ -14,7 +14,7 @@
       ?> 
     
   
-<h1 >Facturas</h1>
+<h1 style="color: white;">Facturas</h1>
 
 
 <form  class="inf" action="">
@@ -42,7 +42,7 @@
       <td class="text-center">La Colonia #12</td>
       <td class="text-center">27/02/202</td>
       <td class="text-center">200.00</td>
-      <td class="text-center"><a href="#" id="download" download="plantilla-factura.php">Imprimir</a></td> <!-- Este boton descargara la informacion del pedido, para despues imprimirlo -->
+      <td class="text-center"><a href="crear-pdf.php" class="btn btn-link">Imprimir</a></td> <!-- Este boton descargara la informacion del pedido, para despues imprimirlo -->
     </tr>
   </tbody>
   </table>

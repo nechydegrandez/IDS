@@ -14,7 +14,7 @@
       ?> 
     
   
-    <h1>Registrar Producto Vendido</h1>
+    <h1 style="color: white;">Registrar Producto Vendido</h1>
 
     <div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div>

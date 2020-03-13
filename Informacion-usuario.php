@@ -14,14 +14,14 @@
     include ("menu.html") ;
       ?> 
     
-  <h1>Informacion del Perfil</h1>
+  <h1 style="color: white;">Informacion del Perfil</h1>
 
   <div class="inf align-items-center pr-5" style="font-size: 15px;">
     <div class="row">
       <div class="col-5 justify-content-center mt-4">
        <img src="img/user.jpg" class="img-fluid img-thumbnail">
       </div>
-      <div class="col-7 card ">
+      <div class="col-7 card pl-0 pr-0 pb-0">
        <table class="table table-striped">
         <tbody>
           <tr>

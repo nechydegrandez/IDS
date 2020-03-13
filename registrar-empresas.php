@@ -14,33 +14,49 @@
       ?> 
     
   
-<h1 >Registrar Empresa</h1>
+<h1 style="color: white;">Registrar Empresa</h1>
 
-<div class="inf card align-items-center pr-5" style="font-size: 15px;">
+<div class="inf card align-items-center pr-0 pl-0 pt-0" style="font-size: 15px;">
 <table class="table table-striped form">
     <tr>
-        <td><label class="mt-1">Nombre Empresa</label></td>
-        <td><input type="text" id="txt-nombre-empresa" class="form-control"></td>
+        <td colspan="1" class="text-right"><label class="mt-1">Nombre Empresa</label></td>
+        <td colspan="3"><input type="text" id="txt-nombre-empresa" class="form-control"></td>
     </tr>
     <tr>
-        <td><label class="mt-1">RTN</label></td>
-        <td><input type="text" id="txt-nombre-empresa" class="form-control"></td>
+        <td colspan="1" class="text-right"><label class="mt-1">RTN</label></td>
+        <td colspan="3"><input type="text" id="txt-nombre-empresa" class="form-control"></td>
     </tr>
     <tr>
-        <td><label class="mt-1">Direccion Oficina Principal</label></td>
-        <td><input type="text" id="txt-nombre-empresa" class="form-control"></td>
+        <td class="text-right"><label class="mt-1">Departamento</label></td>
+        <td >
+            <select id="slc-departamento" class="form-control">
+                <option value="">Francisco Morazan</option>
+            </select>
+        </td>
+        <td class="text-right"><label class="mt-1">Municipio</label></td>
+        <td >
+            <select id="slc-departamento" class="form-control">
+                <option value="">Tegucigalpa</option>
+            </select>
+        </td>
     </tr>
     <tr>
-        <td><label class="mt-1">Telefono Oficina Principal</label></td>
-        <td><input type="text" id="txt-nombre-empresa" class="form-control"></td>
+        <td  colspan="1" class="text-right"><label class="mt-1">Direccion Oficina Principal</label></td>
+        <td colspan="3"><input type="text" id="txt-nombre-empresa" class="form-control"></td>
     </tr>
     <tr>
-        <td><button class="btn btn-primary" type="button">Registrar Empresa</button></td>
-        <td><button type="reset" class="btn btn-secondary">Reiniciar</button></td>
+        <td colspan="1" class="text-right"><label class="mt-1">Telefono Oficina Principal</label></td>
+        <td colspan="3"><input type="text" id="txt-nombre-empresa" class="form-control"></td>
+    </tr>
+    <tr>
     </tr>
 </table>
-
+<div >
+    <button class="btn btn-primary">Registrar Empresa</button> <button class="btn btn-secondary ml-3" type="reset">Limpiar</button>
 </div>
+</div>
+
+
 
 
 
@@ -49,5 +65,6 @@
       <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     
     <script src="js/menu.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

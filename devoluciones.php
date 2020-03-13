@@ -14,7 +14,7 @@
       ?> 
     
   
-<h1 >Devoluciones</h1>
+<h1 style="color: white;">Devoluciones</h1>
 
 
 <form  class="inf form" action="">
