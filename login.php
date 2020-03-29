@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Formulario Login</title>
-
+    <link rel="icon" type="image/png" href="img/favicon.png">
    
     <link rel="stylesheet" href="css/estilos.css">
     <link href="img/fondologin.jpg" rel="icon">

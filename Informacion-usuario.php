@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <link href="css/menu-empleado.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
 </head>
 <body>
   <!--- aqui incluyo el menu-->
@@ -18,26 +18,36 @@
 
   <div class="inf align-items-center pr-5" style="font-size: 15px;">
     <div class="row">
-      <div class="col-5 justify-content-center mt-4">
+      <div class="col-5 justify-content-center mt-5 pt-3">
        <img src="img/user.jpg" class="img-fluid img-thumbnail">
       </div>
       <div class="col-7 card pl-0 pr-0 pb-0">
        <table class="table table-striped">
         <tbody>
           <tr>
-            <td>Nombre Usuario: </td>
+            <td class="text-right pt-3">Nombre Usuario: </td>
+            <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
-            <td>Fecha de Nacimiento: </td>
+            <td class="text-right pt-3">Fecha de Nacimiento: </td>
+            <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
-            <td>Correo Electronico: </td>
+            <td class="text-right pt-3">Correo Electronico: </td>
+            <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
-            <td>Numero de Telefono: </td>
+            <td class="text-right pt-3">Numero de Telefono: </td>
+            <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
-            <td>Cargo Usuario: </td>
+            <td class="text-right pt-3">Cargo Usuario: </td>
+            <td> 
+              <select id="slc-cargo" class="form-control" disabled>
+                <option></option>
+                <option></option>
+              </select> 
+            </td>
           </tr>
         </tbody>
        </table>

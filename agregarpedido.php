@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <link href="css/agregarpedido.css" rel="stylesheet">
 </head>
 <body>
@@ -16,10 +17,17 @@
 <h1>Agregar Nuevo Pedido</h1>
 
 
-<form  class="inf" action="">
-<pre>Empresa: <select name="empresa" id="empresa">
-                           Sucursal: <select name="empresa" id="empresa"></select></pre>
+<form  class="inf card" action="">
+  <div class="row">
+    <div class="col-2">
+      <label class="label-info">Empresa:</label>
+    </div>
+    <div class="col-3">
+      <select id="slc-empresa" class="form-control">
 
+      </select>
+    </div>
+  </div>
 </form>
 <div class="inf">
 <pre>Fecha registro del pedido <select name="empresa" id="empresa"></select> <select name="empresa" id="empresa"></select> <select name="empresa" id="empresa"></select>  </pre>
