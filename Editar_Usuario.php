@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Editar_Usuario</title>
     <link href="css/menu-empleado.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
 </head>
 <body>
   <!--- aqui incluyo el menu-->
-    <?php
-    include ("menu-admin.html") ;
-      ?> 
-    
-  <h1>Registrar Usuario</h1>
 
-  <div class="inf align-items-center pr-5" style="font-size: 15px;">
+<?php
+include ("menu.html") ;
+?> 
+    
+  <h1>Editar Usuario</h1>
+
+  <div class="inf align-items-center pr-1" style="font-size: 22px;">
     <div class="row">
-      <div class="col-5 justify-content-center mt-4">
-       <img src="img/user.jpg" class="img-fluid img-thumbnail">
+      <div class="col-6 justify-content-center mt-2">
+       <img src="img/editar.jpg" class="img-fluid img-thumbnail">
       </div>
       <div class="col-7 card ">
        <table class="table table-striped">
@@ -42,8 +43,9 @@
         </tbody>
        </table>
       </div>
-      <div class="col-5 offset-4 mt-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>
+      <div class="col-1 offset-2 mt-2">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Editar Usuario</button>
+      
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

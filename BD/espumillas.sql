@@ -65,7 +65,7 @@ INSERT INTO `departamento` (`idDepartamento`, `nombreDepartamento`) VALUES
 (1, 'Tegucigalpa'),
 (2, 'Cortes'),
 (3, 'Altlantida'),
-(4, 'Colo'),
+(4, 'Colon'),
 (5, 'Comayagua'),
 (6, 'Copa'),
 (7, 'Islas'),
