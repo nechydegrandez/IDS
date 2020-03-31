@@ -18,7 +18,7 @@
 <h1 style="color: white;">Devoluciones</h1>
 
 
-<form  class="inf form" action="">
+<form  class="inf card form" action="">
   <div style="font-size: 20px" class="row">
   <label class="col-2">Empresa:</label>
   <select name="empresa" id="empresa" style="" class="form-control  col-4">
@@ -26,9 +26,9 @@
   </div>
 </form>
 
-<div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
+<div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div>
-  <table class="table table-striped">
+  <table class="table table-striped text-center">
   <thead>
     <tr>
       <th class="text-center pl-0 pr-0">Codigo Devolucion</th>
@@ -48,7 +48,7 @@
         <option value="value1">Pendiente</option> <!--No se me ocurren otras palabras -->
         <option value="value1">Recogida</option> <!--No se me ocurren otras palabras -->
       </select></td>
-      <td><button class="btn btn-danger btn-sm">Informe Devolucion</button></td>
+      <td><button class="btn btn-link btn-sm">Informe Devolucion</button></td>
     </tr>
   </tbody>
   </table>
@@ -64,8 +64,9 @@
     <li class="page-item"><a class="page-link" href="#">3</a></li>
   </ul>
 </nav>
+<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Devolucion</button>
   </div>
-  <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Devolucion</button>
+  
       
   
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

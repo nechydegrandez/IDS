@@ -17,14 +17,14 @@
 <h1 style="color: white;">Facturas</h1>
 
 
-<form  class="inf" action="">
+<form  class="inf card" action="">
   <div style="font-size: 20px" >Empresa      
     <select name="empresa" id="empresa" style="margin-left: 15px; padding-left:100px;">
     Sucursal: <select name="empresa" id="empresa"></select>
   </div>
 </form>
 
-<div class="inf align-items-center pt-0 pl-0 pr-0" style="font-size: 15px;">
+<div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div>
   <table class="table table-striped">
   <thead>

@@ -16,7 +16,7 @@
     
   <h1 style="color: white;">Informacion del Perfil</h1>
 
-  <div class="inf align-items-center pr-5" style="font-size: 15px;">
+  <div class="inf card pr-5" style="font-size: 15px;">
     <div class="row">
       <div class="col-5 justify-content-center mt-5 pt-3">
        <img src="img/user.jpg" class="img-fluid img-thumbnail">

@@ -36,7 +36,7 @@
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo del Pedido</th>
+      <th class="text-center">No. de Orden</th>
       <th class="text-center">Sucursal</th>
       <th class="text-center">Fecha Emision</th>
       <th class="text-center">Fecha Limite</th>
@@ -66,7 +66,6 @@
   </ul>
 </nav>
 
-    <div></div>
   </div>
 
   <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Agregar Pedido</button>
@@ -90,6 +89,10 @@
                 <div class="form-group">
                   <label>Sucursal:</label>
                   <select name="" id="" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label>No. de Orden:</label>
+                  <input type="number" id="txt-numero-orden" class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Fecha de Emision:</label>
