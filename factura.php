@@ -18,10 +18,16 @@
 
 
 <form  class="inf card" action="">
-  <div style="font-size: 20px" >Empresa      
-    <select name="empresa" id="empresa" style="margin-left: 15px; padding-left:100px;">
-    Sucursal: <select name="empresa" id="empresa"></select>
+<div class="row">
+  <div class="col-1 pr-0">
+    <label for="">Empresa:</label>
   </div>
+  <div class="offset-1 col-3 pl-0 pr-4 ml-5">
+    <select id="slc-empresa" class="form-control">
+
+    </select>
+  </div>
+</div>
 </form>
 
 <div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">

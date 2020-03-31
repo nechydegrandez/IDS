@@ -18,17 +18,17 @@
 <h1 style="color: white;">Pedidos</h1>
 
 
-<form  class="inf card form-check" style="font-size: 20px">
-  <div class="row btn-group">
-      <div class="col-2">
-          <label >Empresa:</label>
-      </div>
-      <div class="col-3">
-          <select name="" id="slc-empresa" class="form-control">
-              <option value=""></option>
-          </select>
-      </div>
+<form  class="inf card">
+<div class="row">
+  <div class="col-1 pr-0">
+    <label for="">Empresa:</label>
   </div>
+  <div class="offset-1 col-3 pl-0 pr-4 ml-5">
+    <select id="slc-empresa" class="form-control">
+
+    </select>
+  </div>
+</div>
 </form>
 
 <div class="inf align-items-center pt-0 pl-0 pr-0 border rounded" style="font-size: 15px;">
