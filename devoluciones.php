@@ -84,31 +84,33 @@
               <form class="form">
                 <div class="form-group">
                   <label>Empresa:</label>
-                  <select name="" id="" class="form-control">
-                    <option value="">La Colonia</option>
-                    <option value="">Walmart</option>
+                  <select name="" id="slc-empresa-devolucion" class="form-control">
+                    <option value="la_colonia">La Colonia</option>
+                    <option value="walmart">Walmart</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Sucursal:</label>
-                  <select name="" id="" class="form-control"></select>
+                  <select name="" id="slc-sucursal" class="form-control">
+                    <option value="ejemplo1">1</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label>Fecha de Devolucion:</label>
-                  <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
+                  <input type="date" class="form-control" id="txt-fecha-devolucion" placeholder="Direccion">
                 </div>
                 <div class="card-content">
                   <div>
                   <label>Productos:</label>
-                  <select name="" id="" class="form-control">
-                    <option value="">Espumilla Pequeña(Walmart)</option>
-                    <option value="">Espumilla Grande(Walmart)</option>
-                    <option value="">Espumilla Pequeña(La Colonia)</option>
-                    <option value="">Espumilla Grande(La Colonia)</option>
+                  <select name="" id="slc-productos-devolucion" class="form-control">
+                    <option value="9831052">Espumilla Pequeña(Walmart)</option>
+                    <option value="9818011">Espumilla Grande(Walmart)</option>
+                    <option value="127035240765">Espumilla Pequeña(La Colonia)</option>
+                    <option value="700000000016">Espumilla Grande(La Colonia)</option>
                   </select>
                   <label>Cantidad:</label>
-                  <input type="number" class="form-control" id="txt-fecha" placeholder="Edad">
-                  <button class="btn btn-success mt-2">Agregar</button>
+                  <input type="number" class="form-control" id="txt-cantidad-producto-devuelto" placeholder="Edad">
+                  <button type="button" class="btn btn-success mt-2" id="btn-agregar-producto-devolucion">Agregar</button>
                   </div>
                 </div>
                 <div>
@@ -119,16 +121,16 @@
                       <th>Precio</th>
                     </thead>
                       
-                    <tbody>
+                    <tbody id="div-tabla-agregar-devolucion">
                       <tr>
-                      <td>Espumilla Pequeña</td>
-                      <td>10</td>
-                      <td>25.00</td>
+                        <td>Espumilla Pequeña</td>
+                        <td>10</td>
+                        <td>25.00</td>
                       </tr>
                       <tr>
-                      <td>Espumilla Grande</td>
-                      <td>20</td>
-                      <td>15.00</td>
+                        <td>Espumilla Grande</td>
+                        <td>20</td>
+                        <td>15.00</td>
                       </tr>
                     </tbody>
                   </table>
@@ -138,7 +140,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" onclick='alert("Devolucion Registrada Correctamente")'>Registrar Devolucion</button>
+              <button id="btn-agregar-devolucion" type="button" class="btn btn-primary">Registrar Devolucion</button>
             </div>
           </div>
         </div>
@@ -154,5 +156,6 @@
     
     <script src="js/menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/controlador.js"></script>
 </body>
 </html>
