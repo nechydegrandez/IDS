@@ -64,12 +64,12 @@ CREATE TABLE IF NOT EXISTS `departamento` (
 INSERT INTO `departamento` (`idDepartamento`, `nombreDepartamento`) VALUES
 (1, 'Tegucigalpa'),
 (2, 'Cortes'),
-(3, 'Altlantida'),
+(3, 'Atlantida'),
 (4, 'Colon'),
 (5, 'Comayagua'),
 (6, 'Copa'),
-(7, 'Islas'),
-(8, 'Gracias_Dios'),
+(7, 'Islas de la Bahia'),
+(8, 'Gracias a Dios'),
 (9, 'Lempira'),
 (10, 'Valle'),
 (11, 'Paraizo');
