@@ -83,10 +83,9 @@
             <div class="modal-body">
               <form class="form">
                 <div class="form-group">
-                  <label>Empresa:</label>
-                  <select name="" id="slc-empresa-devolucion" class="form-control">
-                    <option value="la_colonia">La Colonia</option>
-                    <option value="walmart">Walmart</option>
+                <label>Empresa:</label>
+                  <select id="slc-empresa-devolucion" class="form-control">
+            
                   </select>
                 </div>
                 <div class="form-group">

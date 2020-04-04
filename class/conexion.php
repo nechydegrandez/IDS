@@ -30,7 +30,7 @@
 				$this->usuario,
 				$this->pass,
 				$this->database,
-				$this->puerto
+				$this->port
 			);
 			if (!$this->link){
 				$this->esConectado = false;
@@ -39,7 +39,7 @@
 			} else {
 				mysqli_set_charset($this->link,"utf8");
                 $this->esConectado = true;
-                echo "conectato amor con mysql";
+                echo "conectado con mysql";
 
 			}
 		}

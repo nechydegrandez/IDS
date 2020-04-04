@@ -16,8 +16,20 @@ $(document).ready(function(){
 
     })
 
-    /* $('').click(function(){
-
-    }); */
+    $.ajax({
+        url:"ajax/api.php?accion=obtener-lista-empresas",
+        method: "get",
+        dataType: "json",
+        success:function(respuesta){
+            for(var i=0; i<respuesta.length; i++){
+                $("#slc-empresa-devolucion").append(
+                    '<option value="'+respuesta[i].RTN+'">'+respuesta[i].nombreEmpresa+'</option>'
+                );
+            }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
 
 });
