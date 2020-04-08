@@ -163,5 +163,6 @@
     <script src="js/bootstrap.min.js"></script>
     
     <script src="js/menu.js"></script>
+    <script src="js/controlador.js"></script>
 </body>
 </html>

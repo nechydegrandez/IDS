@@ -32,31 +32,32 @@
 </form>
 
 <div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">
-  <div>
+  <div id="tabla-devoluciones">
   <table class="table table-striped text-center">
-  <thead>
+    <thead>
     <tr>
-      <th class="text-center pl-0 pr-0">Codigo Devolucion</th>
-      <th class="text-center pl-0 pr-0">Sucursal</th>
-      <th class="text-center pl-0 pr-0">Fecha</th>
-      <th class="text-center pl-0 pr-0">Total Devolucion</th>
-      <th class="text-center pl-0 pr-0">Estado</th>
+    <th class="text-center pl-0 pr-0">Codigo Devolucion</th>
+    <th class="text-center pl-0 pr-0">Sucursal</th>
+    <th class="text-center pl-0 pr-0">Fecha</th>
+    <th class="text-center pl-0 pr-0">Total Devolucion</th>
+    <th class="text-center pl-0 pr-0">Estado</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
-      <th class="text-center">1</th>
-      <td class="text-center">La Colonia #12</td>
-      <td class="text-center">27/02/202</td>
-      <td class="text-center">200.00</td>
-      <td class="text-center"><select name="slc-estado" id="slc-estado" class="form-control">
-        <option value="value1">Pendiente</option> <!--No se me ocurren otras palabras -->
-        <option value="value1">Recogida</option> <!--No se me ocurren otras palabras -->
-      </select></td>
-      <td><button class="btn btn-link btn-sm">Informe Devolucion</button></td>
+    <th class="text-center">Ejemplo</th>
+    <td class="text-center">Ejemplo</td>
+    <td class="text-center">Ejemplo</td>
+    <td class="text-center">Ejemplo</td>
+    <td class="text-center"><select name="slc-estado" id="slc-estado" class="form-control">
+    <option value="value1">Pendiente</option>
+    <option value="value1">Recogida</option>'
+    </select></td>
+    <td><button class="btn btn-link btn-sm">Informe Devolucion</button></td>
     </tr>
-  </tbody>
+    </tbody>
   </table>
+  
   <nav aria-label="..." class="ml-2">
   <ul class="pagination pagination-sm">
     <li class="page-item active" aria-current="page">
@@ -98,49 +99,25 @@
                   <label>Fecha de Devolucion:</label>
                   <input type="date" class="form-control" id="txt-fecha-devolucion" placeholder="Direccion">
                 </div>
-                <div class="card-content">
-                  <div>
-                  <label>Productos:</label>
-                  <select name="" id="slc-productos-devolucion" class="form-control">
-                    <option value="9831052">Espumilla Pequeña(Walmart)</option>
-                    <option value="9818011">Espumilla Grande(Walmart)</option>
-                    <option value="127035240765">Espumilla Pequeña(La Colonia)</option>
-                    <option value="700000000016">Espumilla Grande(La Colonia)</option>
+                <div class="form-group">
+                  <label>Estado:</label>
+                  <select name="" id="slc-estado-devolucion" class="form-control">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Recogido">Recogido</option>
                   </select>
-                  <label>Cantidad:</label>
-                  <input type="number" class="form-control" id="txt-cantidad-producto-devuelto" placeholder="Edad">
-                  <button type="button" class="btn btn-success mt-2" id="btn-agregar-producto-devolucion">Agregar</button>
+                </div>
+                <div class="card-content">
+                  <label>Total Devolucion:</label>
+                  <input type="number" class="form-control" id="txt-total-devolucion" placeholder="Total Devolucion">
                   </div>
                 </div>
-                <div>
-                  <table class="table table-striped">
-                    <thead>
-                      <th>Producto</th>
-                      <th>Cantidad</th>
-                      <th>Precio</th>
-                    </thead>
-                      
-                    <tbody id="div-tabla-agregar-devolucion">
-                      <tr>
-                        <td>Espumilla Pequeña</td>
-                        <td>10</td>
-                        <td>25.00</td>
-                      </tr>
-                      <tr>
-                        <td>Espumilla Grande</td>
-                        <td>20</td>
-                        <td>15.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-                </div>
               </form>
-            </div>
-            <div class="modal-footer">
+              <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <button id="btn-agregar-devolucion" type="button" class="btn btn-primary">Registrar Devolucion</button>
             </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -151,7 +128,7 @@
 
 
 
-      <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+      <script src='js/jquery-3.4.1.min.js'></script>
     
     <script src="js/menu.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -41,24 +41,32 @@
 			$this->direccionPrincipal = $direccionPrincipal;
 		}
 		public function __toString(){
-			return "IdEmpresa: " . $this->idEmpresa . 
-				" NombreEmpresa: " . $this->nombreEmpresa . 
-				" RTN: " . $this->RTN . 
+			return "IdEmpresa: " . $this->idEmpresa .
+				" NombreEmpresa: " . $this->nombreEmpresa .
+				" RTN: " . $this->RTN .
 				" DireccionPrincipal: " . $this->direccionPrincipal;
         }
-        
-        public function listaEmpresas($conexion){
 
-            $sql = "SELECT idEmpresa, nombreEmpresa, RTN, direccionPrincipal
-                    FROM empresa";
+        public function obtenerListaEmpresas($conexion){
+
+            $sql = "SELECT idEmpresa,
+			nombreEmpresa,
+			RTN,
+			direccionPrincipal
+			FROM empresa";
+
             $resultado = $conexion->ejecutarConsulta($sql);
-            $listaEmpresas = array();
-            while($fila = $conexion->obtenerFila($resultado)){
-                $listaEmpresas[] = $fila;
-            }
-            return json_encode($listaEmpresas);
-        }
+			$listaEmpresas = array();
+			while($fila = $conexion->obtenerFila($resultado)){
+				$listaEmpresas[] = $fila;
+			}
+			
+			$final = json_encode($listaEmpresas);
 
-        
+			return $final;
+
+		}
+
+
 	}
 ?>

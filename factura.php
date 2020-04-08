@@ -76,5 +76,6 @@
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     
     <script src="js/menu.js"></script>
+    <script src="js/controlador.js"></script>
 </body>
 </html>

@@ -1,23 +1,20 @@
 <?php
 
-	class devolucion{
+	class devoluciones{
 
 		private $idDevoluciones;
-		private $cantidad;
+		private $total;
 		private $fechaDevolucion;
 		private $estado;
-		private $Pedidos_idPedidos;
 
 		public function __construct($idDevoluciones,
-					$cantidad,
+					$total,
 					$fechaDevolucion,
-					$estado,
-					$Pedidos_idPedidos){
+					$estado){
 			$this->idDevoluciones = $idDevoluciones;
-			$this->cantidad = $cantidad;
+			$this->total = $total;
 			$this->fechaDevolucion = $fechaDevolucion;
 			$this->estado = $estado;
-			$this->Pedidos_idPedidos = $Pedidos_idPedidos;
 		}
 		public function getIdDevoluciones(){
 			return $this->idDevoluciones;
@@ -25,11 +22,11 @@
 		public function setIdDevoluciones($idDevoluciones){
 			$this->idDevoluciones = $idDevoluciones;
 		}
-		public function getCantidad(){
-			return $this->cantidad;
+		public function getTotal(){
+			return $this->total;
 		}
-		public function setCantidad($cantidad){
-			$this->cantidad = $cantidad;
+		public function setTotal($total){
+			$this->total = $total;
 		}
 		public function getFechaDevolucion(){
 			return $this->fechaDevolucion;
@@ -43,27 +40,26 @@
 		public function setEstado($estado){
 			$this->estado = $estado;
 		}
-		public function getPedidos_idPedidos(){
-			return $this->Pedidos_idPedidos;
-		}
-		public function setPedidos_idPedidos($Pedidos_idPedidos){
-			$this->Pedidos_idPedidos = $Pedidos_idPedidos;
-		}
 		public function __toString(){
 			return "IdDevoluciones: " . $this->idDevoluciones . 
-				" Cantidad: " . $this->cantidad . 
+				" Total: " . $this->total . 
 				" FechaDevolucion: " . $this->fechaDevolucion . 
-				" Estado: " . $this->estado . 
-				" Pedidos_idPedidos: " . $this->Pedidos_idPedidos;
-        }
+				" Estado: " . $this->estado ;
+		}
         
         public function agregarDevolucion($conexion){
 
         }
 
         public function visualizarDevoluciones($conexion){
-
-        }
+			$sql = "SELECT idDevoluciones,total,fechaDevolucion,estado FROM empresa";
+            $resultado = $conexion->ejecutarConsulta($sql);
+			$listaDevoluciones = array();
+			while($fila = $conexion->obtenerFila($resultado)){
+				$listaDevoluciones[] = $fila;
+			}
+			return json_encode($listaDevoluciones);
+		}	
 
         public function actualizarEstadoDevolucion($conexion){
             
