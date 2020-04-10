@@ -5,16 +5,16 @@
 		private $idProductos;
 		private $nombre;
 		private $precioVenta;
-		private $categoria_idcategoria;
+		private $empresa;
 
 		public function __construct($idProductos,
 					$nombre,
 					$precioVenta,
-					$categoria_idcategoria){
+					$empresa){
 			$this->idProductos = $idProductos;
 			$this->nombre = $nombre;
 			$this->precioVenta = $precioVenta;
-			$this->categoria_idcategoria = $categoria_idcategoria;
+			$this->empresa = $empresa;
 		}
 		public function getIdProductos(){
 			return $this->idProductos;
@@ -34,17 +34,40 @@
 		public function setPrecioVenta($precioVenta){
 			$this->precioVenta = $precioVenta;
 		}
-		public function getCategoria_idcategoria(){
-			return $this->categoria_idcategoria;
+		public function getEmpresa(){
+			return $this->empresa;
 		}
-		public function setCategoria_idcategoria($categoria_idcategoria){
-			$this->categoria_idcategoria = $categoria_idcategoria;
+		public function setEmpresa($empresa){
+			$this->empresa = $empresa;
 		}
 		public function __toString(){
 			return "IdProductos: " . $this->idProductos . 
 				" Nombre: " . $this->nombre . 
 				" PrecioVenta: " . $this->precioVenta . 
-				" Categoria_idcategoria: " . $this->categoria_idcategoria;
+				" Empresa: " . $this->empresa;
+		}
+
+		public function visualizarProductos($conexion){
+
+			$sql="SELECT 
+			p.idProductos,
+			p.nombre,
+			p.precioVenta,
+			p.empresa,
+			e.nombreEmpresa 
+			FROM productos as p
+			INNER JOIN empresa as e
+			on p.empresa = e.idEmpresa";
+
+			$resultado = $conexion->ejecutarConsulta($sql);
+			$listaProductos = array();
+			while($fila = $conexion->obtenerFila($resultado)){
+				$listaProductos[] = $fila;
+			}
+
+			return json_encode($listaProductos);
+
+
 		}
 	}
 ?>

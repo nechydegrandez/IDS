@@ -18,43 +18,19 @@
 <h1 style="color: white;">Devoluciones</h1>
 
 
-<form  class="inf card form" action="">
-<div class="row">
-  <div class="col-1 pr-0">
-    <label for="">Empresa:</label>
-  </div>
-  <div class="offset-1 col-3 pl-0 pr-4 ml-5">
-    <select id="slc-empresa" class="form-control">
-
-    </select>
-  </div>
-</div>
-</form>
-
 <div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">
   <div id="tabla-devoluciones">
   <table class="table table-striped text-center">
     <thead>
     <tr>
-    <th class="text-center pl-0 pr-0">Codigo Devolucion</th>
     <th class="text-center pl-0 pr-0">Sucursal</th>
     <th class="text-center pl-0 pr-0">Fecha</th>
     <th class="text-center pl-0 pr-0">Total Devolucion</th>
     <th class="text-center pl-0 pr-0">Estado</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-    <th class="text-center">Ejemplo</th>
-    <td class="text-center">Ejemplo</td>
-    <td class="text-center">Ejemplo</td>
-    <td class="text-center">Ejemplo</td>
-    <td class="text-center"><select name="slc-estado" id="slc-estado" class="form-control">
-    <option value="value1">Pendiente</option>
-    <option value="value1">Recogida</option>'
-    </select></td>
-    <td><button class="btn btn-link btn-sm">Informe Devolucion</button></td>
-    </tr>
+    <tbody id="body-devoluciones">
+
     </tbody>
   </table>
   
@@ -91,8 +67,7 @@
                 </div>
                 <div class="form-group">
                   <label>Sucursal:</label>
-                  <select name="" id="slc-sucursal" class="form-control">
-                    <option value="ejemplo1">1</option>
+                  <select name="" id="slc-sucursal-devolucion" class="form-control">
                   </select>
                 </div>
                 <div class="form-group">

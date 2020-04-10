@@ -6,15 +6,18 @@
 		private $total;
 		private $fechaDevolucion;
 		private $estado;
+		private $sucursal;
 
 		public function __construct($idDevoluciones,
 					$total,
 					$fechaDevolucion,
-					$estado){
+					$estado,
+					$sucursal){
 			$this->idDevoluciones = $idDevoluciones;
 			$this->total = $total;
 			$this->fechaDevolucion = $fechaDevolucion;
 			$this->estado = $estado;
+			$this->sucursal = $sucursal;
 		}
 		public function getIdDevoluciones(){
 			return $this->idDevoluciones;
@@ -40,29 +43,65 @@
 		public function setEstado($estado){
 			$this->estado = $estado;
 		}
+		public function getSucursal(){
+			return $this->sucursal;
+		}
+		public function setSucursal($sucursal){
+			$this->sucursal = $sucursal;
+		}
 		public function __toString(){
 			return "IdDevoluciones: " . $this->idDevoluciones . 
 				" Total: " . $this->total . 
 				" FechaDevolucion: " . $this->fechaDevolucion . 
-				" Estado: " . $this->estado ;
+				" Estado: " . $this->estado . 
+				" Sucursal: " . $this->sucursal;
 		}
-        
-        public function agregarDevolucion($conexion){
 
-        }
+		public function visualizarDevoluciones($conexion){
+			$sql = "SELECT 
+					d.idDevoluciones,
+					d.total,
+					d.fechaDevolucion,
+					d.estado,
+					d.sucursal,
+					s.nombreTienda
+			FROM devoluciones as d
+			INNER JOIN sucursal as s
+			on d.sucursal = s.idSucursal
+			ORDER BY fechaDevolucion desc";
 
-        public function visualizarDevoluciones($conexion){
-			$sql = "SELECT idDevoluciones,total,fechaDevolucion,estado FROM empresa";
-            $resultado = $conexion->ejecutarConsulta($sql);
-			$listaDevoluciones = array();
-			while($fila = $conexion->obtenerFila($resultado)){
-				$listaDevoluciones[] = $fila;
+			 $resultado = $conexion->ejecutarConsulta($sql);
+			 $listaDevoluciones = array();
+			 while($fila = $conexion->obtenerFila($resultado)){
+				 $listaDevoluciones[] = $fila;
+			 }
+			 
+			 return json_encode($listaDevoluciones);
+ 
+		}
+
+		public function agregarDevolucion($conexion){ 
+
+			$sql = sprintf("INSERT INTO devoluciones(total, fechaDevolucion, estado, sucursal) VALUES (%s,'%s','%s',%s)",
+			$conexion->antiInyeccion($this->total),
+			$conexion->antiInyeccion($this->fechaDevolucion),
+			$conexion->antiInyeccion($this->estado),
+			$conexion->antiInyeccion($this->sucursal));
+			$resultado = $conexion->ejecutarConsulta($sql);
+
+			if($resultado){
+				$mensaje["mensaje"]="Devolucion realizada exitosamente";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
 			}
-			return json_encode($listaDevoluciones);
-		}	
+			else{
+				$mensaje["mensaje"]="No se ha podido realizar la Devolucion";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			
 
-        public function actualizarEstadoDevolucion($conexion){
-            
-        }
+
+		}
 	}
 ?>

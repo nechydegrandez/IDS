@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 23-03-2020 a las 09:30:24
+-- Tiempo de generación: 09-04-2020 a las 23:33:15
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -25,28 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
---
-
-DROP TABLE IF EXISTS `categoria`;
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `idcategoria` int(11) NOT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`idcategoria`, `descripcion`) VALUES
-(1, 'Espumilla Pequeña'),
-(2, 'Espumilla Grande'),
-(3, 'Bolillos');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `departamento`
 --
 
@@ -62,17 +40,24 @@ CREATE TABLE IF NOT EXISTS `departamento` (
 --
 
 INSERT INTO `departamento` (`idDepartamento`, `nombreDepartamento`) VALUES
-(1, 'Tegucigalpa'),
+(1, 'Francisco Morazan'),
 (2, 'Cortes'),
-(3, 'Atlantida'),
-(4, 'Colon'),
+(3, 'Atlántida'),
+(4, 'Colón'),
 (5, 'Comayagua'),
-(6, 'Copa'),
+(6, 'Copán'),
 (7, 'Islas de la Bahia'),
 (8, 'Gracias a Dios'),
 (9, 'Lempira'),
-(10, 'Valle'),
-(11, 'Paraizo');
+(10, 'Choluteca'),
+(11, 'Valle'),
+(12, 'Yoro'),
+(13, 'Olancho'),
+(14, 'La Paz'),
+(15, 'El Paraíso'),
+(16, 'Intibucá'),
+(17, 'Ocotepeque'),
+(18, 'Santa Bárbara');
 
 -- --------------------------------------------------------
 
@@ -82,21 +67,24 @@ INSERT INTO `departamento` (`idDepartamento`, `nombreDepartamento`) VALUES
 
 DROP TABLE IF EXISTS `devoluciones`;
 CREATE TABLE IF NOT EXISTS `devoluciones` (
-  `idDevoluciones` int(11) NOT NULL,
-  `cantidad` varchar(45) DEFAULT NULL,
+  `idDevoluciones` int(11) NOT NULL AUTO_INCREMENT,
+  `total` decimal(45,2) DEFAULT NULL,
   `fechaDevolucion` date DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL,
-  `Pedidos_idPedidos` int(11) NOT NULL,
+  `sucursal` int(100) DEFAULT NULL,
   PRIMARY KEY (`idDevoluciones`),
-  KEY `fk_Devoluciones_Pedidos1_idx` (`Pedidos_idPedidos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_sucursal` (`sucursal`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `devoluciones`
 --
 
-INSERT INTO `devoluciones` (`idDevoluciones`, `cantidad`, `fechaDevolucion`, `estado`, `Pedidos_idPedidos`) VALUES
-(1, '30', '2020-03-05', 'pendiente', 1);
+INSERT INTO `devoluciones` (`idDevoluciones`, `total`, `fechaDevolucion`, `estado`, `sucursal`) VALUES
+(1, '30.00', '2020-04-09', 'Pendiente', 1),
+(2, '200.00', '2020-04-14', 'Pendiente', 2),
+(3, '200.00', '2020-04-10', 'Recogido', 2),
+(4, '300.00', '2020-04-30', 'Recogido', 2);
 
 -- --------------------------------------------------------
 
@@ -144,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 
 INSERT INTO `empresa` (`idEmpresa`, `nombreEmpresa`, `RTN`, `direccionPrincipal`) VALUES
-(1, 'Walmart', '08019999176681', 'Blv_Centroamerica_EdificioIPM'),
-(2, 'La_Colonia', '08019995224132', 'Colonia_Alameda');
+(1, 'Walmart', '08019999176681', 'Blv. Centroamerica, Edificio IPM'),
+(2, 'La Colonia', '08019995224132', 'Colonia Alameda');
 
 -- --------------------------------------------------------
 
@@ -223,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
 --
 
 INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `fechaElaboracion`, `fechaVencimiento`, `Productos_idProductos`) VALUES
-(1, '50', '2020-03-14', '2020-05-31', 2147483647),
+(1, '50', '2020-03-14', '2020-05-31', 765),
 (2, '50', '2020-03-14', '2020-05-31', 16),
 (3, '50', '2020-03-14', '2020-05-31', 9818011),
 (4, '50', '2020-03-14', '2020-05-31', 9831052),
@@ -250,13 +238,13 @@ CREATE TABLE IF NOT EXISTS `municipio` (
 
 INSERT INTO `municipio` (`idMunicipio`, `nombreMunicipio`, `Departamento_idDepartamento`) VALUES
 (101, 'Comayaguela', 1),
-(102, 'Santa_Lucia', 1),
-(104, 'Ceiba', 3),
-(105, 'San_Pedro_Sula', 2),
-(106, 'Distrito_Central', 1),
-(107, 'Santa_Ana', 1),
+(102, 'Santa Lucia', 1),
+(104, 'La Ceiba', 3),
+(105, 'San Pedro Sula', 2),
+(106, 'Tegucigalpa M.D.C', 1),
+(107, 'Santa Ana', 1),
 (108, 'Omoa', 2),
-(109, 'Arizona', 3);
+(109, 'Comayagua', 5);
 
 -- --------------------------------------------------------
 
@@ -310,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `pedidos_productos` (
 
 INSERT INTO `pedidos_productos` (`Pedidos_idPedidos`, `Productos_idProductos`, `cantidad`, `subtotal`) VALUES
 (1, 16, 30, 500),
-(1, 2147483647, 100, 2000),
+(1, 765, 100, 2000),
 (2, 16, 100, 153.3),
 (3, 16, 200, 3066);
 
@@ -376,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `productodefectuoso` (
 --
 
 INSERT INTO `productodefectuoso` (`idproductoDefectuoso`, `cantidad`, `fecha`, `Productos_idProductos`) VALUES
-(1, 25, '2020-03-14', 2147483647),
+(1, 25, '2020-03-14', 765),
 (2, 25, '2020-03-14', 16),
 (3, 25, '2020-03-14', 9818011),
 (4, 25, '2020-03-14', 9831052);
@@ -389,25 +377,25 @@ INSERT INTO `productodefectuoso` (`idproductoDefectuoso`, `cantidad`, `fecha`, `
 
 DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
-  `idProductos` int(20) NOT NULL,
+  `idProductos` int(100) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `precioVenta` double DEFAULT NULL,
-  `categoria_idcategoria` int(11) NOT NULL,
+  `empresa` int(11) DEFAULT NULL,
   PRIMARY KEY (`idProductos`),
-  KEY `fk_Productos_categoria1_idx` (`categoria_idcategoria`)
+  KEY `FK_empresas` (`empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `categoria_idcategoria`) VALUES
+INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `empresa`) VALUES
 (16, 'Bandeja de Espumilla 12 unds', 15.33, 2),
-(164, 'Bolsas de Bolillos', 33, 3),
-(9818011, 'Bandeja de Espumilla 12 unds', 15, 2),
+(164, 'Bolsas de Bolillos', 33, 2),
+(765, 'Bandeja de Espumillitas', 25, 2),
+(9818011, 'Bandeja de Espumilla 12 unds', 15, 1),
 (9831052, 'Bandeja de Espumillita', 25, 1),
-(70599438, 'Bolsas de Pan para Torreja', 32, 3),
-(2147483647, 'Bandeja de Espumilla 12 unds', 15.33, 2);
+(70599438, 'Bolsas de Pan para Torreja', 32, 1);
 
 -- --------------------------------------------------------
 
@@ -465,13 +453,13 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
 --
 
 INSERT INTO `sucursal` (`idSucursal`, `nombreTienda`, `telefonoTienda`, `Empresa_idEmpresa`, `Municipio_idMunicipio`, `Gerente`) VALUES
-(1, 'La_Colonia_N_2', '504_22034567', 2, 101, 1),
-(2, 'La_Colonia_N_10', '504_22231497', 2, 106, 2),
-(3, 'Walmart_Cascadas_mall', '504_97864532', 1, 106, 3),
-(4, 'Walmart_Anillo_Periferico', '504_23034567', 1, 108, 4),
-(5, 'La_Colonia_N_7', '504_98909090', 2, 104, 5),
-(6, 'La_Colonia_N_2', '504_24503456', 2, 101, 6),
-(7, 'La_Colonia_N_2', '504_22350347', 2, 109, 9);
+(1, 'La Colonia #2', '504-2203-4567', 2, 101, 1),
+(2, 'La Colonia #10', '504-2223-1497', 2, 106, 2),
+(3, 'Walmart Cascadas Mall', '504-9786-4532', 1, 106, 3),
+(4, 'Walmart Anillo Periferico', '504-2303-4567', 1, 108, 4),
+(5, 'La Colonia #7', '504_98909090', 2, 106, 5),
+(6, 'La Colonia #2', '504-2450-3456', 2, 101, 6),
+(7, 'La Colonia #4', '504-2235-0347', 2, 109, 9);
 
 -- --------------------------------------------------------
 
@@ -528,7 +516,7 @@ INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`,
 -- Filtros para la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
-  ADD CONSTRAINT `fk_Devoluciones_Pedidos1` FOREIGN KEY (`Pedidos_idPedidos`) REFERENCES `pedidos` (`idPedidos`);
+  ADD CONSTRAINT `FK_sucursal` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`idSucursal`);
 
 --
 -- Filtros para la tabla `empleados`
@@ -579,7 +567,7 @@ ALTER TABLE `productodefectuoso`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `fk_Productos_categoria1` FOREIGN KEY (`categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`);
+  ADD CONSTRAINT `FK_empresas` FOREIGN KEY (`empresa`) REFERENCES `empresa` (`idEmpresa`);
 
 --
 -- Filtros para la tabla `productos_has_insumos`
