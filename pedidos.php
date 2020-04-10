@@ -88,7 +88,7 @@
                 </div>
                 <div class="form-group">
                   <label>Sucursal:</label>
-                  <select name="" id="" class="form-control"></select>
+                  <select name="" id="slc-sucursal-pedido" class="form-control"></select>
                 </div>
                 <div class="form-group">
                   <label>No. de Orden:</label>
@@ -106,11 +106,8 @@
                 <div class="card-content">
                   <div>
                   <label>Productos:</label>
-                  <select name="" id="" class="form-control">
-                    <option value="">Espumilla Pequeña(Walmart)</option>
-                    <option value="">Espumilla Grande(Walmart)</option>
-                    <option value="">Espumilla Pequeña(La Colonia)</option>
-                    <option value="">Espumilla Grande(La Colonia)</option>
+                  <select name="" id="slc-productos-pedido" class="form-control">
+                    
                   </select>
                   <label>Cantidad:</label>
                   <input type="number" class="form-control" id="txt-fecha" placeholder="Cantidad">

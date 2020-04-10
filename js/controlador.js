@@ -94,7 +94,40 @@ $(document).ready(function(){
         error:function(e){
             console.log(e);
         }
-    })
+    });
+
+    $.ajax({
+        url: "ajax/api.php?accion=obtener-lista-productos",
+        method: "GET",
+        dataType: "json",
+        success:function(respuesta){
+            console.log(respuesta);
+            for(var i=0; i<respuesta.length;i++){
+                $('#slc-productos-pedido').append(
+                    '<option value="'+respuesta[i].idProductos+'">'+respuesta[i].nombre+'('+respuesta[i].nombreEmpresa+')</option>'
+                );
+            }    
+            
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+    $.ajax({
+        url: "ajax/api.php?accion=obtener-lista-sucursales",
+        type: "GET",
+        dataType: 'json',
+        success:function(response){
+            console.log(response);
+            for(var i=0;i<response.length;i++){
+                $('#slc-sucursal-pedido').append('<option value="'+response[i].idSucursal+'">'+response[i].nombreTienda+'</option>');
+            }   
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
     
 
 });

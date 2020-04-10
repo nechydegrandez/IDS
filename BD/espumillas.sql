@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 09-04-2020 a las 23:33:15
+-- Tiempo de generación: 10-04-2020 a las 05:47:01
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `devoluciones` (
   `sucursal` int(100) DEFAULT NULL,
   PRIMARY KEY (`idDevoluciones`),
   KEY `FK_sucursal` (`sucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `devoluciones`
@@ -84,7 +84,8 @@ INSERT INTO `devoluciones` (`idDevoluciones`, `total`, `fechaDevolucion`, `estad
 (1, '30.00', '2020-04-09', 'Pendiente', 1),
 (2, '200.00', '2020-04-14', 'Pendiente', 2),
 (3, '200.00', '2020-04-10', 'Recogido', 2),
-(4, '300.00', '2020-04-30', 'Recogido', 2);
+(4, '300.00', '2020-04-30', 'Recogido', 2),
+(9, '20.00', '2020-04-24', 'Recogido', 5);
 
 -- --------------------------------------------------------
 
