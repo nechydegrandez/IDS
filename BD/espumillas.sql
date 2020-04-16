@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 10-04-2020 a las 05:47:01
+-- Tiempo de generación: 14-04-2020 a las 23:55:26
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `devoluciones` (
   `sucursal` int(100) DEFAULT NULL,
   PRIMARY KEY (`idDevoluciones`),
   KEY `FK_sucursal` (`sucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `devoluciones`
@@ -85,7 +85,8 @@ INSERT INTO `devoluciones` (`idDevoluciones`, `total`, `fechaDevolucion`, `estad
 (2, '200.00', '2020-04-14', 'Pendiente', 2),
 (3, '200.00', '2020-04-10', 'Recogido', 2),
 (4, '300.00', '2020-04-30', 'Recogido', 2),
-(9, '20.00', '2020-04-24', 'Recogido', 5);
+(9, '20.00', '2020-04-24', 'Recogido', 5),
+(10, '50.00', '2020-04-25', 'Recogido', 4);
 
 -- --------------------------------------------------------
 
@@ -171,13 +172,13 @@ INSERT INTO `insumos` (`idInsumos`, `nombreInsumo`, `precio`, `proveedor`) VALUE
 
 DROP TABLE IF EXISTS `inventario_insumos`;
 CREATE TABLE IF NOT EXISTS `inventario_insumos` (
-  `idInventario_Insumos` int(11) NOT NULL,
+  `idInventario_Insumos` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) DEFAULT NULL,
   `fechaLlegada` date DEFAULT NULL,
   `Insumos_idInsumos` int(11) NOT NULL,
   PRIMARY KEY (`idInventario_Insumos`),
   KEY `fk_Inventario_Insumos_Insumos1_idx` (`Insumos_idInsumos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `inventario_insumos`
@@ -185,10 +186,11 @@ CREATE TABLE IF NOT EXISTS `inventario_insumos` (
 
 INSERT INTO `inventario_insumos` (`idInventario_Insumos`, `cantidad`, `fechaLlegada`, `Insumos_idInsumos`) VALUES
 (1, 20, '2020-03-14', 2),
-(2, 100, '2020-03-14', 1),
+(2, 100, '2020-03-20', 1),
 (3, 5, '2020-03-14', 4),
 (4, 10, '2020-03-14', 5),
-(5, 50, '2020-03-14', 6);
+(5, 50, '2020-03-14', 6),
+(6, 20, '2020-04-28', 3);
 
 -- --------------------------------------------------------
 
@@ -213,10 +215,10 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
 
 INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `fechaElaboracion`, `fechaVencimiento`, `Productos_idProductos`) VALUES
 (1, '50', '2020-03-14', '2020-05-31', 765),
-(2, '50', '2020-03-14', '2020-05-31', 16),
-(3, '50', '2020-03-14', '2020-05-31', 9818011),
-(4, '50', '2020-03-14', '2020-05-31', 9831052),
-(5, '50', '2020-03-14', '2020-03-31', 70599438);
+(2, '100', '2020-03-14', '2020-05-31', 16),
+(3, '150', '2020-03-14', '2020-05-31', 9818011),
+(4, '200', '2020-03-14', '2020-05-31', 9831052),
+(5, '250', '2020-03-14', '2020-03-31', 70599438);
 
 -- --------------------------------------------------------
 
@@ -256,14 +258,11 @@ INSERT INTO `municipio` (`idMunicipio`, `nombreMunicipio`, `Departamento_idDepar
 DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE IF NOT EXISTS `pedidos` (
   `idPedidos` int(11) NOT NULL,
-  `fechaRegistro` date DEFAULT NULL,
+  `fechaPedido` date DEFAULT NULL,
   `fechaLimite` date DEFAULT NULL,
-  `estado` varchar(45) DEFAULT NULL,
-  `TotalPagar` double DEFAULT NULL,
-  `Empleados_idEmpleados` int(11) NOT NULL,
+  `totalPedido` decimal(45,2) DEFAULT NULL,
   `Sucursal_idSucursal` int(11) NOT NULL,
   PRIMARY KEY (`idPedidos`),
-  KEY `fk_Pedidos_Empleados1_idx` (`Empleados_idEmpleados`),
   KEY `fk_Pedidos_Sucursal1_idx` (`Sucursal_idSucursal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -271,10 +270,10 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`idPedidos`, `fechaRegistro`, `fechaLimite`, `estado`, `TotalPagar`, `Empleados_idEmpleados`, `Sucursal_idSucursal`) VALUES
-(1, '2020-03-02', '2020-03-10', 'pendiente', 2000, 2, 1),
-(2, '2020-02-25', '2020-03-01', 'pendiente', 2000, 2, 1),
-(3, '2020-03-15', '2020-03-30', 'pendiente', 2000, 3, 2);
+INSERT INTO `pedidos` (`idPedidos`, `fechaPedido`, `fechaLimite`, `totalPedido`, `Sucursal_idSucursal`) VALUES
+(1, '2020-03-02', '2020-03-10', '2000.00', 1),
+(2, '2020-02-25', '2020-03-01', '2000.00', 1),
+(3, '2020-03-15', '2020-03-30', '2000.00', 2);
 
 -- --------------------------------------------------------
 
@@ -495,19 +494,21 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `contrasenia` varchar(45) DEFAULT NULL,
   `TipoUsuario_idTipoUsuario` int(11) NOT NULL,
   `estado` varchar(1) DEFAULT NULL,
+  `personas` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
-  KEY `fk_Usuarios_TipoUsuario1_idx` (`TipoUsuario_idTipoUsuario`)
+  KEY `fk_Usuarios_TipoUsuario1_idx` (`TipoUsuario_idTipoUsuario`),
+  KEY `FK_personas` (`personas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`, `estado`) VALUES
-(1, 'asd.456', 2, 'a'),
-(2, 'asd.456', 1, 'a'),
-(3, 'asd.456', 2, 'a'),
-(4, 'asd.456', 2, 'i');
+INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`, `estado`, `personas`) VALUES
+(1, 'asd.456', 2, 'a', 1),
+(2, 'asd.456', 1, 'a', 10),
+(3, 'asd.456', 2, 'a', 8),
+(4, 'asd.456', 2, 'i', 7);
 
 --
 -- Restricciones para tablas volcadas
@@ -548,7 +549,6 @@ ALTER TABLE `municipio`
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD CONSTRAINT `fk_Pedidos_Empleados1` FOREIGN KEY (`Empleados_idEmpleados`) REFERENCES `empleados` (`idEmpleados`),
   ADD CONSTRAINT `fk_Pedidos_Sucursal1` FOREIGN KEY (`Sucursal_idSucursal`) REFERENCES `sucursal` (`idSucursal`);
 
 --
@@ -589,6 +589,7 @@ ALTER TABLE `sucursal`
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
+  ADD CONSTRAINT `FK_personas` FOREIGN KEY (`personas`) REFERENCES `personas` (`idPersonas`),
   ADD CONSTRAINT `fk_Usuarios_TipoUsuario1` FOREIGN KEY (`TipoUsuario_idTipoUsuario`) REFERENCES `tipousuario` (`idTipoUsuario`);
 COMMIT;
 
