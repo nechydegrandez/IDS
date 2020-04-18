@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 14-04-2020 a las 23:55:26
+-- Tiempo de generación: 18-04-2020 a las 20:38:16
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `devoluciones` (
   `estado` varchar(45) DEFAULT NULL,
   `sucursal` int(100) DEFAULT NULL,
   PRIMARY KEY (`idDevoluciones`),
-  KEY `FK_sucursal` (`sucursal`)
+  KEY `FK_sucursales` (`sucursal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -122,9 +122,8 @@ INSERT INTO `empleados` (`idEmpleados`, `cargo`, `Personas_idPersonas`, `Usuario
 
 DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE IF NOT EXISTS `empresa` (
-  `idEmpresa` int(11) NOT NULL,
+  `idEmpresa` bigint(14) UNSIGNED ZEROFILL NOT NULL,
   `nombreEmpresa` varchar(45) DEFAULT NULL,
-  `RTN` varchar(45) DEFAULT NULL,
   `direccionPrincipal` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEmpresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -133,9 +132,9 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`idEmpresa`, `nombreEmpresa`, `RTN`, `direccionPrincipal`) VALUES
-(1, 'Walmart', '08019999176681', 'Blv. Centroamerica, Edificio IPM'),
-(2, 'La Colonia', '08019995224132', 'Colonia Alameda');
+INSERT INTO `empresa` (`idEmpresa`, `nombreEmpresa`, `direccionPrincipal`) VALUES
+(08019995224132, 'La Colonia', 'Colonia Alameda'),
+(08019999176681, 'Walmart', 'Blv. Centroamerica, Edificio IPM');
 
 -- --------------------------------------------------------
 
@@ -145,12 +144,12 @@ INSERT INTO `empresa` (`idEmpresa`, `nombreEmpresa`, `RTN`, `direccionPrincipal`
 
 DROP TABLE IF EXISTS `insumos`;
 CREATE TABLE IF NOT EXISTS `insumos` (
-  `idInsumos` int(11) NOT NULL,
+  `idInsumos` int(11) NOT NULL AUTO_INCREMENT,
   `nombreInsumo` varchar(45) DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `proveedor` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idInsumos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `insumos`
@@ -204,9 +203,8 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
   `cantidadBandejas` varchar(45) DEFAULT NULL,
   `fechaElaboracion` date DEFAULT NULL,
   `fechaVencimiento` date DEFAULT NULL,
-  `Productos_idProductos` int(11) NOT NULL,
-  PRIMARY KEY (`idinventario_Producto`),
-  KEY `fk_inventario_Producto_Productos1_idx` (`Productos_idProductos`)
+  `Productos_idProductos` bigint(100) NOT NULL,
+  PRIMARY KEY (`idinventario_Producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -214,8 +212,8 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
 --
 
 INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `fechaElaboracion`, `fechaVencimiento`, `Productos_idProductos`) VALUES
-(1, '50', '2020-03-14', '2020-05-31', 765),
-(2, '100', '2020-03-14', '2020-05-31', 16),
+(1, '50', '2020-03-14', '2020-05-31', 127035240765),
+(2, '100', '2020-03-14', '2020-05-31', 700000000016),
 (3, '150', '2020-03-14', '2020-05-31', 9818011),
 (4, '200', '2020-03-14', '2020-05-31', 9831052),
 (5, '250', '2020-03-14', '2020-03-31', 70599438);
@@ -284,7 +282,7 @@ INSERT INTO `pedidos` (`idPedidos`, `fechaPedido`, `fechaLimite`, `totalPedido`,
 DROP TABLE IF EXISTS `pedidos_productos`;
 CREATE TABLE IF NOT EXISTS `pedidos_productos` (
   `Pedidos_idPedidos` int(11) NOT NULL,
-  `Productos_idProductos` int(11) NOT NULL,
+  `Productos_idProductos` bigint(100) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `subtotal` double DEFAULT NULL,
   PRIMARY KEY (`Pedidos_idPedidos`,`Productos_idProductos`),
@@ -297,10 +295,10 @@ CREATE TABLE IF NOT EXISTS `pedidos_productos` (
 --
 
 INSERT INTO `pedidos_productos` (`Pedidos_idPedidos`, `Productos_idProductos`, `cantidad`, `subtotal`) VALUES
-(1, 16, 30, 500),
-(1, 765, 100, 2000),
-(2, 16, 100, 153.3),
-(3, 16, 200, 3066);
+(1, 700000000016, 30, 500),
+(1, 127035240765, 100, 2000),
+(2, 700000000016, 100, 153.3),
+(3, 700000000016, 200, 3066);
 
 -- --------------------------------------------------------
 
@@ -377,12 +375,12 @@ INSERT INTO `productodefectuoso` (`idproductoDefectuoso`, `cantidad`, `fecha`, `
 
 DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
-  `idProductos` int(100) NOT NULL,
+  `idProductos` bigint(100) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `precioVenta` double DEFAULT NULL,
-  `empresa` int(11) DEFAULT NULL,
+  `empresa` bigint(14) UNSIGNED ZEROFILL NOT NULL,
   PRIMARY KEY (`idProductos`),
-  KEY `FK_empresas` (`empresa`)
+  KEY `FK_empresa` (`empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -390,12 +388,12 @@ CREATE TABLE IF NOT EXISTS `productos` (
 --
 
 INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `empresa`) VALUES
-(16, 'Bandeja de Espumilla 12 unds', 15.33, 2),
-(164, 'Bolsas de Bolillos', 33, 2),
-(765, 'Bandeja de Espumillitas', 25, 2),
-(9818011, 'Bandeja de Espumilla 12 unds', 15, 1),
-(9831052, 'Bandeja de Espumillita', 25, 1),
-(70599438, 'Bolsas de Pan para Torreja', 32, 1);
+(9818011, 'Bandeja de Espumilla 12 unds', 15, 08019999176681),
+(9831052, 'Bandeja de Espumillita', 25, 08019999176681),
+(70599438, 'Bolsas de Pan para Torreja', 32, 08019999176681),
+(127035240765, 'Bandeja de Espumillitas', 25, 08019995224132),
+(700000000016, 'Bandeja de Espumilla 12 unds', 15.33, 08019995224132),
+(7000000000164, 'Bolsas de Bolillos', 33, 08019995224132);
 
 -- --------------------------------------------------------
 
@@ -405,7 +403,7 @@ INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `empresa`) VALU
 
 DROP TABLE IF EXISTS `productos_has_insumos`;
 CREATE TABLE IF NOT EXISTS `productos_has_insumos` (
-  `Productos_idProductos` int(11) NOT NULL,
+  `Productos_idProductos` bigint(100) NOT NULL,
   `Insumos_idInsumos` int(11) NOT NULL,
   PRIMARY KEY (`Productos_idProductos`,`Insumos_idInsumos`),
   KEY `fk_Productos_has_Insumos_Insumos1_idx` (`Insumos_idInsumos`),
@@ -417,16 +415,16 @@ CREATE TABLE IF NOT EXISTS `productos_has_insumos` (
 --
 
 INSERT INTO `productos_has_insumos` (`Productos_idProductos`, `Insumos_idInsumos`) VALUES
-(16, 1),
-(164, 1),
+(7000000000164, 1),
 (9818011, 1),
 (9831052, 1),
 (70599438, 1),
-(2147483647, 1),
-(16, 2),
+(127035240765, 1),
+(700000000016, 1),
 (9818011, 2),
 (9831052, 2),
-(2147483647, 2);
+(127035240765, 2),
+(700000000016, 2);
 
 -- --------------------------------------------------------
 
@@ -436,30 +434,28 @@ INSERT INTO `productos_has_insumos` (`Productos_idProductos`, `Insumos_idInsumos
 
 DROP TABLE IF EXISTS `sucursal`;
 CREATE TABLE IF NOT EXISTS `sucursal` (
-  `idSucursal` int(11) NOT NULL,
+  `idSucursal` int(11) NOT NULL AUTO_INCREMENT,
   `nombreTienda` varchar(45) DEFAULT NULL,
   `telefonoTienda` varchar(45) DEFAULT NULL,
-  `Empresa_idEmpresa` int(11) NOT NULL,
+  `Empresa_idEmpresa` bigint(14) UNSIGNED ZEROFILL NOT NULL,
   `Municipio_idMunicipio` int(11) NOT NULL,
-  `Gerente` int(11) NOT NULL,
+  `Gerente` varchar(200) NOT NULL,
   PRIMARY KEY (`idSucursal`),
-  KEY `fk_Sucursal_Empresa1_idx` (`Empresa_idEmpresa`),
   KEY `fk_Sucursal_Municipio1_idx` (`Municipio_idMunicipio`),
-  KEY `fk_Sucursal_Personas1_idx` (`Gerente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_empresaSucursal` (`Empresa_idEmpresa`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `sucursal`
 --
 
 INSERT INTO `sucursal` (`idSucursal`, `nombreTienda`, `telefonoTienda`, `Empresa_idEmpresa`, `Municipio_idMunicipio`, `Gerente`) VALUES
-(1, 'La Colonia #2', '504-2203-4567', 2, 101, 1),
-(2, 'La Colonia #10', '504-2223-1497', 2, 106, 2),
-(3, 'Walmart Cascadas Mall', '504-9786-4532', 1, 106, 3),
-(4, 'Walmart Anillo Periferico', '504-2303-4567', 1, 108, 4),
-(5, 'La Colonia #7', '504_98909090', 2, 106, 5),
-(6, 'La Colonia #2', '504-2450-3456', 2, 101, 6),
-(7, 'La Colonia #4', '504-2235-0347', 2, 109, 9);
+(1, 'La Colonia #2', '504-2203-4567', 08019995224132, 101, 'Jose Gamez'),
+(2, 'La Colonia #10', '504-2223-1497', 08019995224132, 106, 'Angel Bulnes'),
+(3, 'Walmart Cascadas Mall', '504-9786-4532', 08019999176681, 106, 'David Bulnes'),
+(4, 'Walmart Anillo Periferico', '504-2303-4567', 08019999176681, 106, 'Alejandro Bautista'),
+(5, 'La Colonia #7', '504_98909090', 08019995224132, 106, 'Johana Gutierrez'),
+(7, 'La Colonia #4', '504-2235-0347', 08019995224132, 106, 'Milisenth Cruz');
 
 -- --------------------------------------------------------
 
@@ -518,7 +514,7 @@ INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`,
 -- Filtros para la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
-  ADD CONSTRAINT `FK_sucursal` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`idSucursal`);
+  ADD CONSTRAINT `FK_sucursales` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`idSucursal`);
 
 --
 -- Filtros para la tabla `empleados`
@@ -534,63 +530,22 @@ ALTER TABLE `inventario_insumos`
   ADD CONSTRAINT `fk_Inventario_Insumos_Insumos1` FOREIGN KEY (`Insumos_idInsumos`) REFERENCES `insumos` (`idInsumos`);
 
 --
--- Filtros para la tabla `inventario_producto`
---
-ALTER TABLE `inventario_producto`
-  ADD CONSTRAINT `fk_inventario_Producto_Productos1` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
-
---
 -- Filtros para la tabla `municipio`
 --
 ALTER TABLE `municipio`
   ADD CONSTRAINT `fk_Municipio_Departamento1` FOREIGN KEY (`Departamento_idDepartamento`) REFERENCES `departamento` (`idDepartamento`);
 
 --
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `fk_Pedidos_Sucursal1` FOREIGN KEY (`Sucursal_idSucursal`) REFERENCES `sucursal` (`idSucursal`);
-
---
--- Filtros para la tabla `pedidos_productos`
---
-ALTER TABLE `pedidos_productos`
-  ADD CONSTRAINT `fk_Pedidos_has_Productos_Pedidos1` FOREIGN KEY (`Pedidos_idPedidos`) REFERENCES `pedidos` (`idPedidos`),
-  ADD CONSTRAINT `fk_Pedidos_has_Productos_Productos1` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
-
---
--- Filtros para la tabla `productodefectuoso`
---
-ALTER TABLE `productodefectuoso`
-  ADD CONSTRAINT `fk_productoDefectuoso_Productos1` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
-
---
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `FK_empresas` FOREIGN KEY (`empresa`) REFERENCES `empresa` (`idEmpresa`);
-
---
--- Filtros para la tabla `productos_has_insumos`
---
-ALTER TABLE `productos_has_insumos`
-  ADD CONSTRAINT `fk_Productos_has_Insumos_Insumos1` FOREIGN KEY (`Insumos_idInsumos`) REFERENCES `insumos` (`idInsumos`),
-  ADD CONSTRAINT `fk_Productos_has_Insumos_Productos1` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
+  ADD CONSTRAINT `FK_empresa` FOREIGN KEY (`empresa`) REFERENCES `empresa` (`idEmpresa`);
 
 --
 -- Filtros para la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
-  ADD CONSTRAINT `fk_Sucursal_Empresa1` FOREIGN KEY (`Empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`),
-  ADD CONSTRAINT `fk_Sucursal_Municipio1` FOREIGN KEY (`Municipio_idMunicipio`) REFERENCES `municipio` (`idMunicipio`),
-  ADD CONSTRAINT `fk_Sucursal_Personas1` FOREIGN KEY (`Gerente`) REFERENCES `personas` (`idPersonas`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `FK_personas` FOREIGN KEY (`personas`) REFERENCES `personas` (`idPersonas`),
-  ADD CONSTRAINT `fk_Usuarios_TipoUsuario1` FOREIGN KEY (`TipoUsuario_idTipoUsuario`) REFERENCES `tipousuario` (`idTipoUsuario`);
+  ADD CONSTRAINT `FK_empresaSucursal` FOREIGN KEY (`Empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
