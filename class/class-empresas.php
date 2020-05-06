@@ -4,16 +4,13 @@
 
 		private $idEmpresa;
 		private $nombreEmpresa;
-		private $RTN;
 		private $direccionPrincipal;
 
 		public function __construct($idEmpresa,
 					$nombreEmpresa,
-					$RTN,
 					$direccionPrincipal){
 			$this->idEmpresa = $idEmpresa;
 			$this->nombreEmpresa = $nombreEmpresa;
-			$this->RTN = $RTN;
 			$this->direccionPrincipal = $direccionPrincipal;
 		}
 		public function getIdEmpresa(){
@@ -28,12 +25,7 @@
 		public function setNombreEmpresa($nombreEmpresa){
 			$this->nombreEmpresa = $nombreEmpresa;
 		}
-		public function getRTN(){
-			return $this->RTN;
-		}
-		public function setRTN($RTN){
-			$this->RTN = $RTN;
-		}
+		
 		public function getDireccionPrincipal(){
 			return $this->direccionPrincipal;
 		}
@@ -43,7 +35,6 @@
 		public function __toString(){
 			return "IdEmpresa: " . $this->idEmpresa .
 				" NombreEmpresa: " . $this->nombreEmpresa .
-				" RTN: " . $this->RTN .
 				" DireccionPrincipal: " . $this->direccionPrincipal;
         }
 
@@ -51,7 +42,6 @@
 
             $sql = "SELECT idEmpresa,
 			nombreEmpresa,
-			RTN,
 			direccionPrincipal
 			FROM empresa";
 
@@ -65,6 +55,25 @@
 
 			return $final;
 
+		}
+
+		public function agregarEmpresa($conexion){
+			$sql = sprintf("INSERT INTO empresa(idEmpresa, nombreEmpresa, direccionPrincipal) VALUES (%s,'%s','%s')",
+			$conexion->antiInyeccion($this->idEmpresa),
+			$conexion->antiInyeccion($this->nombreEmpresa),
+			$conexion->antiInyeccion($this->direccionPrincipal));
+			$resultado = $conexion->ejecutarConsulta($sql);
+
+			if($resultado){
+				$mensaje["mensaje"]="Empresa agregada exitosamente";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			else{
+				$mensaje["mensaje"]="No se ha podido agregar la Empresa";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
 		}
 
 

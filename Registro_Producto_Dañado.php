@@ -1,3 +1,12 @@
+<?php
+
+  $nombreProducto = $_POST['#nombreProducto'];
+  $fechaElaboracion = $_POST['#fechaElaboracion'];
+  $fechaVencimiento = $_POST['#fechaVencimiento'];
+  $cantidadBandejas =$_POST['#cantidadBandejas'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +29,8 @@ include ("menu.html") ;
   <section class="form-register">
       <h5>Registrar el Producto Dañado</h5>
       <tr>
-        <h4>Còdigo del Producto</h4>
-        <input class="controls" type="text" name="Nombres" id="" placeholder="ingrese còdigo Producto">
+        <h4>Producto</h4>
+        <input class="controls" type="text" name="Nombres" id="" value="<?php echo $nombreProducto?>">
         <tr>
       <tr>
         <h4>Fecha de Elaboraciòn </h4>
@@ -30,17 +39,28 @@ include ("menu.html") ;
       <tr>
       </tr>
       <tr>
-        <h4>Fecha de caducidad</h4>
+        <h4>Fecha de Vencimiento</h4>
       <input type="date" class="form-control" id="txt-fecha" placeholder="Fecha de registro">
      <tr>
        
         
       </tr>
       
-          <h4>Fecha de registro</h4>
+          <h4>Cantidad</h4>
         </tr>
-      <input type="date" class="form-control" id="txt-fecha" placeholder="Fecha de registro">
+      <input type="number" class="form-control" id="txt-cantidad-eliminar" placeholder="Cantidad">
       <br>
       <br>
-      <input class="btn btn-primary" type="submit" value="Registrar el producto dañado">
-</section>
+      <input class="btn btn-danger" type="submit" value="Eliminar Producto">
+  </section>
+
+
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <script src="js/bootstrap.min.js"></script>    
+  <script src="js/menu.js"></script>
+  <script src="js/controlador.js"></script>
+  </body>
+  </html>
+
+
+

@@ -26,19 +26,12 @@
     <tr>
       <th class="text-center">Codigo</th>
       <th class="text-center">Insumo</th>
-      <th class="text-center">Precio</th>
       <th class="text-center">Fecha de Adquisicion</th>
       <th class="text-center">Cantidad</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th class="text-center">1</th>
-      <td class="text-center">Colorante Alimenticio</td>
-      <td class="text-center">50.00</td>
-      <td class="text-center">31/03/2020</td>
-      <td class="text-center">10</td>
-    </tr>
+  <tbody id="body-insumos">
+    
   </tbody>
   </table>
   <nav aria-label="..." class="ml-2">
@@ -68,17 +61,14 @@
                 <div class="modal-body">
               <form class="form">
               <div class="form-group">
-                  <label>Codigo del Producto:</label>
-                  <select class="form-control" id="slc-codigo-producto">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                  <label>Insumo:</label>
+                  <select class="form-control" id="slc-codigo-insumo">
+                  <option value="">...</option>
                   </select>
               </div>
               <div class="form-group">
                   <label>Fecha de Adquisicion:</label>
-                  <input type="date" class="form-control" id="txt-fecha-elaboracion">
+                  <input type="date" class="form-control" id="txt-fecha-adquisicion">
               </div>
               <div class="form-group">
                   <label>Cantidad:</label>
@@ -88,7 +78,7 @@
             </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick='alert("Se agrego correctamente")'>Agregar a Inventario</button>
+                  <button type="button" id="btn-añadir-insumo" class="btn btn-primary">Agregar a Inventario</button>
                 </div>
               </div>
             </div>
@@ -105,7 +95,7 @@
 
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script src="js/bootstrap.min.js"></script>    
-
 <script src="js/menu.js"></script>
+<script src="js/controlador.js"></script>
 </body>
 </html>

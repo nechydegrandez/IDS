@@ -25,7 +25,7 @@
   </div>
   <div class="offset-1 col-3 pl-0 pr-4 ml-5">
     <select id="slc-empresa" class="form-control">
-
+      <option value="">...</option>
     </select>
   </div>
 </div>

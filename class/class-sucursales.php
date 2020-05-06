@@ -68,8 +68,12 @@
         }
         
         public function visualizarSucursales($conexion){
-            $sql="SELECT idSucursal,nombreTienda,telefonoTienda,Empresa_idEmpresa, Municipio_idMunicipio, Gerente 
-            from sucursal";
+            $sql="SELECT s.idSucursal,s.nombreTienda,s.telefonoTienda,s.Empresa_idEmpresa, s.Municipio_idMunicipio, s.Gerente, e.nombreEmpresa,m.nombreMunicipio
+			from sucursal as s
+			inner join empresa as e
+			ON s.Empresa_idEmpresa = e.idEmpresa
+			inner join municipio as m
+			ON s.Municipio_idMunicipio = m.idMunicipio";
 
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
@@ -80,6 +84,46 @@
             $final = json_encode($listaSucursales);
 
             return $final;
-        }
+		}
+
+		
+		public function agregarSucursal($conexion){
+			$sql = sprintf("INSERT INTO sucursal(nombreTienda, telefonoTienda, Empresa_idEmpresa, Municipio_idMunicipio, Gerente) VALUES ('%s','%s',%s,%s,'%s')",
+			$conexion->antiInyeccion($this->nombreTienda),
+			$conexion->antiInyeccion($this->telefonoTienda),
+			$conexion->antiInyeccion($this->Empresa_idEmpresa),
+			$conexion->antiInyeccion($this->Municipio_idMunicipio),
+			$conexion->antiInyeccion($this->Gerente));
+			$resultado = $conexion->ejecutarConsulta($sql);
+
+			if($resultado){
+				$mensaje["mensaje"]="Sucursal agregada exitosamente";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			else{
+				$mensaje["mensaje"]="No se ha podido agregar la sucursal";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+		}
+
+
+		public function visualizarSucursalesEmpresa($conexion){
+			$sql=sprintf("SELECT idSucursal,nombreTienda,Empresa_idEmpresa
+			from sucursal
+			WHERE Empresa_idEmpresa = %s",
+			$conexion->antiInyeccion($this->Empresa_idEmpresa));
+
+            $resultado = $conexion->ejecutarConsulta($sql);
+            $SucursalesEspecificas = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $SucursalesEspecificas[] = $fila;
+            }
+
+            $final = json_encode($SucursalesEspecificas);
+
+            return $final;
+		}
 	}
 ?>

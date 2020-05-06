@@ -63,24 +63,12 @@
             <div class="modal-body">
               <form class="form">
                 <div class="form-group">
-                  <label>Nombre:</label>
-                  <input type="text" class="form-control" id="txt-nombre" placeholder="Nombre Usuario">
-                </div>
-                <div class="form-group">
-                  <label>Fecha de Nacimiento:</label>
-                  <input type="date" class="form-control" id="txt-fecha">
-                </div>
-                <div class="form-group">
                   <label>Correo Electronico:</label>
                   <input type="email" class="form-control" id="txt-correo" placeholder="ejemplo@hotmail.com">
                 </div>
                 <div class="form-group">
                   <label>Numero de Telefono:</label>
                   <input type="number" class="form-control" id="txt-telefono" placeholder="90909090">
-                </div>
-                <div class="form-group">
-                  <label>Cargo:</label>
-                  <input type="email" class="form-control" id="txt-correo" placeholder="Cargo">
                 </div>
               </form>
             </div>

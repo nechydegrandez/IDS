@@ -548,6 +548,50 @@ ALTER TABLE `sucursal`
   ADD CONSTRAINT `FK_empresaSucursal` FOREIGN KEY (`Empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`);
 COMMIT;
 
+CREATE TABLE IF NOT EXISTS `facturas` (
+  `idfacturas` INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+  `fecha_factura` DATE NULL,
+  `empresa_idEmpresa` BIGINT(14) UNSIGNED ZEROFILL NOT NULL,
+  `sucursal_idSucursal` INT(11) NOT NULL,
+  PRIMARY KEY (`idfacturas`),
+  INDEX `fk_facturas_empresa1_idx` (`empresa_idEmpresa` ASC) VISIBLE,
+  INDEX `fk_facturas_sucursal1_idx` (`sucursal_idSucursal` ASC) VISIBLE,
+  CONSTRAINT `fk_facturas_empresa1`
+    FOREIGN KEY (`empresa_idEmpresa`)
+    REFERENCES `empresa` (`idEmpresa`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_facturas_sucursal1`
+    FOREIGN KEY (`sucursal_idSucursal`)
+    REFERENCES `sucursal` (`idSucursal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `detalle_factura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `detalle_factura` (
+  `idDetalle_factura` INT NOT NULL,
+  `cantidad` INT UNSIGNED NOT NULL,
+  `facturas_idfacturas` INT(4) UNSIGNED ZEROFILL NOT NULL,
+  `productos_idProductos` BIGINT(100) NOT NULL,
+  PRIMARY KEY (`idDetalle_factura`),
+  INDEX `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas` ASC) VISIBLE,
+  INDEX `fk_detalle_factura_productos1_idx` (`productos_idProductos` ASC) VISIBLE,
+  CONSTRAINT `fk_detalle_factura_facturas1`
+    FOREIGN KEY (`facturas_idfacturas`)
+    REFERENCES `facturas` (`idfacturas`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_detalle_factura_productos1`
+    FOREIGN KEY (`productos_idProductos`)
+    REFERENCES `productos` (`idProductos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

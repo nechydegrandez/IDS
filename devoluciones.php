@@ -23,10 +23,9 @@
   <table class="table table-striped text-center">
     <thead>
     <tr>
-    <th class="text-center pl-0 pr-0">Sucursal</th>
-    <th class="text-center pl-0 pr-0">Fecha</th>
-    <th class="text-center pl-0 pr-0">Total Devolucion</th>
-    <th class="text-center pl-0 pr-0">Estado</th>
+    <th class="text-left pr-0">Sucursal</th>
+    <th class="text-center pr-0">Fecha</th>
+    <th class="text-center pr-0">Total Devolucion</th>
     </tr>
     </thead>
     <tbody id="body-devoluciones">
@@ -58,38 +57,40 @@
               <h5 class="modal-title" id="exampleModalLabel">Nueva Devolucion</h5>
             </div>
             <div class="modal-body">
-              <form class="form">
+              <form class="form needs-validation">
                 <div class="form-group">
                 <label>Empresa:</label>
-                  <select id="slc-empresa-devolucion" class="form-control">
-            
+                  <select id="slc-empresa-devolucion" class="form-control" required>
+                  <option value="">...</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Sucursal:</label>
-                  <select name="" id="slc-sucursal-devolucion" class="form-control">
+                  <select name="" id="slc-sucursal-devolucion" class="form-control" required>
+                  <option value="">...</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Fecha de Devolucion:</label>
-                  <input type="date" class="form-control" id="txt-fecha-devolucion" placeholder="Direccion">
+                  <input type="date" class="form-control" id="txt-fecha-devolucion" placeholder="Direccion" required>
                 </div>
                 <div class="form-group">
                   <label>Estado:</label>
-                  <select name="" id="slc-estado-devolucion" class="form-control">
+                  <select name="" id="slc-estado-devolucion" class="form-control" required>
+                  <option value="">...</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="Recogido">Recogido</option>
                   </select>
                 </div>
                 <div class="card-content">
                   <label>Total Devolucion:</label>
-                  <input type="number" class="form-control" id="txt-total-devolucion" placeholder="Total Devolucion">
+                  <input type="number" class="form-control" id="txt-total-devolucion" placeholder="Total Devolucion" required>
                   </div>
                 </div>
               </form>
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button id="btn-agregar-devolucion" type="button" class="btn btn-primary">Registrar Devolucion</button>
+              <button id="btn-agregar-devolucion" type="submit" class="btn btn-primary">Registrar Devolucion</button>
             </div>
             </div>
             

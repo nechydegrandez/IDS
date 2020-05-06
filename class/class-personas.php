@@ -86,5 +86,9 @@
 				" Telefono: " . $this->telefono . 
 				" Genero: " . $this->genero;
 		}
+
+		public function visualizarPersonas($conexion){
+			$sql = ""
+		}
 	}
 ?>

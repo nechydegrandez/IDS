@@ -1,80 +1,81 @@
 <?php
 
-	class pedido{
+	class pedidos{
 
 		private $idPedidos;
-		private $fechaRegistro;
+		private $fechaPedido;
 		private $fechaLimite;
-		private $estado;
-		private $TotalPagar;
-		private $idempleado;
-		private $idsucursal;
+		private $totalPedido;
+		private $Sucursal_idSucursal;
 
-		public function __construct(
-			$idPedidos,
-			$fechaRegistro,
-			$fechaLimite,
-			$estado,
-			$TotalPagar,
-			$idempleado,
-			$idsucursal){
-				$this->idPedidos= $idPedidos;
-				$this->fechaRegistro= $fechaRegistro;
-				$this->fechaLimite= $fechaLimite;
-				$this->estado= $estado;
-				$this->TotalPagar= $TotalPagar;
-				$this->idempleado= $idempleado;
-				$this->idsucursal= $idsucursal;
-			}
-			public function getidPedidos(){
-				return $this->idPedidos;
-			}
-			public function setidPedidos($idPedidos){
-				$this->idPedidos = $idPedidos;
-			}
-			public function getfechaRegistro(){
-				return $this->fechaRegistro;
-			}
-			public function setfechaRegistro($fechaRegistro){
-				$this->fechaRegistro = $fechaRegistro;
-			}
-			public function getfechaLimite(){
-				return $this->fechaLimite;
-			}
-			public function setfechaLimite($fechaLimite){
-				$this->fechaLimite = $fechaLimite;
-			}
-			public function getestado(){
-				return $this->estado;
-			}
-			public function setestado($estado){
-				$this->estado = $estado;
-			}
-			public function getTotalPagar(){
-				return $this->TotalPagar;
-			}
-			public function setTotalPagar($TotalPagar){
-				$this->TotalPagar = $TotalPagar;
-			}
-			public function getidempleado(){
-				return $this->idempleado;
-			}
-			public function setidempleado($idempleado){
-				$this->idempleado = $idempleado;
-			}
-			public function getidsucursal(){
-				return $this->idsucursal;
-			}
-			public function setidsucursal($idsucursal){
-				$this->idsucursal = $idsucursal;
-			}
-			public function toString(){
-				return "idPedidos: " . $this->idPedidos . 
-					" fechaRegistro: " . $this->fechaRegistro . 
-					" fechaLimite: " . $this->fechaLimite . 
-					" estado: " . $this->estado . 
-					" TotalPagar: " . $this->TotalPagar . 
-					" idempleado: " . $this->idempleado . 
-					" idsucursal: " . $this->idsucursal ;
-			}
-	
+		public function __construct($idPedidos,
+					$fechaPedido,
+					$fechaLimite,
+					$totalPedido,
+					$Sucursal_idSucursal){
+			$this->idPedidos = $idPedidos;
+			$this->fechaPedido = $fechaPedido;
+			$this->fechaLimite = $fechaLimite;
+			$this->totalPedido = $totalPedido;
+			$this->Sucursal_idSucursal = $Sucursal_idSucursal;
+		}
+		public function getIdPedidos(){
+			return $this->idPedidos;
+		}
+		public function setIdPedidos($idPedidos){
+			$this->idPedidos = $idPedidos;
+		}
+		public function getFechaPedido(){
+			return $this->fechaPedido;
+		}
+		public function setFechaPedido($fechaPedido){
+			$this->fechaPedido = $fechaPedido;
+		}
+		public function getFechaLimite(){
+			return $this->fechaLimite;
+		}
+		public function setFechaLimite($fechaLimite){
+			$this->fechaLimite = $fechaLimite;
+		}
+		public function getTotalPedido(){
+			return $this->totalPedido;
+		}
+		public function setTotalPedido($totalPedido){
+			$this->totalPedido = $totalPedido;
+		}
+		public function getSucursal_idSucursal(){
+			return $this->Sucursal_idSucursal;
+		}
+		public function setSucursal_idSucursal($Sucursal_idSucursal){
+			$this->Sucursal_idSucursal = $Sucursal_idSucursal;
+		}
+		public function __toString(){
+			return "IdPedidos: " . $this->idPedidos . 
+				" FechaPedido: " . $this->fechaPedido . 
+				" FechaLimite: " . $this->fechaLimite . 
+				" TotalPedido: " . $this->totalPedido . 
+				" Sucursal_idSucursal: " . $this->Sucursal_idSucursal;
+        }
+        
+        public function visualizarPedidos($conexion){
+            $sql = "SELECT 
+            p.idPedidos, 
+            p.fechaPedido, 
+            p.fechaLimite, 
+            p.totalPedido, 
+            p.Sucursal_idSucursal,
+            s.nombreTienda 
+            FROM pedidos as p
+            INNER JOIN sucursal as s
+			ON p.Sucursal_idSucursal = s.idSucursal";
+			
+			 $resultado = $conexion->ejecutarConsulta($sql);
+			 $listaPedidos = array();
+			 while($fila = $conexion->obtenerFila($resultado)){
+				 $listaPedidos[] = $fila;
+			 }
+			 
+			 return json_encode($listaPedidos);
+        }
+	}
+?>

@@ -1,93 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Factura</title>
-    <link rel="stylesheet" href="css/plantilla-factura.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-<body>
-<div>
- <head>
-    <div class="row mt-3">
-        <div class="offset-1 col-4 mt-2">
-            <div class="row no-gutters">
-                <div class="col-2 mt-4"><img src="img/home.png" class="img-fluid"></div>
-                <div class="col-10 text-center mt-3">
-                    <span><b>ESPUMILLA LA CABAÑA S. de R.L.</b></span>
-                    <p>Barrio La Cabaña, Calle Finlay, Casa 1559 <br>
-                       Teléfono: + 504 2237-9899 / 9673-0750 <br>
-                       Email: espumillaslacabana@gmail.com
-                    </p>
-                </div>
-            </div>
+<?php
+
+    require('fpdf/fpdf.php');
+
+    $fpdf = new FPDF();
+    $fpdf->AddPage('portrait','letter');
+
+    class pdf extends FPDF{
+        public function header(){
+            $this->SetFillColor(59,131,189);
+            $this->Rect(0,0,220,40,'F');
+            $this->Image('img/logo.png', 3, 8, 35,25, 'png');
+            $this->SetFont('Arial','B',13);
+            $this->SetTextColor(255,255,255);
+            $this->SetX(38);
+            $this->Write(10,utf8_decode('Espumillas La Cabaña S. de R.L'));
+            $this->Ln(4);
+            $this->SetFont('Arial','',10);
+            $this->SetX(39);
+            $this->Write(10,utf8_decode('Barrio La Cabaña, Calle Finlay, Casa 1559'));
+            $this->Ln(4);
+            $this->SetFont('Arial','',10);
+            $this->SetX(41);
+            $this->Write(10,utf8_decode('Télefono:  +504 2237-9899 / 9673-0750'));
             
-        </div>
-        <div class="offset-2 col-4 text-center border border-dark mt-2 rounded">
-            <p class="mb-0">CAI: <br>
-                RTN:
-            </p>
-            <h3 class="mb-0">Factura</h3>
-            <h5 class="mb-0">No. 000-001-01-XXXXXXXX</h5>
-        </div>
-    </div>
- </head>
+            $this->SetFont('Arial','B',14);
+            $this->SetX(120);
+            $this->Cell(20,7,'FACTURA NO. 000-001-01-0000XXXX');
+            $this->Ln(4);
+            $this->SetFont('Arial','',10);
+            $this->SetX(41);
+            $this->Write(10,utf8_decode('Email:  espumillaslacabana@gmail.com'));
 
- <div class="row mt-4">
-     <div class="offset-1 col-10">
-         <p>
-            No. Orden de Compra Exenta _____________________________ No Reg de la SAG _____________________________ <br><br>
-            No. Constancia de Reg. Exonerado _____________________________________________________________________ <br> <br>
-            Fecha: ________ de __________________ de 20_____ <br><br>
-            Cliente: ______________________________________________ RTN _________________________________________ <br> <br>
-            Dirección: _______________________________________________________________________________________
-         </p>
-     </div>
- </div>
+            
+        }
 
- <div class="row mt-2">
-     <div class="col-10 offset-1">
-         <table class="table table-bordered">
-            <thead>
-                <tr class="">
-                    <th style="width: 10%;" class="text-center">Cantidad</th>
-                    <th style="width: 35%;" class="text-center">Descripción</th>
-                    <th style="width: 13%;" class="text-center">Precio Unitario</th>
-                    <th style="width: 25%;" class="text-center">Descuentos y Rebajas Otorgadas</th>
-                    <th class="text-center">Total .L</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="">
-                    <th class="text-center"> </th>
-                    <th>700000000016</th>
-                    <th class="text-center"></th>
-                    <th></th>
-                    <th class="text-center"></th>
-                </tr>
-                <tr>
-                    <th class="text-center">36</th>
-                    <th>Bandeja de Espumillas 12 und</th>
-                    <th class="text-center">15.33</th>
-                    <th></th>
-                    <th class="text-center">551.88</th>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td class="text-center">IMPORTE EXONERADO L.</td>
-                    <TD></TD>
-                </tr>
-            </tbody>
-         </table>
-     </div>
- </div>
- </div>
+    }
 
- 
-
-    </body>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    $fpdf = new pdf();
+    $fpdf->AddPage('portrait','letter');
     
-</html>
+    $fpdf->Ln(25);
+
+
+    $fpdf->SetFont('Arial','',12);
+    $fpdf->Cell(20,7,'Cliente: ');
+    $fpdf->Ln();
+    $fpdf->Cell(20,7,'RTN: ');
+    $fpdf->Ln();
+    $fpdf->Cell(20,7,'Direccion: ');
+    $fpdf->Ln();
+    $fpdf->Cell(20,7,'Fecha: ');
+    
+    $fpdf->Ln(20); 
+    
+    
+
+    $fpdf->SetFontSize(9);
+    $fpdf->Setfont('Arial', 'B');
+    $fpdf->Cell(20,7,'Cantidad',1,0,'C');
+    $fpdf->Cell(72,7,'Descripcion',1,0,'C');
+    $fpdf->Cell(35,7,'Precio Unitario',1,0,'C');
+    $fpdf->SetFont('Arial','B',6.5);
+    $fpdf->Cell(40,7,'Descuentos y Rebajas Otorgadas',1,0,'C');
+    $fpdf->SetFontSize(9);
+    $fpdf->Setfont('Arial', 'B');
+    $fpdf->Cell(30,7,'Total L.',1,0,'C');
+
+    $fpdf->Ln(60);
+
+    $fpdf->SetFontSize(9);
+    $fpdf->Setfont('Arial', 'B');
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'Importe Exonerado L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'Importe Exento L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'Importe Gravado 15% L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'Importe Gravado 18% L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'15% I.S.V L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'18% I.S.V L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+    $fpdf->Ln();
+    $fpdf->SetX(137);
+    $fpdf->Cell(39,7,'Total A Pagar L.',1,0,'C');
+    $fpdf->Cell(30,7,'',1,0,'C');
+
+    $fpdf->Ln(22);
+
+    $fpdf->SetFontSize(12);
+    $fpdf->Setfont('Arial', 'B');
+    $fpdf->Cell(12,7,'Son:',1,0,'C');
+    $fpdf->Setfont('Arial');
+    $fpdf->Cell(140 ,7,'',1,0,'C');
+
+    $fpdf->Ln(35);
+    $fpdf->SetX(100);
+    $fpdf->SetFontSize(11);
+    $fpdf->Setfont('Arial', 'B');
+    $fpdf->Write(10,utf8_decode('Firma y Sello'));  
+    $fpdf->Line(80, 240, 145,240);
+
+    $fpdf->output();
+
+
+    
+
+?>

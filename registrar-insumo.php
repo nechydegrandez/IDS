@@ -17,39 +17,32 @@
 
     <h1 style="color: white; padding-left:525px;">Registrar Insumo</h1>
 
-    <div class="inf card align-items-center pr-5 pt-5 pb-5" style="font-size: 15px;"> <!--contenedor de items debajo del titulo-->
-    <div class="row">
-      <p>Nombre del Producto:</p>
-      <textarea name="body" id="edit-body" cols="50" rows="0.5" class="upd-01" aria-hidden="true" style="margin-left: 80px;">
-    </textarea>
-  </div><!--fin de contenedor de producto-->
-  <div class="row" style="margin-top: 15px;">
-    <p>Codigo:</p>
-    <textarea name="body" id="edit-body" cols="50" rows="0.5" class="upd-01" aria-hidden="true" style="margin-left: 182px;">
-    </textarea>
-  </div>
-  <div class="row" style="margin-top: 15px;">
-    <p>Precio de Compra:</p>
-    <textarea name="body" id="edit-body" cols="50" rows="0.5" class="upd-01" aria-hidden="true" style="margin-left: 125px;">
-    </textarea>
-  </div>
-  <div class="row" style="margin-top: 15px;">
-   <div class="dropdown" style="margin-left: 55px;">
-
+    <div class="inf card align-items-center pr-0 pl-0 pt-0" style="font-size: 15px;">
+<table class="table table-striped form">
+    <tr>
+        <td colspan="1" class="text-right"><label class="mt-1">Nombre Insumo:</label></td>
+        <td colspan="3"><input type="text" id="txt-nombre-insumo" class="form-control"></td>
+    </tr>
+    <tr>
+        <td colspan="1" class="text-right"><label class="mt-1">Precio:</label></td>
+        <td colspan="3"><input type="number" id="txt-precio-insumo" class="form-control"></td>
+    </tr>
+    <tr>
+        <td  colspan="1" class="text-right"><label class="mt-1">Proveedor:</label></td>
+        <td colspan="3"><input type="text" id="txt-proveedor-insumo" class="form-control"></td>
+    </tr>
+    <tr>
+    </tr>
+</table>
+<div >
+    <button class="btn btn-primary" id="btn-registrar-insumo">Registrar Insumo</button>
+</div>
 </div>
 
-  </div>
-  <div class="row" style="margin-top: 15px;">
-    <button type="button" class="btn btn-warning border">
-    Limpiar campos  
-    </button>
-    <button type="button" class="btn btn-primary border" style="margin-left: 55px;">
-      Agregar Productos 
-      </button>
-  </div>
 
-  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-    
-    <script src="js/menu.js"></script>
+  <script src='js/jquery-3.4.1.min.js'></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/controlador.js"></script>  
+  <script src="js/menu.js"></script>
 </body>
 </html>

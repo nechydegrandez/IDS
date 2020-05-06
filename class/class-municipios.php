@@ -36,5 +36,17 @@
 				" NombreMunicipio: " . $this->nombreMunicipio . 
 				" Departamento_idDepartamento: " . $this->Departamento_idDepartamento;
 		}
+
+		public function visualizarMunicipios($conexion){
+			$sql = "SELECT idMunicipio, nombreMunicipio, Departamento_idDepartamento FROM municipio";
+			$resultado = $conexion->ejecutarConsulta($sql);
+			$listaMunicipios = array();
+			while($fila = $conexion->obtenerFila($resultado)){
+				$listaMunicipios[] = $fila;
+			}
+			
+			return json_encode($listaMunicipios);
+
+		}
 	}
 ?>

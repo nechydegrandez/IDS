@@ -26,18 +26,12 @@
     <tr>
       <th class="text-center">Codigo</th>
       <th class="text-center">Producto</th>
-      <th class="text-center">Fecha Elaboracion</th>
-      <th class="text-center">Fecha Vencimiento</th>
+      <th class="text-center">Empresa</th>
       <th class="text-center">Cantidad</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th class="text-center">1</th>
-      <td class="text-center">Espumilla 12 und</td>
-      <td class="text-center">27/02/2020</td>
-      <td class="text-center">31/03/2020</td>
-      <td class="text-center">20</td>
+  <tbody id="table-inventario-producto">
+    
     </tr>
   </tbody>
   </table>
@@ -57,42 +51,68 @@
   </div>
 
   <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Agregar Producto a Inventario</button>
-      
+  <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#modalEliminarProducto">Eliminar Producto</button>
+
   
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Agregar Producto a Inventario</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Aumentar Cantidad de Producto</h5>
                 </div>
                 <div class="modal-body">
               <form class="form">
               <div class="form-group">
-                  <label>Codigo del Producto:</label>
-                  <select class="form-control" id="slc-codigo-producto">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                  <label>Producto:</label>
+                  <select class="form-control" id="slc-producto-a-actualizar">
+                  <option value="">...</option>
                   </select>
               </div>
               <div class="form-group">
-                  <label>Fecha de Elaboracion:</label>
-                  <input type="date" class="form-control" id="txt-fecha-elaboracion">
+                  <label>Cantidad Actual:</label>
+                  <input type="number" class="form-control" id="txt-cantidad-actual-actualizar" disabled>
               </div>
-                <div class="form-group">
-                  <label>Fecha Vencimiento:</label>
-                  <input type="date" class="form-control" id="txt-fecha-vencimiento">
-                </div>
               <div class="form-group">
-                  <label>Cantidad:</label>
-                  <input type="number" class="form-control" id="txt-cantidad" placeholder="Cantidad">
+                  <label>Cantidad a aumentar:</label>
+                  <input type="number" class="form-control" id="txt-cantidad-a-aumentar">
               </div>
               </form>
             </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick='alert("Se agrego correctamente")'>Agregar a Inventario</button>
+                  <button type="button" class="btn btn-primary" id="btn-aumentar-cantidad-producto">Agregar a Inventario</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalEliminarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Eliminar Producto</h5>
+                </div>
+                <div class="modal-body">
+              <form class="form">
+              <div class="form-group">
+                  <label>Producto:</label>
+                  <select class="form-control" id="slc-producto-a-eliminar">
+                  <option value="">...</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>Cantidad Actual:</label>
+                  <input type="number" class="form-control" id="txt-cantidad-actual" disabled>
+              </div>
+              <div class="form-group">
+                  <label>Cantidad a eliminar:</label>
+                  <input type="number" class="form-control" id="txt-cantidad-a-eliminar">
+              </div>
+              </form>
+            </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-danger" id="btn-eliminar-producto-inventario">Eliminar Producto</button>
                 </div>
               </div>
             </div>
@@ -102,14 +122,13 @@
     </div>
     
 </div>
-    
 
 
 
 
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script src="js/bootstrap.min.js"></script>    
-
 <script src="js/menu.js"></script>
+<script src="js/controlador.js"></script>
 </body>
 </html>
