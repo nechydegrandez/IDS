@@ -37,7 +37,7 @@
           </div>
           <div class="form-group">
             <label>Fecha de Emision:</label>
-            <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
+            <input type="date" class="form-control" id="txt-fecha-factura" placeholder="Direccion">
           </div>
           <div class="card-content">
           <table class="table table-bordered table-sm mt-3">
@@ -60,26 +60,28 @@
           <td id="td-precio-producto"></td>
           <td ><input type="number" class="form-control form-control-sm" id="cantidad-producto-factura"></td>
           <td id="total-producto"></td>
-          <td ><a href="#">Agregar</a></td>
+          <td ><button type="button" id="btn-agregar-producto-detalle-temp" class="btn btn-link">Agregar</button></td>
           </tr>
           </thead>
-          </table>
+          </table id="informacion-productos-factura">
           </div>
           <div>
           <table class="table table-striped mt-3">
           <thead>
           <tr>
-          <th>Codigo del Producto</th>
-          <th>Descripcion</th>
-          <th>Precio Unitario</th>
-          <th>Cantidad</th>
-          <th>Precio Total</th>
-          <th>Accion  </th>
+          <th class="text-center">Codigo del Producto</th>
+          <th class="text-center">Descripcion</th>
+          <th class="text-center">Precio Unitario</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-center">Precio Total</th>
           </tr>
           </thead>
+          <tbody id="tbody-tabla-temp">
+            
+          </tbody>
           </table>
           </div>
-            <button type="button" class="btn btn-primary mt-2" id="btn-registrar-factura">Registrar e Imprimir Factura</button>
+            <button type="button" class="btn btn-primary mt-2" id="btn-registrar-factura">Registrar Factura</button>
           </div>
           </div>
         </form>
@@ -95,5 +97,25 @@
     
     <script src="js/menu.js"></script>
     <script src="js/controlador.js"></script>
+    <script >
+      function eliminarProductoTemp(idProd){
+
+        var parametros = "Producto=" + idProd;
+
+        $.ajax({
+          url: "ajax/api.php?accion=eliminar-producto-fact-temp",
+          method: "POST",
+          data: parametros,
+          dataType: "json",
+          success:function(respuesta){
+                alert('Producto Eliminado');
+                location.reload();
+            },
+          error:function(e){
+            console.log(e);
+          }
+        });
+      }
+    </script>
 </body>
 </html>

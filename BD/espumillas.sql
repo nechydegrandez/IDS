@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 18-04-2020 a las 20:38:16
+-- Tiempo de generación: 15-05-2020 a las 05:06:49
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -21,6 +21,64 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `espumillas`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+DROP PROCEDURE IF EXISTS `procesar_venta`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (IN `cod_empresa` BIGINT(14) UNSIGNED ZEROFILL, IN `cod_sucursla` INT(11), IN `fecha_factura` DATE)  BEGIN
+    	
+        DECLARE factura INT;
+        
+        DECLARE registros INT;
+        
+        DECLARE nueva_existencia INT;
+        DECLARE existencia_actual INT;
+        
+        DECLARE tmp_cod_producto INT;
+        DECLARE tmp_cant_producto INT;
+        DECLARE a INT;
+        SET a =1;
+        
+        CREATE TEMPORARY TABLE tbl_tmp(
+        	id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            cod_prod BIGINT,
+            cant_prod int
+        );
+        
+        SET registros = (SELECT COUNT(*) as NProductos FROM detalle_temp);
+        
+        IF registros > 0 THEN
+        
+        	INSERT INTO tbl_tmp(cod_prod,cant_prod) SELECT idProducto,cantidad FROM detalle_temp;
+        
+        	INSERT INTO facturas(fecha_factura,empresa_idEmpresa,sucursal_idSucursal) VALUES (fecha_factura,cod_empresa,cod_sucursla);
+            SET factura = LAST_INSERT_ID();
+            
+            INSERT INTO detalle_factura(facturas_idfacturas,cantidad,productos_idProductos) SELECT (factura) as facturas_idfacturas, cantidad,idProducto FROM detalle_temp;
+            
+            WHILE a <= registros DO
+            	SELECT cant_prod,cod_prod INTO tmp_cant_producto,tmp_cod_producto FROM tbl_tmp WHERE id = a;
+                SELECT cantidadBandejas INTO existencia_actual FROM inventario_producto WHERE Productos_idProductos = tmp_cod_producto;
+                
+                SET nueva_existencia = existencia_actual - tmp_cant_producto;
+                UPDATE inventario_producto SET cantidadBandejas = nueva_existencia WHERE Productos_idProductos = tmp_cod_producto;
+                
+                set a=a+1;
+                
+            END WHILE;
+            
+            DELETE FROM detalle_temp;
+            TRUNCATE TABLE tbl_tmp;
+            SELECT * from facturas WHERE idfacturas = factura;
+        ELSE 
+        	SELECT 0;
+        END IF;
+        
+    END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -58,6 +116,48 @@ INSERT INTO `departamento` (`idDepartamento`, `nombreDepartamento`) VALUES
 (16, 'Intibucá'),
 (17, 'Ocotepeque'),
 (18, 'Santa Bárbara');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_factura`
+--
+
+DROP TABLE IF EXISTS `detalle_factura`;
+CREATE TABLE IF NOT EXISTS `detalle_factura` (
+  `idDetalle_factura` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(10) UNSIGNED NOT NULL,
+  `facturas_idfacturas` int(4) UNSIGNED ZEROFILL NOT NULL,
+  `productos_idProductos` bigint(100) NOT NULL,
+  PRIMARY KEY (`idDetalle_factura`),
+  KEY `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas`),
+  KEY `fk_detalle_factura_productos1_idx` (`productos_idProductos`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_factura`
+--
+
+INSERT INTO `detalle_factura` (`idDetalle_factura`, `cantidad`, `facturas_idfacturas`, `productos_idProductos`) VALUES
+(1, 50, 0001, 9818011),
+(2, 50, 0001, 9831052),
+(4, 36, 0002, 700000000016),
+(5, 36, 0002, 127035240765);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_temp`
+--
+
+DROP TABLE IF EXISTS `detalle_temp`;
+CREATE TABLE IF NOT EXISTS `detalle_temp` (
+  `idDetalleTemp` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL,
+  `idProducto` bigint(100) NOT NULL,
+  PRIMARY KEY (`idDetalleTemp`),
+  KEY `FK_DetalleTemp_Producto` (`idProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -139,6 +239,31 @@ INSERT INTO `empresa` (`idEmpresa`, `nombreEmpresa`, `direccionPrincipal`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `facturas`
+--
+
+DROP TABLE IF EXISTS `facturas`;
+CREATE TABLE IF NOT EXISTS `facturas` (
+  `idfacturas` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+  `fecha_factura` date DEFAULT NULL,
+  `empresa_idEmpresa` bigint(14) UNSIGNED ZEROFILL NOT NULL,
+  `sucursal_idSucursal` int(11) NOT NULL,
+  PRIMARY KEY (`idfacturas`),
+  KEY `fk_facturas_empresa1_idx` (`empresa_idEmpresa`),
+  KEY `fk_facturas_sucursal1_idx` (`sucursal_idSucursal`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `facturas`
+--
+
+INSERT INTO `facturas` (`idfacturas`, `fecha_factura`, `empresa_idEmpresa`, `sucursal_idSucursal`) VALUES
+(0001, '2020-05-20', 08019999176681, 3),
+(0002, '2020-05-19', 08019995224132, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `insumos`
 --
 
@@ -199,24 +324,24 @@ INSERT INTO `inventario_insumos` (`idInventario_Insumos`, `cantidad`, `fechaLleg
 
 DROP TABLE IF EXISTS `inventario_producto`;
 CREATE TABLE IF NOT EXISTS `inventario_producto` (
-  `idinventario_Producto` int(11) NOT NULL,
+  `idinventario_Producto` int(11) NOT NULL AUTO_INCREMENT,
   `cantidadBandejas` varchar(45) DEFAULT NULL,
-  `fechaElaboracion` date DEFAULT NULL,
-  `fechaVencimiento` date DEFAULT NULL,
   `Productos_idProductos` bigint(100) NOT NULL,
-  PRIMARY KEY (`idinventario_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idinventario_Producto`),
+  KEY `FK_Producto_Inventario` (`Productos_idProductos`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `inventario_producto`
 --
 
-INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `fechaElaboracion`, `fechaVencimiento`, `Productos_idProductos`) VALUES
-(1, '50', '2020-03-14', '2020-05-31', 127035240765),
-(2, '100', '2020-03-14', '2020-05-31', 700000000016),
-(3, '150', '2020-03-14', '2020-05-31', 9818011),
-(4, '200', '2020-03-14', '2020-05-31', 9831052),
-(5, '250', '2020-03-14', '2020-03-31', 70599438);
+INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `Productos_idProductos`) VALUES
+(1, '150', 127035240765),
+(2, '100', 700000000016),
+(3, '70', 9818011),
+(4, '120', 9831052),
+(5, '230', 70599438),
+(6, '100', 7000000000164);
 
 -- --------------------------------------------------------
 
@@ -295,8 +420,8 @@ CREATE TABLE IF NOT EXISTS `pedidos_productos` (
 --
 
 INSERT INTO `pedidos_productos` (`Pedidos_idPedidos`, `Productos_idProductos`, `cantidad`, `subtotal`) VALUES
-(1, 700000000016, 30, 500),
 (1, 127035240765, 100, 2000),
+(1, 700000000016, 30, 500),
 (2, 700000000016, 100, 153.3),
 (3, 700000000016, 200, 3066);
 
@@ -349,23 +474,21 @@ INSERT INTO `personas` (`idPersonas`, `nombre`, `apellido`, `nidentidad`, `corre
 
 DROP TABLE IF EXISTS `productodefectuoso`;
 CREATE TABLE IF NOT EXISTS `productodefectuoso` (
-  `idproductoDefectuoso` int(11) NOT NULL,
+  `idproductoDefectuoso` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `Productos_idProductos` int(11) NOT NULL,
+  `fechaRegistrado` date NOT NULL,
+  `Productos_idProductos` bigint(100) NOT NULL,
   PRIMARY KEY (`idproductoDefectuoso`),
-  KEY `fk_productoDefectuoso_Productos1_idx` (`Productos_idProductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_Producto_Daniado` (`Productos_idProductos`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `productodefectuoso`
 --
 
-INSERT INTO `productodefectuoso` (`idproductoDefectuoso`, `cantidad`, `fecha`, `Productos_idProductos`) VALUES
-(1, 25, '2020-03-14', 765),
-(2, 25, '2020-03-14', 16),
-(3, 25, '2020-03-14', 9818011),
-(4, 25, '2020-03-14', 9831052);
+INSERT INTO `productodefectuoso` (`idproductoDefectuoso`, `cantidad`, `fechaRegistrado`, `Productos_idProductos`) VALUES
+(1, 15, '2020-05-06', 70599438),
+(2, 50, '2020-05-06', 127035240765);
 
 -- --------------------------------------------------------
 
@@ -377,7 +500,7 @@ DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
   `idProductos` bigint(100) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `precioVenta` double DEFAULT NULL,
+  `precioVenta` decimal(10,2) DEFAULT NULL,
   `empresa` bigint(14) UNSIGNED ZEROFILL NOT NULL,
   PRIMARY KEY (`idProductos`),
   KEY `FK_empresa` (`empresa`)
@@ -388,12 +511,12 @@ CREATE TABLE IF NOT EXISTS `productos` (
 --
 
 INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `empresa`) VALUES
-(9818011, 'Bandeja de Espumilla 12 unds', 15, 08019999176681),
-(9831052, 'Bandeja de Espumillita', 25, 08019999176681),
-(70599438, 'Bolsas de Pan para Torreja', 32, 08019999176681),
-(127035240765, 'Bandeja de Espumillitas', 25, 08019995224132),
-(700000000016, 'Bandeja de Espumilla 12 unds', 15.33, 08019995224132),
-(7000000000164, 'Bolsas de Bolillos', 33, 08019995224132);
+(9818011, 'Bandeja de Espumilla 12 unds', '15.00', 08019999176681),
+(9831052, 'Bandeja de Espumillita', '25.00', 08019999176681),
+(70599438, 'Bolsas de Pan para Torreja', '32.00', 08019999176681),
+(127035240765, 'Bandeja de Espumillitas', '25.00', 08019995224132),
+(700000000016, 'Bandeja de Espumilla 12 unds', '15.33', 08019995224132),
+(7000000000164, 'Bolsas de Bolillos', '33.00', 08019995224132);
 
 -- --------------------------------------------------------
 
@@ -415,12 +538,12 @@ CREATE TABLE IF NOT EXISTS `productos_has_insumos` (
 --
 
 INSERT INTO `productos_has_insumos` (`Productos_idProductos`, `Insumos_idInsumos`) VALUES
-(7000000000164, 1),
 (9818011, 1),
 (9831052, 1),
 (70599438, 1),
 (127035240765, 1),
 (700000000016, 1),
+(7000000000164, 1),
 (9818011, 2),
 (9831052, 2),
 (127035240765, 2),
@@ -511,6 +634,19 @@ INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`,
 --
 
 --
+-- Filtros para la tabla `detalle_factura`
+--
+ALTER TABLE `detalle_factura`
+  ADD CONSTRAINT `fk_detalle_factura_facturas1` FOREIGN KEY (`facturas_idfacturas`) REFERENCES `facturas` (`idfacturas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalle_factura_productos1` FOREIGN KEY (`productos_idProductos`) REFERENCES `productos` (`idProductos`);
+
+--
+-- Filtros para la tabla `detalle_temp`
+--
+ALTER TABLE `detalle_temp`
+  ADD CONSTRAINT `FK_DetalleTemp_Producto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProductos`);
+
+--
 -- Filtros para la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
@@ -524,16 +660,35 @@ ALTER TABLE `empleados`
   ADD CONSTRAINT `fk_Empleados_Usuarios1` FOREIGN KEY (`Usuarios_idUsuario`) REFERENCES `usuarios` (`idUsuario`);
 
 --
+-- Filtros para la tabla `facturas`
+--
+ALTER TABLE `facturas`
+  ADD CONSTRAINT `fk_facturas_empresa1` FOREIGN KEY (`empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_facturas_sucursal1` FOREIGN KEY (`sucursal_idSucursal`) REFERENCES `sucursal` (`idSucursal`);
+
+--
 -- Filtros para la tabla `inventario_insumos`
 --
 ALTER TABLE `inventario_insumos`
   ADD CONSTRAINT `fk_Inventario_Insumos_Insumos1` FOREIGN KEY (`Insumos_idInsumos`) REFERENCES `insumos` (`idInsumos`);
 
 --
+-- Filtros para la tabla `inventario_producto`
+--
+ALTER TABLE `inventario_producto`
+  ADD CONSTRAINT `FK_Producto_Inventario` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
+
+--
 -- Filtros para la tabla `municipio`
 --
 ALTER TABLE `municipio`
   ADD CONSTRAINT `fk_Municipio_Departamento1` FOREIGN KEY (`Departamento_idDepartamento`) REFERENCES `departamento` (`idDepartamento`);
+
+--
+-- Filtros para la tabla `productodefectuoso`
+--
+ALTER TABLE `productodefectuoso`
+  ADD CONSTRAINT `FK_Producto_Daniado` FOREIGN KEY (`Productos_idProductos`) REFERENCES `productos` (`idProductos`);
 
 --
 -- Filtros para la tabla `productos`
@@ -547,50 +702,6 @@ ALTER TABLE `productos`
 ALTER TABLE `sucursal`
   ADD CONSTRAINT `FK_empresaSucursal` FOREIGN KEY (`Empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`);
 COMMIT;
-
-CREATE TABLE IF NOT EXISTS `facturas` (
-  `idfacturas` INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
-  `fecha_factura` DATE NULL,
-  `empresa_idEmpresa` BIGINT(14) UNSIGNED ZEROFILL NOT NULL,
-  `sucursal_idSucursal` INT(11) NOT NULL,
-  PRIMARY KEY (`idfacturas`),
-  INDEX `fk_facturas_empresa1_idx` (`empresa_idEmpresa` ASC) VISIBLE,
-  INDEX `fk_facturas_sucursal1_idx` (`sucursal_idSucursal` ASC) VISIBLE,
-  CONSTRAINT `fk_facturas_empresa1`
-    FOREIGN KEY (`empresa_idEmpresa`)
-    REFERENCES `empresa` (`idEmpresa`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_facturas_sucursal1`
-    FOREIGN KEY (`sucursal_idSucursal`)
-    REFERENCES `sucursal` (`idSucursal`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `detalle_factura`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `detalle_factura` (
-  `idDetalle_factura` INT NOT NULL,
-  `cantidad` INT UNSIGNED NOT NULL,
-  `facturas_idfacturas` INT(4) UNSIGNED ZEROFILL NOT NULL,
-  `productos_idProductos` BIGINT(100) NOT NULL,
-  PRIMARY KEY (`idDetalle_factura`),
-  INDEX `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas` ASC) VISIBLE,
-  INDEX `fk_detalle_factura_productos1_idx` (`productos_idProductos` ASC) VISIBLE,
-  CONSTRAINT `fk_detalle_factura_facturas1`
-    FOREIGN KEY (`facturas_idfacturas`)
-    REFERENCES `facturas` (`idfacturas`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_detalle_factura_productos1`
-    FOREIGN KEY (`productos_idProductos`)
-    REFERENCES `productos` (`idProductos`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

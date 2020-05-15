@@ -1,5 +1,7 @@
 <?php
 
+
+
     require('fpdf/fpdf.php');
 
     $fpdf = new FPDF();
@@ -22,10 +24,6 @@
             $this->SetFont('Arial','',10);
             $this->SetX(41);
             $this->Write(10,utf8_decode('Télefono:  +504 2237-9899 / 9673-0750'));
-            
-            $this->SetFont('Arial','B',14);
-            $this->SetX(120);
-            $this->Cell(20,7,'FACTURA NO. 000-001-01-0000XXXX');
             $this->Ln(4);
             $this->SetFont('Arial','',10);
             $this->SetX(41);
@@ -36,13 +34,21 @@
 
     }
 
+    $idFactura = $_GET["Factura"];
+
     $fpdf = new pdf();
     $fpdf->AddPage('portrait','letter');
+
+    $fpdf->SetFont('Arial','B',14);
+    $fpdf->SetTextColor(255,255,255);
+    $fpdf->SetX(120);
+    $fpdf->Cell(20,7,'FACTURA NO. 000-001-01-0000'.$idFactura);
     
     $fpdf->Ln(25);
 
 
     $fpdf->SetFont('Arial','',12);
+    $fpdf->SetTextColor(0,0,0);
     $fpdf->Cell(20,7,'Cliente: ');
     $fpdf->Ln();
     $fpdf->Cell(20,7,'RTN: ');

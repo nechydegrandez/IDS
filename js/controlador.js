@@ -503,7 +503,7 @@ $(document).ready(function(){
 
     
     
-    $('#btn-registrar-factura').click(function(){
+    /**$('#btn-registrar-factura').click(function(){
         var parametros = "Empresa=" + $('#slc-empresa').val() + "&" + "Sucursal=" + $('#slc-sucursal-factura').val() + "&" + "Fecha=" + $('#txt-fecha').val();
         
         if($('#slc-empresa').val() == "" || $('#slc-sucursal-factura').val() == "" || $('#txt-fecha').val() == ""){
@@ -513,7 +513,7 @@ $(document).ready(function(){
             alert('Todos los campos se han llenado');
         }
     
-    });
+    });*/
 
     
     $.ajax({
@@ -684,6 +684,106 @@ $(document).ready(function(){
             console.log(e);
         }
     });
+
+    $('#btn-agregar-producto-detalle-temp').click(function(){
+
+        var parametros = "idProducto=" + $('#slc-productos-factura').val() + "&&" + "cantidad=" + $('#cantidad-producto-factura').val();
+
+        $.ajax({
+            url: "ajax/api.php?accion=agregar-producto-tabla-temporal",
+            method: "POST",
+            data: parametros,
+            dataType: "json",
+            success:function(respuesta){
+                alert('Producto añadido exitosamente');
+                location.reload();
+            },
+            error:function(e){
+                console.log(e)
+            }
+        });
+    });
+
+    
+
+    $.ajax({
+        url: "ajax/api.php?accion=ver-productos-tabla-temporal",
+        method: "GET",
+        dataType: "json",
+        success:function(respuesta){
+            for(var i=0;i<respuesta.length;i++){
+                var totalProducto = (respuesta[i].precioVenta * respuesta[i].cantidad);
+            
+                $('#tbody-tabla-temp').append(
+                    '<tr>'+
+                    '<th class="text-center">'+respuesta[i].idProducto+'</th>'+
+                    '<th class="text-center">'+respuesta[i].nombre+'</th>'+
+                    '<th class="text-center">'+respuesta[i].precioVenta+'</th>'+
+                    '<th class="text-center">'+respuesta[i].cantidad+'</th>'+
+                    '<th class="text-center">'+totalProducto.toFixed(2)+'</th>'+
+                    '<th class="text-center"><button type="button" class="btn btn-danger" onClick="eliminarProductoTemp('+respuesta[i].idProducto+')">Eliminar</button></th>'+
+                    '</tr>'
+                );
+            }
+            
+        }
+    });
+
+    $('#btn-registrar-factura').click(function(){
+        
+        var rows = $('#tbody-tabla-temp tr').length;
+        if(rows > 0){
+        
+        var parametros = "Cliente=" + $('#slc-empresa-factura').val() + "&&" + "Direccion=" + $('#slc-sucursal-factura').val() + "&&" + "fechaFactura=" + $('#txt-fecha-factura').val();
+
+        $.ajax({
+            url: "ajax/api.php?accion=registrar-nueva-factura",
+            method: "POST",
+            data: parametros,
+            dataType: 'json',
+            success:function(respuesta){
+                alert('Factura Registrada Exitosamente');
+                location.href = "factura.php";
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
+    }
+    else{
+        alert('No hay productos por añadir a la factura');
+    }
+
+    });
+
+    $.ajax({
+        url: "ajax/api.php?accion=ver-lista-facturas",
+        method: "GET",
+        dataType:"json",
+        success:function(respuesta){
+            for (var i=0; i<respuesta.length;i++){
+                $('#table-facturas').append(
+                    '<tr>'+
+                    '<th class="text-center" style="padding-top: 20px;">'+respuesta[i].idfacturas+'</th>'+
+                    '<td class="text-center" style="padding-top: 20px;">'+respuesta[i].nombreTienda+'</td>'+
+                    '<td class="text-center" style="padding-top: 20px;">'+respuesta[i].fecha_factura+'</td>'+
+                    '<td><a href="plantilla-factura.php?Factura='+respuesta[i].idfacturas+'">Ver Factura</a></td>'+
+                '</tr>'
+                );
+
+
+            }
+            
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+    
+
+  
+    
 
 
 

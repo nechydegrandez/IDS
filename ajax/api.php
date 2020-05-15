@@ -11,6 +11,9 @@
     include ("../class/class-inventario-insumos.php");
     include ("../class/class-municipios.php");
     include ("../class/class-productoDefectuoso.php");
+    include ("../class/class-facturas-temp.php");
+    include ("../class/class-facturas.php");
+    include ("../class/class-registrar-factura.php");
 
     $conexion = new Conexion();
 
@@ -127,7 +130,32 @@
             echo $prodDef->visualizarProductosDefectuosos($conexion);
         break;
 
-        
+        case "agregar-producto-tabla-temporal":
+            $addProdTabTemp = new DetalleTemp(null,$_POST["cantidad"],$_POST["idProducto"]);
+            echo $addProdTabTemp->insertarProducto($conexion);
+        break;
+
+        case "ver-productos-tabla-temporal":
+            $prodTabTemp = new DetalleTemp(null,null,null);
+            echo $prodTabTemp->productosTablaTemporal($conexion);
+        break;
+
+        case "registrar-nueva-factura":
+            $regFac = new registrarFacturas($_POST["Cliente"],$_POST["Direccion"],$_POST["fechaFactura"]);
+            echo $regFac->registrarFactura($conexion);
+        break;
+
+        case "ver-lista-facturas":
+            $verFacs = new Facturas(null,null,null,null);
+            echo $verFacs->verListaFacturas($conexion);
+        break;
+
+        case "eliminar-producto-fact-temp":
+            $elimProdFacTemp = new DetalleTemp(null,null,$_POST["Producto"]);
+            $elimProdFacTemp->eliminarProductoTablaTemporal($conexion);
+        break;
+
+
 
         /*case "obtener-lista-facturas":
             $fac = new pedidos(null,null,null,null,null);

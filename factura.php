@@ -21,14 +21,14 @@
 
 
 <div class="inf card pt-0 pl-0 pr-0" style="font-size: 15px;">
-  <div>
+  <form>
   <table class="table table-striped">
   <thead>
     <tr>
       <th class="text-center">No. Factura</th>
       <th class="text-center">Sucursal</th>
       <th class="text-center">Fecha</th>
-      <th class="text-center">Total Factura</th>
+      <th></th>
     </tr>
   </thead>
   <tbody id="table-facturas">
@@ -47,7 +47,7 @@
     <li class="page-item"><a class="page-link" href="#">3</a></li>
   </ul>
 </nav>
-  </div>
+  </form>
 
 
 </div>
@@ -60,5 +60,10 @@
     
     <script src="js/menu.js"></script>
     <script src="js/controlador.js"></script>
+    <script>
+      function verIDFactura(id){
+        alert(id);
+      }
+    </script>
 </body>
 </html>
