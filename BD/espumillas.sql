@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 15-05-2020 a las 05:06:49
+-- Tiempo de generación: 18-05-2020 a las 17:23:29
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -72,6 +72,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (IN `cod_empresa` B
             DELETE FROM detalle_temp;
             TRUNCATE TABLE tbl_tmp;
             SELECT * from facturas WHERE idfacturas = factura;
+            ALTER TABLE detalle_temp AUTO_INCREMENT = 1;
         ELSE 
         	SELECT 0;
         END IF;
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `detalle_factura` (
   PRIMARY KEY (`idDetalle_factura`),
   KEY `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas`),
   KEY `fk_detalle_factura_productos1_idx` (`productos_idProductos`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_factura`
@@ -142,7 +143,8 @@ INSERT INTO `detalle_factura` (`idDetalle_factura`, `cantidad`, `facturas_idfact
 (1, 50, 0001, 9818011),
 (2, 50, 0001, 9831052),
 (4, 36, 0002, 700000000016),
-(5, 36, 0002, 127035240765);
+(5, 36, 0002, 127035240765),
+(6, 36, 0003, 700000000016);
 
 -- --------------------------------------------------------
 
@@ -157,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `detalle_temp` (
   `idProducto` bigint(100) NOT NULL,
   PRIMARY KEY (`idDetalleTemp`),
   KEY `FK_DetalleTemp_Producto` (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -251,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `facturas` (
   PRIMARY KEY (`idfacturas`),
   KEY `fk_facturas_empresa1_idx` (`empresa_idEmpresa`),
   KEY `fk_facturas_sucursal1_idx` (`sucursal_idSucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `facturas`
@@ -259,7 +261,8 @@ CREATE TABLE IF NOT EXISTS `facturas` (
 
 INSERT INTO `facturas` (`idfacturas`, `fecha_factura`, `empresa_idEmpresa`, `sucursal_idSucursal`) VALUES
 (0001, '2020-05-20', 08019999176681, 3),
-(0002, '2020-05-19', 08019995224132, 2);
+(0002, '2020-05-19', 08019995224132, 2),
+(0003, '2020-05-14', 08019995224132, 1);
 
 -- --------------------------------------------------------
 
