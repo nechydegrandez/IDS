@@ -50,7 +50,7 @@
 		public function verListaFacturas($conexion){
 			$sql = "SELECT 
 			f.idfacturas, 
-			f.fecha_factura, 
+			DATE_FORMAT(f.fecha_factura, '%d-%m-%Y') as fecha_factura, 
 			f.sucursal_idSucursal,
 			s.nombreTienda 
 			FROM facturas as f

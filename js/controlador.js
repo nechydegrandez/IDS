@@ -685,7 +685,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#btn-agregar-producto-detalle-temp').click(function(){
+    $('#btn-agregar-producto-detalle-temp').click(function(e){
 
         var parametros = "idProducto=" + $('#slc-productos-factura').val() + "&&" + "cantidad=" + $('#cantidad-producto-factura').val();
 
@@ -696,7 +696,7 @@ $(document).ready(function(){
             dataType: "json",
             success:function(respuesta){
                 alert('Producto añadido exitosamente');
-                location.reload();
+                //location.reload();
             },
             error:function(e){
                 console.log(e)
@@ -714,7 +714,7 @@ $(document).ready(function(){
             for(var i=0;i<respuesta.length;i++){
                 var totalProducto = (respuesta[i].precioVenta * respuesta[i].cantidad);
             
-                $('#tbody-tabla-temp').append(
+                $('#tbody-tabla-temp').prepend(
                     '<tr>'+
                     '<th class="text-center">'+respuesta[i].idProducto+'</th>'+
                     '<th class="text-center">'+respuesta[i].nombre+'</th>'+
@@ -728,6 +728,7 @@ $(document).ready(function(){
             
         }
     });
+
 
     $('#btn-registrar-factura').click(function(){
         
@@ -762,12 +763,12 @@ $(document).ready(function(){
         dataType:"json",
         success:function(respuesta){
             for (var i=0; i<respuesta.length;i++){
-                $('#table-facturas').append(
+                $('#table-facturas').html(
                     '<tr>'+
                     '<th class="text-center" style="padding-top: 20px;">'+respuesta[i].idfacturas+'</th>'+
                     '<td class="text-center" style="padding-top: 20px;">'+respuesta[i].nombreTienda+'</td>'+
                     '<td class="text-center" style="padding-top: 20px;">'+respuesta[i].fecha_factura+'</td>'+
-                    '<td><a href="plantilla-factura.php?Factura='+respuesta[i].idfacturas+'">Ver Factura</a></td>'+
+                    '<td><a href="Informacion-Factura.php?Factura='+respuesta[i].idfacturas+'">Ver Factura</a></td>'+
                 '</tr>'
                 );
 
@@ -779,20 +780,5 @@ $(document).ready(function(){
             console.log(e);
         }
     });
-
-    
-
-  
-    
-
-
-
-    
-
-  
-
-    
-
-    
 
 });

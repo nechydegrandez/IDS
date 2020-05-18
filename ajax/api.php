@@ -157,11 +157,6 @@
 
 
 
-        /*case "obtener-lista-facturas":
-            $fac = new pedidos(null,null,null,null,null);
-            echo $fac->visualizarPedidos($conexion);
-        break;*/
-
     }
     
 ?>

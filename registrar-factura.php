@@ -93,10 +93,11 @@
 
     <script src='js/jquery-3.4.1.min.js'></script>
     <script src='js/bootstrap.min.js'></script>
-    <!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
     
     <script src="js/menu.js"></script>
-    <script src="js/controlador.js"></script>
+    <script src="js/controlador.js">
+    
+    </script>
     <script >
       function eliminarProductoTemp(idProd){
 
@@ -108,13 +109,15 @@
           data: parametros,
           dataType: "json",
           success:function(respuesta){
-                alert('Producto Eliminado');
-                location.reload();
             },
           error:function(e){
             console.log(e);
           }
         });
+
+        alert('Producto Eliminado');
+
+        location.reload();
       }
     </script>
 </body>
