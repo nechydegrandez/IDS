@@ -117,7 +117,36 @@
 
         alert('Producto Eliminado');
 
-        location.reload();
+        var rows = $('#tbody-tabla-temp tr').length;
+        
+        if (rows > 0){
+          $('#tbody-tabla-temp').empty();
+        }
+
+        $.ajax({
+        url: "ajax/api.php?accion=ver-productos-tabla-temporal",
+        method: "GET",
+        dataType: "json",
+        success:function(respuesta){
+            for(var i=0;i<respuesta.length;i++){
+                var totalProducto = (respuesta[i].precioVenta * respuesta[i].cantidad);
+            
+                $('#tbody-tabla-temp').append(
+                    '<tr>'+
+                    '<th class="text-center">'+respuesta[i].idProducto+'</th>'+
+                    '<th class="text-center">'+respuesta[i].nombre+'</th>'+
+                    '<th class="text-center">'+respuesta[i].precioVenta+'</th>'+
+                    '<th class="text-center">'+respuesta[i].cantidad+'</th>'+
+                    '<th class="text-center">'+totalProducto.toFixed(2)+'</th>'+
+                    '<th class="text-center"><button type="button" class="btn btn-danger" onClick="eliminarProductoTemp('+respuesta[i].idProducto+')">Eliminar</button></th>'+
+                    '</tr>'
+                );
+            }
+            
+        }
+    });
+        
+
       }
     </script>
 </body>

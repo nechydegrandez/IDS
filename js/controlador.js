@@ -685,7 +685,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#btn-agregar-producto-detalle-temp').click(function(e){
+    $('#btn-agregar-producto-detalle-temp').click(function(){
 
         var parametros = "idProducto=" + $('#slc-productos-factura').val() + "&&" + "cantidad=" + $('#cantidad-producto-factura').val();
 
@@ -696,7 +696,16 @@ $(document).ready(function(){
             dataType: "json",
             success:function(respuesta){
                 alert('Producto añadido exitosamente');
-                //location.reload();
+                var rows = $('#tbody-tabla-temp tr').length;
+                if (rows > 0){
+                    $('#tbody-tabla-temp').empty();
+                }
+                list_table();
+                $('#cantidad-producto-factura').val('');
+                $('#slc-productos-factura').val('');
+                $('#producto-factura').val('');
+                $('#td-precio-producto').text('');
+                $('#total-producto').text('');
             },
             error:function(e){
                 console.log(e)
@@ -705,7 +714,7 @@ $(document).ready(function(){
     });
 
     
-
+    function list_table(){
     $.ajax({
         url: "ajax/api.php?accion=ver-productos-tabla-temporal",
         method: "GET",
@@ -714,7 +723,7 @@ $(document).ready(function(){
             for(var i=0;i<respuesta.length;i++){
                 var totalProducto = (respuesta[i].precioVenta * respuesta[i].cantidad);
             
-                $('#tbody-tabla-temp').prepend(
+                $('#tbody-tabla-temp').append(
                     '<tr>'+
                     '<th class="text-center">'+respuesta[i].idProducto+'</th>'+
                     '<th class="text-center">'+respuesta[i].nombre+'</th>'+
@@ -728,7 +737,30 @@ $(document).ready(function(){
             
         }
     });
+    }
 
+     $.ajax({
+        url: "ajax/api.php?accion=ver-productos-tabla-temporal",
+        method: "GET",
+        dataType: "json",
+        success:function(respuesta){
+            for(var i=0;i<respuesta.length;i++){
+                var totalProducto = (respuesta[i].precioVenta * respuesta[i].cantidad);
+            
+                $('#tbody-tabla-temp').append(
+                    '<tr>'+
+                    '<th class="text-center">'+respuesta[i].idProducto+'</th>'+
+                    '<th class="text-center">'+respuesta[i].nombre+'</th>'+
+                    '<th class="text-center">'+respuesta[i].precioVenta+'</th>'+
+                    '<th class="text-center">'+respuesta[i].cantidad+'</th>'+
+                    '<th class="text-center">'+totalProducto.toFixed(2)+'</th>'+
+                    '<th class="text-center"><button type="button" class="btn btn-danger" onClick="eliminarProductoTemp('+respuesta[i].idProducto+')">Eliminar</button></th>'+
+                    '</tr>'
+                );
+            }
+            
+        }
+    });
 
     $('#btn-registrar-factura').click(function(){
         
@@ -763,7 +795,7 @@ $(document).ready(function(){
         dataType:"json",
         success:function(respuesta){
             for (var i=0; i<respuesta.length;i++){
-                $('#table-facturas').html(
+                $('#table-facturas').append(
                     '<tr>'+
                     '<th class="text-center" style="padding-top: 20px;">'+respuesta[i].idfacturas+'</th>'+
                     '<td class="text-center" style="padding-top: 20px;">'+respuesta[i].nombreTienda+'</td>'+
