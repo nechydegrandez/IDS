@@ -322,7 +322,23 @@ $(document).ready(function(){
 
     $('#btn-agregar-sucursal').click(function(){
          var parametros = "Sucursal=" + $('#txt-nombre-sucursal').val() + "&" + "Municipio=" + $('#slc-municipio-sucursal').val() + "&" + "Empresa=" + $('#slc-empresa-sucursal').val() + "&" + "Telefono=" + $('#txt-telefono-tienda').val() + "&" + "Gerente=" + $('#txt-nombre-gerente').val();
+//estas son las validaciones 
+        var nombresucursal = document.getElementById('txt-nombre-sucursal').value;
+        var telefono = document.getElementById('txt-telefono-tienda').value;
+        let soloTexto = /[A-Za-z ñ]+/;
+        let soloNumeros = /[0-9]{9,12}$/;
+        if (nombresucursal==''){
+            alert("Nombre Vacio");
+        }
+        else if (!soloTexto.test(nombresucursal)) {
+            alert ("solo texto!")
+        }else if (!soloNumeros.test(telefono)){
+            alert ("solo numero!")
 
+        } else {
+
+       
+        
          alert(parametros);
 
         $.ajax({
@@ -337,7 +353,8 @@ $(document).ready(function(){
             error:function(e){
                 console.log(e);
             }
-        });
+        }); 
+    }
     });
 
     $.ajax({
