@@ -48,7 +48,7 @@
 		}
 
 		public function visualizarInventarioInsumos($conexion){
-			$sql = "SELECT i.idInventario_Insumos,i.cantidad,i.fechaLlegada,i.Insumos_idInsumos,ins.nombreInsumo
+			$sql = "SELECT i.idInventario_Insumos,i.cantidad,DATE_FORMAT(i.fechaLlegada, '%d-%m-%Y') as fechaLlegada,i.Insumos_idInsumos,ins.nombreInsumo
 					FROM inventario_insumos as i
 					INNER JOIN insumos as ins
 					ON i.Insumos_idInsumos = ins.idInsumos

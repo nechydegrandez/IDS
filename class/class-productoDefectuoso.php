@@ -70,7 +70,7 @@
 			$sql = "SELECT 
 			pd.idproductoDefectuoso, 
 			pd.cantidad, 
-			pd.fechaRegistrado, 
+			DATE_FORMAT(pd.fechaRegistrado, '%d-%m-%Y') as fechaRegistrado, 
 			pd.Productos_idProductos,
 			p.nombre,
 			p.empresa,

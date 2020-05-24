@@ -813,4 +813,46 @@ $(document).ready(function(){
         }
     });
 
+    $('#btn-editar-usuario').click(function(){
+        var parametros = "Personas=" + $('#slc-nombre').val() + "&" + "estado=" + $('#slc-estado').val();
+
+        if($('#slc-nombre').val() == ""){
+            alert('No ha seleccionado a un usuario para editar su estado');
+        }
+        else{
+
+        $.ajax({
+            url: "ajax/api.php?accion=editar-usuario",
+            method: "POST",
+            data: parametros,
+            dataType: "json",
+            success:function(respuesta){
+                alert("Usuario actualizado");
+                location.reload();
+            },
+            error:function(e){
+            console.log(e);
+            }
+        });
+        }
+
+    });
+
+    $.ajax({
+        url:"ajax/api.php?accion=obtener-lista-personas",
+        method: "GET",
+        dataType: "json",
+        success:function(respuesta){
+            console.log(respuesta);
+            for (var i=0;i<respuesta.length;i++){
+                $('#slc-nombre').append('<option value="'+respuesta[i].idPersonas+'">'+respuesta[i].nombre+' '+respuesta[i].apellido+'</option>');
+            }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+
+
 });

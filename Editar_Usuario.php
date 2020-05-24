@@ -41,7 +41,9 @@ include ("menu-admin.html") ;
               <form class="form">
                 <div class="form-group">
                   <label>Nombre:</label>
-                  <td><select id="slc-nombre" class="form-control"></select></td>
+                  <td><select id="slc-nombre" class="form-control">
+                  <option value="">...</option>
+                  </select></td>
                 </div>
                 <div class="form-group">
                   <label>Estado:</label>
@@ -53,7 +55,7 @@ include ("menu-admin.html") ;
                
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" id="btn-editar-usuario" class="btn btn-primary" onclick='alert("Informacion Actualizada Correctamente")'>Actualizar Información</button>
+              <button type="button" id="btn-editar-usuario" class="btn btn-primary">Actualizar Información</button>
             </div>
           </div>
         </div>

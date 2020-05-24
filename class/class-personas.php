@@ -88,7 +88,20 @@
 		}
 
 		public function visualizarPersonas($conexion){
-			$sql = ""
+			$sql = "SELECT idPersonas,
+			nombre,
+			apellido,
+			nidentidad,
+			correo,
+			direccion,
+			telefono,
+			genero FROM personas";
+			$resultado = $conexion->ejecutarConsulta($sql);
+			$listaPersonas = array();
+			while($fila = $conexion->obtenerFila($resultado)){
+				$listaPersonas[] = $fila;
+			}
+			return json_encode($listaPersonas);
 		}
 	}
 ?>

@@ -61,7 +61,7 @@
 			$sql = "SELECT 
 					d.idDevoluciones,
 					d.total,
-					d.fechaDevolucion,
+					DATE_FORMAT(d.fechaDevolucion, '%d-%m-%Y') as fechaDevolucion,
 					d.estado,
 					d.sucursal,
 					s.nombreTienda

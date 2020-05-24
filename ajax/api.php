@@ -14,6 +14,9 @@
     include ("../class/class-facturas-temp.php");
     include ("../class/class-facturas.php");
     include ("../class/class-registrar-factura.php");
+    include ("../class/class-usuarios.php");
+    include ("../class/class-personas.php");
+
 
     $conexion = new Conexion();
 
@@ -155,6 +158,15 @@
             $elimProdFacTemp->eliminarProductoTablaTemporal($conexion);
         break;
 
+        case "editar-usuario":
+            $edituser = new usuarios (null,null,null,$_POST["estado"],$_POST["Personas"]);
+            echo $edituser->visualizarEditarUsuario($conexion);
+        break;
+
+        case "obtener-lista-personas";
+        $listper = new personas(null,null,null,null,null,null,null,null);
+        echo $listper->visualizarPersonas($conexion);
+        break;
 
 
     }
