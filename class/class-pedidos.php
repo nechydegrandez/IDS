@@ -63,11 +63,11 @@
             p.fechaPedido, 
             p.fechaLimite, 
             p.totalPedido, 
-            p.Sucursal_idSucursal,
+            p.sucursal,
             s.nombreTienda 
             FROM pedidos as p
             INNER JOIN sucursal as s
-			ON p.Sucursal_idSucursal = s.idSucursal";
+			ON p.sucursal = s.idSucursal";
 			
 			 $resultado = $conexion->ejecutarConsulta($sql);
 			 $listaPedidos = array();
@@ -76,6 +76,30 @@
 			 }
 			 
 			 return json_encode($listaPedidos);
-        }
+		}
+		
+		public function agregarDevolucion($conexion){ 
+
+			$sql = sprintf("INSERT INTO pedidos(fechaPedido, fechaLimite, totalPedido, sucursal) VALUES (%s,'%s','%s',%s)",
+			$conexion->antiInyeccion($this->fechaPedido),
+			$conexion->antiInyeccion($this->fechaLimite),
+			$conexion->antiInyeccion($this->totalPedido),
+			$conexion->antiInyeccion($this->sucursal));
+			$resultado = $conexion->ejecutarConsulta($sql);
+
+			if($resultado){
+				$mensaje["mensaje"]="Pedido realizado exitosamente";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			else{
+				$mensaje["mensaje"]="No se ha podido realizar el pedido";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			
+
+
+		}
 	}
 ?>

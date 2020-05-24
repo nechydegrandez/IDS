@@ -18,41 +18,25 @@
 <h1 style="color: white;">Pedidos</h1>
 
 
-<form  class="inf card">
-<div class="row">
-  <div class="col-1 pr-0">
-    <label for="">Empresa:</label>
-  </div>
-  <div class="offset-1 col-3 pl-0 pr-4 ml-5">
-    <select id="slc-empresa" class="form-control">
-      <option value="">...</option>
-    </select>
-  </div>
-</div>
-</form>
+
 
 <div class="inf align-items-center pt-0 pl-0 pr-0 border rounded" style="font-size: 15px;">
   <div>
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">No. de Orden</th>
+      <th class="text-center">No. de Pedido</th>
+      <th class="text-center">Fecha Pedido</th>
+      <th class="text-center">fecha Limite </th>
+      <th class="text-center">Total Pedido</th>
       <th class="text-center">Sucursal</th>
-      <th class="text-center">Fecha Emision</th>
-      <th class="text-center">Fecha Limite</th>
-      <th class="text-center">Monto</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th class="text-center">1</th>
-      <td class="text-center">La Colonia #12</td>
-      <td class="text-center">27/02/2020</td>
-      <td class="text-center">31/03/2020</td>
-      <td class="text-center">900.00</td>
-    </tr>
-  </tbody>
+  <tbody id="body-pedidos">
+
+    </tbody>
   </table>
+  
   <nav aria-label="..." class="ml-2">
   <ul class="pagination pagination-sm">
     <li class="page-item active" aria-current="page">
@@ -87,11 +71,11 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Sucursal:</label>
+                  <label>Pedido:</label>
                   <select name="" id="slc-sucursal-pedido" class="form-control"></select>
                 </div>
                 <div class="form-group">
-                  <label>No. de Orden:</label>
+                  <label>No. de Pedido:</label>
                   <input type="number" id="txt-numero-orden" class="form-control">
                 </div>
                 <div class="form-group">

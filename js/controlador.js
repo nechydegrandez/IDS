@@ -140,7 +140,33 @@ $(document).ready(function(){
     });
 
 
+//obtener pedidos
+$.ajax({
+    url:"ajax/api.php?accion=obtener-lista-pedidos",
+    method: "GET",
+    dataType: "json",
+    success:function(respuesta){
+        for(var i=0;i<respuesta.length;i++){
+            $('#body-pedidos').append(
+                '<tr>'+
+                '<td class="text-left">'+respuesta[i].idPedidos+'</td>'+
+                '<td class="text-center">'+respuesta[i].fechaPedido+'</td>'+
+                '<td class="text-center">'+respuesta[i].fechaLimite+'</td>'+
+                '<td class="text-center"> L. '+respuesta[i].totalPedido+'</td>'+
+                '<td class="text-center"> '+respuesta[i].nombreTienda+'</td>'+
+                '<td class="text-center">'+
+                '</tr>'
+            );
+        }
+        
+    },
+    error:function(e){
+        console.log(e);
+    }
+});
 
+
+//
     $.ajax({
         url: "ajax/api.php?accion=obtener-lista-productos",
         method: "GET",
