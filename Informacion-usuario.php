@@ -14,7 +14,7 @@
     include ("menu.html") ;
       ?> 
     
-  <h1 style="color: white;">Informacion del Perfil</h1>
+  <h1 style="color: white;">Información del Perfil</h1>
 
   <div class="inf card pr-5" style="font-size: 15px;">
     <div class="row">

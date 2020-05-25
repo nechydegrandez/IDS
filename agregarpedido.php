@@ -37,7 +37,7 @@
 </div>
 
 <div class="inf">
- <pre>  producto 1 <select name="producto 1" id="producto"></select>         bandejas pproducto 1 <input type="text" name="bandejas">
+ <pre>  producto 1 <select name="producto 1" id="producto"></select>bandejas producto 1<input type="text" name="bandejas">
  </pre>
  <input type="button" value="Agregar otro pedido">
 </div>

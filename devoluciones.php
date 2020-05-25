@@ -56,7 +56,7 @@ session_start();
     <tr>
     <th class="text-left pr-0">Sucursal</th>
     <th class="text-center pr-0">Fecha</th>
-    <th class="text-center pr-0">Total Devolucion</th>
+    <th class="text-center pr-0">Total Devolución</th>
     </tr>
     </thead>
     <tbody id="body-devoluciones">
@@ -76,7 +76,7 @@ session_start();
     <li class="page-item"><a class="page-link" href="#">3</a></li>
   </ul>
 </nav>
-<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Devolucion</button>
+<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Registrar Devolución</button>
   </div>
   
       
@@ -85,7 +85,7 @@ session_start();
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header ">
-              <h5 class="modal-title" id="exampleModalLabel">Nueva Devolucion</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Nueva Devolución</h5>
             </div>
             <div class="modal-body">
               <form class="form needs-validation">

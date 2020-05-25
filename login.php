@@ -45,7 +45,7 @@
                     <input type="password" id="txt-Password" name="pass" class="form-control mt-3" placeholder="Contraseña" required>
                 </div>
                 <div class="form-group">
-                <button class="btn btn-primary" type="submit"  id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesion</button>
+                <button class="btn btn-primary" type="submit"  id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesión</button>
                 </div>  
 
                    

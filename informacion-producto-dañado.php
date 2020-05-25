@@ -42,7 +42,7 @@ session_start();
       ?> 
     
     
-    <h1 style="color:white; padding-left:400px;">Informacion Productos Dañados</h1>
+    <h1 style="color:white; padding-left:400px;">Información Productos Dañados</h1>
       
     <div class="inf align-items-center pt-0 pl-0 pr-0 border rounded" style="font-size: 15px;">
   <div>

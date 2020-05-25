@@ -69,7 +69,7 @@
           <table class="table table-striped mt-3">
           <thead>
           <tr>
-          <th class="text-center">Codigo del Producto</th>
+          <th class="text-center">Código del Producto</th>
           <th class="text-center">Descripción</th>
           <th class="text-center">Precio Unitario</th>
           <th class="text-center">Cantidad</th>
