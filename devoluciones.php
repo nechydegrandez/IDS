@@ -1,3 +1,30 @@
+
+<?php
+//empleado
+session_start();
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"])){
+        header("Location: login.php");
+    }
+
+    include("class/conexion.php");
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT * FROM usuarios WHERE usuario = '%s' and contrasenia = '%s' and idtipousuario = %s",
+        $_SESSION["usr"],
+        $_SESSION["psw"],
+        $_SESSION["tipUsr"]);
+
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
+
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +36,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-  <!--- aqui incluyo el menu-->
-    <?php
+     <!--- aqui incluyo el menu-->
+     <?php
+    if  ($_SESSION["tipUsr"]==1) {
+      include ("menu-admin.html") ;
+    }
+    else {
     include ("menu.html") ;
+    }
       ?> 
-    
   
 <h1 style="color: white;">Devoluciones</h1>
 

@@ -17,12 +17,6 @@ session_start();
     $respuesta = array();
     if ($conexion->cantidadRegistros($resultado)<=0){
 
-      if($_SESSION["tipUsr"] = 1){
-        header("Location: index2.php");
-      }
-      else{
-        header("Location: index.php");
-      }
 
     }
 

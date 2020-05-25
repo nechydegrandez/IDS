@@ -1,3 +1,6 @@
+
+
+
 <?php
 
   $nombreProducto = $_POST['#nombreProducto'];
