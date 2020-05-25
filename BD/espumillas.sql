@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 18-05-2020 a las 17:23:29
+-- Tiempo de generación: 25-05-2020 a las 03:02:22
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -36,14 +36,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (IN `cod_empresa` B
         DECLARE nueva_existencia INT;
         DECLARE existencia_actual INT;
         
-        DECLARE tmp_cod_producto INT;
+        DECLARE tmp_cod_producto BIGINT(100);
         DECLARE tmp_cant_producto INT;
         DECLARE a INT;
         SET a =1;
         
         CREATE TEMPORARY TABLE tbl_tmp(
         	id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            cod_prod BIGINT,
+            cod_prod BIGINT(100),
             cant_prod int
         );
         
@@ -72,7 +72,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (IN `cod_empresa` B
             DELETE FROM detalle_temp;
             TRUNCATE TABLE tbl_tmp;
             SELECT * from facturas WHERE idfacturas = factura;
-            ALTER TABLE detalle_temp AUTO_INCREMENT = 1;
         ELSE 
         	SELECT 0;
         END IF;
@@ -133,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `detalle_factura` (
   PRIMARY KEY (`idDetalle_factura`),
   KEY `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas`),
   KEY `fk_detalle_factura_productos1_idx` (`productos_idProductos`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_factura`
@@ -144,7 +143,11 @@ INSERT INTO `detalle_factura` (`idDetalle_factura`, `cantidad`, `facturas_idfact
 (2, 50, 0001, 9831052),
 (4, 36, 0002, 700000000016),
 (5, 36, 0002, 127035240765),
-(6, 36, 0003, 700000000016);
+(6, 36, 0003, 700000000016),
+(7, 6, 0004, 9818011),
+(8, 7, 0004, 9831052),
+(10, 30, 0005, 127035240765),
+(11, 30, 0005, 700000000016);
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `detalle_temp` (
   `idProducto` bigint(100) NOT NULL,
   PRIMARY KEY (`idDetalleTemp`),
   KEY `FK_DetalleTemp_Producto` (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -176,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `devoluciones` (
   `sucursal` int(100) DEFAULT NULL,
   PRIMARY KEY (`idDevoluciones`),
   KEY `FK_sucursales` (`sucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `devoluciones`
@@ -188,7 +191,10 @@ INSERT INTO `devoluciones` (`idDevoluciones`, `total`, `fechaDevolucion`, `estad
 (3, '200.00', '2020-04-10', 'Recogido', 2),
 (4, '300.00', '2020-04-30', 'Recogido', 2),
 (9, '20.00', '2020-04-24', 'Recogido', 5),
-(10, '50.00', '2020-04-25', 'Recogido', 4);
+(10, '50.00', '2020-04-25', 'Recogido', 4),
+(11, '1000000.00', '0001-01-02', 'Pendiente', 2),
+(12, '5000.00', '0003-02-01', 'Pendiente', 1),
+(13, '1.00', '0050-05-05', 'Recogido', 10);
 
 -- --------------------------------------------------------
 
@@ -200,18 +206,18 @@ DROP TABLE IF EXISTS `empleados`;
 CREATE TABLE IF NOT EXISTS `empleados` (
   `idEmpleados` int(11) NOT NULL,
   `cargo` varchar(45) DEFAULT NULL,
-  `Personas_idPersonas` int(11) NOT NULL,
-  `Usuarios_idUsuario` int(11) NOT NULL,
+  `idpersonas` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL,
   PRIMARY KEY (`idEmpleados`),
-  KEY `fk_Empleados_Personas1_idx` (`Personas_idPersonas`),
-  KEY `fk_Empleados_Usuarios1_idx` (`Usuarios_idUsuario`)
+  KEY `fk_Empleados_Personas1_idx` (`idpersonas`),
+  KEY `fk_Empleados_Usuarios1_idx` (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`idEmpleados`, `cargo`, `Personas_idPersonas`, `Usuarios_idUsuario`) VALUES
+INSERT INTO `empleados` (`idEmpleados`, `cargo`, `idpersonas`, `idusuario`) VALUES
 (1, 'administrador', 1, 1),
 (2, 'repartidor', 2, 2),
 (3, 'repartidor', 3, 3);
@@ -253,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `facturas` (
   PRIMARY KEY (`idfacturas`),
   KEY `fk_facturas_empresa1_idx` (`empresa_idEmpresa`),
   KEY `fk_facturas_sucursal1_idx` (`sucursal_idSucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `facturas`
@@ -262,7 +268,9 @@ CREATE TABLE IF NOT EXISTS `facturas` (
 INSERT INTO `facturas` (`idfacturas`, `fecha_factura`, `empresa_idEmpresa`, `sucursal_idSucursal`) VALUES
 (0001, '2020-05-20', 08019999176681, 3),
 (0002, '2020-05-19', 08019995224132, 2),
-(0003, '2020-05-14', 08019995224132, 1);
+(0003, '2020-05-14', 08019995224132, 1),
+(0004, '0001-01-01', 08019995224132, 5),
+(0005, '2020-05-25', 08019995224132, 1);
 
 -- --------------------------------------------------------
 
@@ -305,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `inventario_insumos` (
   `Insumos_idInsumos` int(11) NOT NULL,
   PRIMARY KEY (`idInventario_Insumos`),
   KEY `fk_Inventario_Insumos_Insumos1_idx` (`Insumos_idInsumos`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `inventario_insumos`
@@ -317,7 +325,9 @@ INSERT INTO `inventario_insumos` (`idInventario_Insumos`, `cantidad`, `fechaLleg
 (3, 5, '2020-03-14', 4),
 (4, 10, '2020-03-14', 5),
 (5, 50, '2020-03-14', 6),
-(6, 20, '2020-04-28', 3);
+(6, 20, '2020-04-28', 3),
+(7, 50, '2020-01-01', 2),
+(8, 5, '0001-02-01', 2);
 
 -- --------------------------------------------------------
 
@@ -341,8 +351,8 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
 INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `Productos_idProductos`) VALUES
 (1, '150', 127035240765),
 (2, '100', 700000000016),
-(3, '70', 9818011),
-(4, '120', 9831052),
+(3, '64', 9818011),
+(4, '118', 9831052),
 (5, '230', 70599438),
 (6, '100', 7000000000164);
 
@@ -383,20 +393,20 @@ INSERT INTO `municipio` (`idMunicipio`, `nombreMunicipio`, `Departamento_idDepar
 
 DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE IF NOT EXISTS `pedidos` (
-  `idPedidos` int(11) NOT NULL,
+  `idPedidos` int(11) NOT NULL AUTO_INCREMENT,
   `fechaPedido` date DEFAULT NULL,
   `fechaLimite` date DEFAULT NULL,
   `totalPedido` decimal(45,2) DEFAULT NULL,
-  `Sucursal_idSucursal` int(11) NOT NULL,
+  `sucursal` int(11) NOT NULL,
   PRIMARY KEY (`idPedidos`),
-  KEY `fk_Pedidos_Sucursal1_idx` (`Sucursal_idSucursal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_Pedidos_Sucursal1_idx` (`sucursal`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`idPedidos`, `fechaPedido`, `fechaLimite`, `totalPedido`, `Sucursal_idSucursal`) VALUES
+INSERT INTO `pedidos` (`idPedidos`, `fechaPedido`, `fechaLimite`, `totalPedido`, `sucursal`) VALUES
 (1, '2020-03-02', '2020-03-10', '2000.00', 1),
 (2, '2020-02-25', '2020-03-01', '2000.00', 1),
 (3, '2020-03-15', '2020-03-30', '2000.00', 2);
@@ -569,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   PRIMARY KEY (`idSucursal`),
   KEY `fk_Sucursal_Municipio1_idx` (`Municipio_idMunicipio`),
   KEY `FK_empresaSucursal` (`Empresa_idEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `sucursal`
@@ -581,7 +591,11 @@ INSERT INTO `sucursal` (`idSucursal`, `nombreTienda`, `telefonoTienda`, `Empresa
 (3, 'Walmart Cascadas Mall', '504-9786-4532', 08019999176681, 106, 'David Bulnes'),
 (4, 'Walmart Anillo Periferico', '504-2303-4567', 08019999176681, 106, 'Alejandro Bautista'),
 (5, 'La Colonia #7', '504_98909090', 08019995224132, 106, 'Johana Gutierrez'),
-(7, 'La Colonia #4', '504-2235-0347', 08019995224132, 106, 'Milisenth Cruz');
+(7, 'La Colonia #4', '504-2235-0347', 08019995224132, 106, 'Milisenth Cruz'),
+(8, 'prueba', 'sdsdsd', 08019999176681, 109, 'sdsdsd'),
+(9, '111', '1', 08019995224132, 107, '1'),
+(10, '54545454', 'dsd', 08019995224132, 101, 'sd'),
+(11, 'fsfs', 'sfsf', 08019995224132, 101, '');
 
 -- --------------------------------------------------------
 
@@ -612,13 +626,14 @@ INSERT INTO `tipousuario` (`idTipoUsuario`, `TipoUsuario`) VALUES
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `idUsuario` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL,
   `contrasenia` varchar(45) DEFAULT NULL,
-  `TipoUsuario_idTipoUsuario` int(11) NOT NULL,
+  `idtipousuario` int(11) NOT NULL,
   `estado` varchar(1) DEFAULT NULL,
   `personas` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idUsuario`),
-  KEY `fk_Usuarios_TipoUsuario1_idx` (`TipoUsuario_idTipoUsuario`),
+  `usuario` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`),
+  KEY `fk_Usuarios_TipoUsuario1_idx` (`idtipousuario`),
   KEY `FK_personas` (`personas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -626,11 +641,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `contrasenia`, `TipoUsuario_idTipoUsuario`, `estado`, `personas`) VALUES
-(1, 'asd.456', 2, 'a', 1),
-(2, 'asd.456', 1, 'a', 10),
-(3, 'asd.456', 2, 'a', 8),
-(4, 'asd.456', 2, 'i', 7);
+INSERT INTO `usuarios` (`idusuario`, `contrasenia`, `idtipousuario`, `estado`, `personas`, `usuario`) VALUES
+(1, 'asd.456', 2, 'a', 1, 'rafa'),
+(2, 'asd.456', 1, 'a', 10, 'nechy'),
+(3, 'asd.456', 2, 'a', 8, 'Majo'),
+(4, 'asd.456', 2, 'i', 7, 'Yuvini');
 
 --
 -- Restricciones para tablas volcadas
@@ -659,8 +674,8 @@ ALTER TABLE `devoluciones`
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD CONSTRAINT `fk_Empleados_Personas1` FOREIGN KEY (`Personas_idPersonas`) REFERENCES `personas` (`idPersonas`),
-  ADD CONSTRAINT `fk_Empleados_Usuarios1` FOREIGN KEY (`Usuarios_idUsuario`) REFERENCES `usuarios` (`idUsuario`);
+  ADD CONSTRAINT `fk_Empleados_Personas1` FOREIGN KEY (`idpersonas`) REFERENCES `personas` (`idPersonas`),
+  ADD CONSTRAINT `fk_Empleados_Usuarios1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`);
 
 --
 -- Filtros para la tabla `facturas`

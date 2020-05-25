@@ -138,6 +138,32 @@ $(document).ready(function(){
     }
 
     });
+//agregar pedido
+$('#btn-agregar-devolucion').click(function(){
+
+    var parametros = "Sucursal=" + $('#slc-sucursal-devolucion').val() + "&" + "Total_Devolucion=" + $("#txt-total-devolucion").val() + "&" + "Estado=" + $("#slc-estado-devolucion").val() + "&" + "Fecha_Devolucion=" + $("#txt-fecha-devolucion").val();
+
+    if($("#txt-total-devolucion").val() == "" || $("#txt-fecha-devolucion").val() == "" || $('#slc-sucursal-devolucion').val() == "" || $("#slc-estado-devolucion").val() == ""){
+        alert("Campos invalidos o vacios. Por favor llenar la informacion como se le pide");
+    }
+    else{
+
+    $.ajax({
+        url: "ajax/api.php?accion=agregar-devolucion",
+        method: "POST",
+        data: parametros,
+        dataType: "json",
+        success:function(respuesta){
+            alert("Informacion enviada exitosamente");
+            location.reload();
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+}
+
+});
 
 
 //obtener pedidos

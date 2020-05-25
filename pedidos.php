@@ -74,10 +74,7 @@
                   <label>Pedido:</label>
                   <select name="" id="slc-sucursal-pedido" class="form-control"></select>
                 </div>
-                <div class="form-group">
-                  <label>No. de Pedido:</label>
-                  <input type="number" id="txt-numero-orden" class="form-control">
-                </div>
+               
                 <div class="form-group">
                   <label>Fecha de Emision:</label>
                   <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
@@ -87,6 +84,11 @@
                   <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
                 </div>
                 <hr>
+                <div class="card-content">
+                  <label>Total Pedido:</label>
+                  <input type="number" class="form-control" id="txt-total-devolucion" placeholder="Total Pedido" required>
+                  </div>
+                </div>
                 <div class="card-content">
                   <div>
                   <label>Productos:</label>
@@ -124,8 +126,8 @@
               </form>
             </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick='alert("Sucursal Registrada Correctamente")'>Registrar Pedido</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button id="btn-agregar-pedido" type="submit" class="btn btn-primary">Registrar Pedido</button>
                 </div>
               </div>
             </div>

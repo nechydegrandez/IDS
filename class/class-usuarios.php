@@ -73,6 +73,49 @@
 				return json_encode($mensaje);
 			}
 		}
+		public static function verificarUsuario($conexion,$usuario,$password){
+			#consulta
+			$sql="SELECT  u.IDUSUARIO, u.IDTIPOUSUARIO, u.USUARIO, 
+						  e.IDEMPLEADOS, CONCAT(p.NOMBRE,' ',p.APELLIDO) AS NOMBRE
+				  FROM usuarios u
+				  INNER JOIN empleados  e
+				  ON u.idusuario = e.idusuario
+				  INNER JOIN personas p
+				  ON p.idpersonas=e.idpersonas
+				  WHERE USUARIO='$usuario' && CONTRASEÑA='$password'";
+			
+
+
+			#resultado de la consulta				
+			$resultado=$conexion->ejecutarConsulta($sql);
+			$cantidadRegistros=$conexion->cantidadRegistros($resultado);
+			
+			if ($cantidadRegistros!=0)  {
+				$fila = $conexion->obtenerFila($resultado);
+				session_start();
+				$_SESSION['status']=true;
+				$_SESSION['idusuario']=$fila['IDUSUARIO'];
+				$_SESSION['usuario']=$fila['USUARIO'];
+				$_SESSION['idempleados']=$fila['IDEMPLEADOS'];
+				$_SESSION['nombre']=$fila['NOMBRE'];
+				$_SESSION['IDTIPOUSUARIO']=$fila['IDTIPOUSUARIO'];
+				$respuesta['tipousuario']=$fila['IDTIPOUSUARIO'];
+				$respuesta['loggedin'] = 1;
+				$respuesta["mensaje"]="tiene acceso" ;
+			}
+			else {
+				//echo'correo o contrasenia invalidos';	
+				session_start();
+				$_SESSION['status']=false;
+				$respuesta['loggedin'] = 0;
+				$respuesta["mensaje"]="No tiene acceso" ;
+				}	  
+			echo json_encode($respuesta);
+		 }
+
+
+
+
 
 	}
 ?>
