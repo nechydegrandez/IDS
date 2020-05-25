@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td colspan="1" class="text-right"><label class="mt-1">Precio:</label></td>
-        <td colspan="3"><input type="number" id="txt-precio-insumo" class="form-control"></td>
+        <td colspan="3"><input type="number" min="1" pattern="^[0-9]+"  id="txt-precio-insumo" class="form-control"></td>
     </tr>
     <tr>
         <td  colspan="1" class="text-right"><label class="mt-1">Proveedor:</label></td>

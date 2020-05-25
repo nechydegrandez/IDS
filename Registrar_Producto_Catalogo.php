@@ -24,11 +24,11 @@
         <td colspan="2"><input type="text" id="txt-nombre-producto" class="form-control"></td>
     </tr><tr>
         <td colspan="2" class="text-right"><label class="mt-1">Código:</label></td>
-        <td colspan="2"><input type="number" id="txt-codigo-producto" class="form-control"></td>
+        <td colspan="2"><input type="number"  min="1" pattern="^[0-9]+"  id="txt-codigo-producto" class="form-control"></td>
     </tr>
     <tr>
         <td colspan="2" class="text-right"><label class="mt-1">Precio:</label></td>
-        <td colspan="2"><input type="number" id="txt-precio-producto" class="form-control"></td>
+        <td colspan="2"><input type="number"  min="1" pattern="^[0-9]+"  id="txt-precio-producto" class="form-control"></td>
     </tr>
     <tr>
         <td  colspan="2" class="text-right"><label class="mt-1">Empresa</label></td>

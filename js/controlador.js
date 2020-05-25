@@ -117,7 +117,7 @@ $(document).ready(function(){
 
         var parametros = "Sucursal=" + $('#slc-sucursal-devolucion').val() + "&" + "Total_Devolucion=" + $("#txt-total-devolucion").val() + "&" + "Estado=" + $("#slc-estado-devolucion").val() + "&" + "Fecha_Devolucion=" + $("#txt-fecha-devolucion").val();
         var total  = document.getElementById('txt-total-devolucion').value;
-   
+   //validaciones
         let soloNumeros = /[0-9]{9,12}$/;
          if (!soloNumeros.test(total)){
             alert ("solo numero!")
@@ -382,11 +382,15 @@ $.ajax({
          var parametros = "Sucursal=" + $('#txt-nombre-sucursal').val() + "&" + "Municipio=" + $('#slc-municipio-sucursal').val() + "&" + "Empresa=" + $('#slc-empresa-sucursal').val() + "&" + "Telefono=" + $('#txt-telefono-tienda').val() + "&" + "Gerente=" + $('#txt-nombre-gerente').val();
 //estas son las validaciones 
         var nombresucursal = document.getElementById('txt-nombre-sucursal').value;
+        var gerente  = document.getElementById('txt-nombre-gerente').value;
         var telefono = document.getElementById('txt-telefono-tienda').value;
         let soloTexto = /[A-Za-z ñ]+/;
         let soloNumeros = /[0-9]{9,12}$/;
         if (nombresucursal==''){
             alert("Nombre Vacio");
+        }
+        else if (gerente==''){
+            alert("Gerente Vacio");
         }
         else if (!soloTexto.test(nombresucursal)) {
             alert ("solo texto!")
@@ -451,6 +455,23 @@ $.ajax({
 
     $('#btn-registrar-insumo').click(function(){
         var parametros = "Nombre=" + $('#txt-nombre-insumo').val() + "&" + "Precio=" + $('#txt-precio-insumo').val() + "&" + "Proveedor=" + $('#txt-proveedor-insumo').val();
+        var insumo = document.getElementById('txt-nombre-insumo').value;
+        var precio = document.getElementById('txt-precio-insumo').value;
+        var proovedor = document.getElementById('txt-proveedor-insumo').value;
+        let soloTexto = /[A-Za-z ñ]+/;
+        let soloNumeros = /[0-9]{9,12}$/;
+         if (!soloNumeros.test(precio)){
+            alert ("solo numero!")
+          } else  if (!soloTexto.test(insumo)) {
+            alert ("solo texto!")
+        } else 
+       
+        if (!soloTexto.test(proovedor)) {
+            alert ("solo texto!")
+        } else 
+
+
+
 
         if( $('#txt-nombre-insumo').val() == "" || $('#txt-precio-insumo').val() == "" || $('#txt-proveedor-insumo').val()==""){
             alert("Por favor llenar todos los campos antes de enviar el formulario");
@@ -478,7 +499,17 @@ $.ajax({
 
     $('#btn-registrar-producto').click(function(){
         var parametros = "Nombre=" + $('#txt-nombre-producto').val() + "&" + "Codigo=" + $('#txt-codigo-producto').val() + "&" + "Precio=" + $('#txt-precio-producto').val() + "&" + "Empresa=" + $('#slc-empresa').val();
-        
+        var producto = document.getElementById('txt-nombre-producto').value;
+      
+        let soloTexto = /[A-Za-z ñ]+/;
+       
+        if (!soloTexto.test(producto)) {
+            alert ("solo texto!")
+        } else 
+
+
+
+
         if($('#txt-nombre-producto').val() == "" || $('#txt-codigo-producto').val() == "" || $('#txt-precio-producto').val() == "" || $('#slc-empresa').val()==""){
             alert("Por favor llenar toda la informacion antes de enviar el formulario");
         }
