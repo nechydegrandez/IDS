@@ -2,38 +2,31 @@
 
 	include ("../class/conexion.php");
 	include ("../class/class-usuarios.php");	
-		
-	if (isset($_POST['accion'])) {
-		$conexion=new Conexion();
-		switch ($_POST["accion"]) {
-			case 'iniciar-sesion':
-				$usuario=$_POST["txt-Usuario"];
-				$password=$_POST["txt-Password"];
-	
-			
-				$respuesta = Usuario::verificarUsuario($conexion,$usuario,$password);
-				echo $respuesta;
-				
-				break;
-			case 'cerrar-sesion':
-					session_start();
-					$_SESSION['status']=false;
-					$respuesta['loggedin'] = 0;
-					echo json_encode($respuesta);
-				break;
-			
-			default:
-				# code...
-				break;
-		}
-    $conexion->cerrar();
-    $conexion = null;
-  } else {
-    $res['data']['mensaje']='Accion no especificada';
-    $res['data']['resultado']=false;
-    $res['data']['accion']=$_POST;
-    echo json_encode($res);
-  }
+    <?php
+    session_start();
+    include("../class/class-conexion.php");
+    $conexion = new Conexion();
+    $sql = sprintf( 
+        "SELECT codigo_usuario, correo, contrasena FROM tbl_usuarios WHERE correo = '%s' and contrasena = sha1('%s')",
+        $_POST["correo"],
+        $_POST["contrasenia"]);
+ 
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)>0){
+        $respuesta = $conexion->obtenerFila($resultado);
+        $respuesta["codigoResultado"] = 0;
+        $respuesta["mensajeResultado"] = "El usuario si existe";
+        $_SESSION["usr"] = $respuesta["correo"];
+        $_SESSION["psw"] = $respuesta["contrasena"];
+        $_SESSION["codUsr"] = $respuesta["codigo_usuario"];
+    }else {
+        $respuesta["codigoResultado"] = 1;
+        $respuesta["mensajeResultado"] = "El usuario no existe";
+        session_destroy();
+    }
+    echo json_encode($respuesta);
+?>
   
 
 ?>
