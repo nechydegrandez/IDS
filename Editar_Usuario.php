@@ -1,3 +1,28 @@
+<?php
+
+session_start();
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"])){
+        header("Location: login.php");
+    }
+
+    include("class/conexion.php");
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT * FROM usuarios WHERE usuario = '%s' and contrasenia = '%s' and idtipousuario = 1",
+        $_SESSION["usr"],
+        $_SESSION["psw"]);
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
+
+
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
