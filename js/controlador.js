@@ -142,17 +142,8 @@ $(document).ready(function(){
 $('#btn-agregar-devolucion').click(function(){
 
     var parametros = "Sucursal=" + $('#slc-sucursal-devolucion').val() + "&" + "Total_Devolucion=" + $("#txt-total-devolucion").val() + "&" + "Estado=" + $("#slc-estado-devolucion").val() + "&" + "Fecha_Devolucion=" + $("#txt-fecha-devolucion").val();
-    var total = document.getElementById('txt-total-devolucion').value;
-    let soloTexto = /[A-Za-z ñ]+/;
-    let soloNumeros = /[0-9]{9,12}$/;
-   
-  if (!soloNumeros.test(total)){
-        alert ("solo numero!")
 
-    } 
-
-
-  else   if($("#txt-total-devolucion").val() == "" || $("#txt-fecha-devolucion").val() == "" || $('#slc-sucursal-devolucion').val() == "" || $("#slc-estado-devolucion").val() == ""){
+    if($("#txt-total-devolucion").val() == "" || $("#txt-fecha-devolucion").val() == "" || $('#slc-sucursal-devolucion').val() == "" || $("#slc-estado-devolucion").val() == ""){
         alert("Campos invalidos o vacios. Por favor llenar la informacion como se le pide");
     }
     else{
@@ -384,19 +375,12 @@ $.ajax({
     $('#btn-agregar-sucursal').click(function(){
          var parametros = "Sucursal=" + $('#txt-nombre-sucursal').val() + "&" + "Municipio=" + $('#slc-municipio-sucursal').val() + "&" + "Empresa=" + $('#slc-empresa-sucursal').val() + "&" + "Telefono=" + $('#txt-telefono-tienda').val() + "&" + "Gerente=" + $('#txt-nombre-gerente').val();
 //estas son las validaciones 
-        var gerente = document.getElementById('txt-nombre-gerente').value;
         var nombresucursal = document.getElementById('txt-nombre-sucursal').value;
         var telefono = document.getElementById('txt-telefono-tienda').value;
         let soloTexto = /[A-Za-z ñ]+/;
         let soloNumeros = /[0-9]{9,12}$/;
         if (nombresucursal==''){
             alert("Nombre Vacio");
-        }
-       else  if (gerente==''){
-            alert("Gerente Vacio");
-        }
-        else if (!soloTexto.test(gerente)) {
-            alert ("solo texto!");
         }
         else if (!soloTexto.test(nombresucursal)) {
             alert ("solo texto!")

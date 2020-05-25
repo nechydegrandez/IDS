@@ -1,34 +1,19 @@
-function iniciarSesion(){
-    var usuario= $("#txt-Usuario").val();
-    var contrasenia= $("#txt-Password").val();
+$('#btn-iniciar-sesion').click(function(){
+
+    var parametros = "usuario=" + $("#txt-Usuario").val() + "&&" + "contrasenia=" +$("#txt-Password").val();
   
     $.ajax({
       url:"ajax/login.php",
-      data:{
-            "accion":"iniciar-sesion",
-            "txt-Usuario":usuario,
-            "txt-Password":contrasenia
-          },
-      dataType: 'json',
       method: "POST",
-      success: function(respuesta){  
-        console.log(respuesta) ;
-        if (respuesta.loggedin==0) {
-          $("#status").html(respuesta.mensaje);
-          alert('Contraseña')
-        }
-        else {
-          if (respuesta.tipo_usuario==1) {
-            window.location="catalogo.php";
-          }
-          else if (respuesta.tipo_usuario==2) {
-            window.location="catalogo.php";
-          }  
-        }
+      data:parametros,
+      datatype:"json",
+      success:function(respuesta){
+        $("#btn-iniciar-sesion").attr("disabled", true);
       },
-      error:function(e){
+    error:function(e){
         console.log(e);
-      }
+    }
     });
-  }
   
+
+});

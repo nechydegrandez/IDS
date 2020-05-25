@@ -1,8 +1,32 @@
 <?php
 
 session_start();
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"])){
+        header("Location: login.php");
+    }
 
+    include("class/conexion.php");
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT * FROM usuarios WHERE usuario = '%s' and contrasenia = '%s' and idtipousuario = 2",
+        $_SESSION["usr"],
+        $_SESSION["psw"]);
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
 
+        if($_SESSION["tipUsr"] = 1){
+            header("Location: index2.php");
+          }
+          else{
+            header("Location: index.php");
+          }
+
+    }
+
+    $registro = $conexion->obtenerFila($resultado);
 ?>
 
 <!DOCTYPE html>
@@ -10,51 +34,44 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Inicio</title>
+    <title>Pagina Inicio - Empleado</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link href="css/index.css" rel="stylesheet">
+    <link href="css/agregarpedido.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
 </head>
 <body>
   <!--- aqui incluyo el menu-->
     <?php
-    include ("menu.html") ;
-      ?> 
 
-<div id="inf">
- <!--
-<p> ROL DE LA EMPRESA</p>
-<p>Es una microempresa familiar, que se encarga de elaborar un producto 100% nacional, con el fin de endulzar a las familias de Honduras.
-</p> 
-<br>
-<br>
-<p>
-MISION Y VISION</p>
-<br>
-Visión <br>
-Ser una marca líder de producción y distribución de unos de los dulces artesanales más conocidos en el país. <br>
-    <br>
-    Misión <br>
-Fabricar artesanalmente, bajo estrictas medidas de higiene, uno de los dulces más conocidos en el país, siendo las cadenas de distribución y ventas los supermercados más grandes de Honduras.
+        include ("menu.html") ;
 
+    ?>
 
+    <h1 style="color: white;">Bienvenido</h1>
 
-
-
-
-<img src="img/p1.jpg" class="foto">
-
-<img src="img/p2.jpg" class="foto">
-
-</div>
--->
-
-Bienvenido  <?php echo $_SESSION['user']?>
-      <div>
-      
-      <img src="" alt="">
+  <div class="inf card pr-5" style="font-size: 15px;">
+    <div class="row">
+      <div class="col-5 justify-content-center mt-5 pt-3">
+       <img src="img/logo.png" class="img-fluid img-thumbnail">
       </div>
+      <div class="col-7 card pl-0 pr-0 pb-0">
+       <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td class="text-right pt-3">Nombre Usuario: </td>
+            <td> <input type="text" class="form-control" value="<?php echo $_SESSION['usr']?>" ></td>
+          </tr>
+          <tr>
+           
+    
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div> 
     
  
 

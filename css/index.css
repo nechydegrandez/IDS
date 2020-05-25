@@ -1,66 +1,49 @@
 body{
 
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-background-image: url("../img/fondo.jpg");
-
-background-repeat: no-repeat;
-background-position: center center;
-background-size: cover;
-background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+  background-image: url("../img/fondo.jpg");
+  
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+    font-size: 14px;
   }
-}
-/*
-#inf{
-  padding: 30px;
-  margin-left: 350px;
-  margin-top: 100px;
-  background-color: white;
-  height: 800px;
-  width: 800px;
-
-}
-.container {
-  max-width: 950px;
-}
-
-.foto{
-  width: 250px;
-  margin-top: 30px;
-  height: 250px;
-  padding-left: 80px;
-}
-.pricing-header {
-  max-width: 700px;
-}
-*/
-
-.card-deck .card {
-  min-width: 220px;
-}
-.enlace {
-  -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    border-radius: 8px;
-    background-color: #FFEB01;
-    text-decoration: none;
-    color: initial;
-    padding: 5px;
-    width: 120px;
-    height: 35px;
-}
-
-.enlace:hover {
-  text-decoration:none;
-  color:#0000cc;
-  cursor:pointer;
-}
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  .container {
+    max-width: 950px;
+  }
+  
+  .pricing-header {
+    max-width: 700px;
+  }
+  
+  .card-deck .card {
+    min-width: 220px;
+  }
+  .enlace {
+    -webkit-appearance: button;
+      -moz-appearance: button;
+      appearance: button;
+      border-radius: 8px;
+      background-color: #FFEB01;
+      text-decoration: none;
+      color: initial;
+      padding: 5px;
+      width: 120px;
+      height: 35px;
+  }
+  
+  .enlace:hover {
+    text-decoration:none;
+    color:#0000cc;
+    cursor:pointer;
+  }

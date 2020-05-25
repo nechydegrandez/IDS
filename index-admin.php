@@ -1,7 +1,30 @@
 <?php
 
 session_start();
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"])){
+        header("Location: login.php");
+    }
 
+    include("class/conexion.php");
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT * FROM usuarios WHERE usuario = '%s' and contrasenia = '%s' and idtipousuario = 1",
+        $_SESSION["usr"],
+        $_SESSION["psw"]);
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
+
+      if($_SESSION["tipUsr"] = 1){
+        header("Location: index-admin.php");
+      }
+      else{
+        header("Location: index-empleado.php");
+      }
+
+    }
 
 ?>
 
@@ -34,7 +57,7 @@ session_start();
         <tbody>
           <tr>
             <td class="text-right pt-3">Nombre Usuario: </td>
-            <td> <input type="text" class="form-control" value="<?php echo $_SESSION['user']?>" ></td>
+            <td> <input type="text" class="form-control" value="<?php echo $_SESSION['usrr']?>" ></td>
           </tr>
           <tr>
            
