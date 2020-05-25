@@ -6,18 +6,18 @@
 		private $fechaPedido;
 		private $fechaLimite;
 		private $totalPedido;
-		private $Sucursal_idSucursal;
+		private $sucursal;
 
 		public function __construct($idPedidos,
 					$fechaPedido,
 					$fechaLimite,
 					$totalPedido,
-					$Sucursal_idSucursal){
+					$sucursal){
 			$this->idPedidos = $idPedidos;
 			$this->fechaPedido = $fechaPedido;
 			$this->fechaLimite = $fechaLimite;
 			$this->totalPedido = $totalPedido;
-			$this->Sucursal_idSucursal = $Sucursal_idSucursal;
+			$this->sucursal = $sucursal;
 		}
 		public function getIdPedidos(){
 			return $this->idPedidos;
@@ -43,18 +43,18 @@
 		public function setTotalPedido($totalPedido){
 			$this->totalPedido = $totalPedido;
 		}
-		public function getSucursal_idSucursal(){
-			return $this->Sucursal_idSucursal;
+		public function getsucursal(){
+			return $this->sucursal;
 		}
-		public function setSucursal_idSucursal($Sucursal_idSucursal){
-			$this->Sucursal_idSucursal = $Sucursal_idSucursal;
+		public function setsucursal($sucursal){
+			$this->sucursal = $sucursal;
 		}
 		public function __toString(){
 			return "IdPedidos: " . $this->idPedidos . 
 				" FechaPedido: " . $this->fechaPedido . 
 				" FechaLimite: " . $this->fechaLimite . 
 				" TotalPedido: " . $this->totalPedido . 
-				" Sucursal_idSucursal: " . $this->Sucursal_idSucursal;
+				" sucursal: " . $this->sucursal;
         }
         
         public function visualizarPedidos($conexion){
@@ -78,7 +78,7 @@
 			 return json_encode($listaPedidos);
 		}
 		
-		public function agregarDevolucion($conexion){ 
+		public function agregarpedidos($conexion){ 
 
 			$sql = sprintf("INSERT INTO pedidos(fechaPedido, fechaLimite, totalPedido, sucursal) VALUES (%s,'%s','%s',%s)",
 			$conexion->antiInyeccion($this->fechaPedido),

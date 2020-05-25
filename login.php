@@ -17,7 +17,7 @@
 
   
   <body>
-    <form action="" method="" autocomplete="" class="full-box logInForm">
+    <form action="inicio-sesion.php" method="POST" autocomplete="" class="full-box logInForm">
 
       
         
@@ -35,51 +35,32 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="img/usuario.png" class="img-fluid" style="width: auto;height:auto;"></span>
                     </div>
-                    <input type="text" class="form-control" id="NumeroEmpleado" placeholder="Usuario" required>
+                    <input type="text" class="form-control" id="txt-Usuario" placeholder="Usuario" required>
 
                 </div>
                 <div class="input-group form-group">
                     <div class="input-group-prepend mt-3">
                         <span class="input-group-text"><img src="img/password.png" class="img-fluid" style="width: auto;height:auto;"></span>
                     </div>
-                    <input type="password" id="Contrasena" class="form-control mt-3" placeholder="Contraseña" required>
+                    <input type="password" id="txt-Password" class="form-control mt-3" placeholder="Contraseña" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" id="btn-login-admin" value="Iniciar Sesión" class="btn float-right login_btn mt-5">
+                <button class="btn btn-primary" type="submit"  id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesion</button>
                 </div>  
 
-                     <script>
-                         $("#btn-login-admin").click(function(){
-                              $.ajax({
-                                 url:"ajax/login-admin.php",
-                                 data:"NumeroEmpleado="+$("#NumeroEmpleado").val() + "&Contrasena="+$("#Contrasena").val(),
-                                 dataType:"json",
-                                 method:"POST",
-                                 success:function(respuesta){
-                                     console.log(respuesta);
-                                     if (respuesta.estatus == 1)
-
-                                              window.location.href = "../matri-admin/home.php";//redireccionar */
-
-                                     else 
-                                         alert("Credenciales invalidas");
-                                 },
-                                 error:function(error){
-                                     console.error(error);
-                                 }
-                             }); 
-                         });
-                     </script>
+                   
       
 
                </div>
            </div>
        </div>
    </div>
-
+  </form>
+   <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/controlador.js"></script>
-    
+    <script src="js/login.js"></script>
+ 
+
     
     
     
