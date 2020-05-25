@@ -108,7 +108,7 @@ session_start();
               </div>
               <div class="form-group">
                   <label>Cantidad a aumentar:</label>
-                  <input type="number" class="form-control" id="txt-cantidad-a-aumentar">
+                  <input type="number" class="form-control" min="1" pattern="^[0-9]+" id="txt-cantidad-a-aumentar">
               </div>
               </form>
             </div>
@@ -136,11 +136,11 @@ session_start();
               </div>
               <div class="form-group">
                   <label>Cantidad Actual:</label>
-                  <input type="number" class="form-control" id="txt-cantidad-actual" disabled>
+                  <input type="number" class="form-control"  min="1" pattern="^[0-9]+" id="txt-cantidad-actual" disabled>
               </div>
               <div class="form-group">
                   <label>Cantidad a eliminar:</label>
-                  <input type="number" class="form-control" id="txt-cantidad-a-eliminar">
+                  <input type="number" class="form-control" min="1" pattern="^[0-9]+"  id="txt-cantidad-a-eliminar">
               </div>
               </form>
             </div>

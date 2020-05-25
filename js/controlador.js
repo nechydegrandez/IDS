@@ -116,7 +116,13 @@ $(document).ready(function(){
     $('#btn-agregar-devolucion').click(function(){
 
         var parametros = "Sucursal=" + $('#slc-sucursal-devolucion').val() + "&" + "Total_Devolucion=" + $("#txt-total-devolucion").val() + "&" + "Estado=" + $("#slc-estado-devolucion").val() + "&" + "Fecha_Devolucion=" + $("#txt-fecha-devolucion").val();
+        var total  = document.getElementById('txt-total-devolucion').value;
+   
+        let soloNumeros = /[0-9]{9,12}$/;
+         if (!soloNumeros.test(total)){
+            alert ("solo numero!")
 
+        } else 
         if($("#txt-total-devolucion").val() == "" || $("#txt-fecha-devolucion").val() == "" || $('#slc-sucursal-devolucion').val() == "" || $("#slc-estado-devolucion").val() == ""){
             alert("Campos invalidos o vacios. Por favor llenar la informacion como se le pide");
         }

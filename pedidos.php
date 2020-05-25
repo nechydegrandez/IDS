@@ -83,8 +83,8 @@ session_start();
 
   </div>
 
-  <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Agregar Pedido</button>
-      
+  <!--<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">Agregar Pedido</button>
+  -->
   
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

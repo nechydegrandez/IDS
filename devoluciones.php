@@ -115,7 +115,7 @@ session_start();
                 </div>
                 <div class="card-content">
                   <label>Total Devolucion:</label>
-                  <input type="number" class="form-control" id="txt-total-devolucion" placeholder="Total Devolucion" required>
+                  <input type="number" class="form-control" id="txt-total-devolucion"  min="1" pattern="^[0-9]+"  placeholder="Total Devolucion" required>
                   </div>
                 </div>
               </form>

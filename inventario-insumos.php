@@ -107,7 +107,7 @@ session_start();
               </div>
               <div class="form-group">
                   <label>Cantidad:</label>
-                  <input type="number" class="form-control" id="txt-cantidad" placeholder="Cantidad">
+                  <input type="number" class="form-control" id="txt-cantidad"  min="1" pattern="^[0-9]+" placeholder="Cantidad">
               </div>
               </form>
             </div>
