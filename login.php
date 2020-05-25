@@ -27,7 +27,7 @@
                <br>
                
                <div class="card-header">
-                   <h3>Inicio Sesion</h3>
+                   <h3>Inicio Sesión</h3>
                </div>
                <div class="card-body">
                   

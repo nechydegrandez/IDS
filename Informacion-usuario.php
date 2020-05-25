@@ -37,7 +37,7 @@
             <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
-            <td class="text-right pt-3">Numero de Telefono: </td>
+            <td class="text-right pt-3">Número de Teléfono: </td>
             <td><input type="text" class="form-control" value="" disabled></td>
           </tr>
           <tr>
@@ -58,7 +58,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Actualizar Informacion del Perfil</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Actualizar Información del Perfil</h5>
             </div>
             <div class="modal-body">
               <form class="form">
@@ -67,7 +67,7 @@
                   <input type="email" class="form-control" id="txt-correo" placeholder="ejemplo@hotmail.com">
                 </div>
                 <div class="form-group">
-                  <label>Numero de Telefono:</label>
+                  <label>Número de Teléfono:</label>
                   <input type="number" class="form-control" id="txt-telefono" placeholder="90909090">
                 </div>
               </form>

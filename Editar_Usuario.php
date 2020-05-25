@@ -60,7 +60,7 @@ include ("menu-admin.html") ;
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Actualizar Informacion del Perfil</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Actualizar Información del Perfil</h5>
             </div>
             <div class="modal-body">
               <form class="form">

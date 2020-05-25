@@ -22,11 +22,11 @@
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo Producto</th>
+      <th class="text-center">Código Producto</th>
       <th class="text-center">Nombre del Producto</th>
       <th class="text-center">Precio</th>
       <th class="text-center">Cantidad</th>
-      <th class="text-center">Dia</th>
+      <th class="text-center">Día</th>
     </tr>
   </thead>
   <tbody>

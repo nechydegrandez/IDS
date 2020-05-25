@@ -30,21 +30,21 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Direccion:</label>
+            <label>Dirección:</label>
             <select name="" id="slc-sucursal-factura" class="form-control">
             <option value=""></option>
             </select>
           </div>
           <div class="form-group">
-            <label>Fecha de Emision:</label>
+            <label>Fecha de Emisión:</label>
             <input type="date" class="form-control" id="txt-fecha-factura" placeholder="Direccion">
           </div>
           <div class="card-content">
           <table class="table table-bordered table-sm mt-3">
           <thead>
           <tr class="text-center">
-          <th>Codigo</th>
-          <th>Descripcion</th>
+          <th>Código</th>
+          <th>Descripción</th>
           <th>Precio</th>
           <th>Cantidad</th>
           <th>Total</th>
@@ -70,7 +70,7 @@
           <thead>
           <tr>
           <th class="text-center">Codigo del Producto</th>
-          <th class="text-center">Descripcion</th>
+          <th class="text-center">Descripción</th>
           <th class="text-center">Precio Unitario</th>
           <th class="text-center">Cantidad</th>
           <th class="text-center">Precio Total</th>

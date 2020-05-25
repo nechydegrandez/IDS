@@ -36,7 +36,7 @@ include ("menu.html") ;
         <input class="controls" type="text" name="Nombres" id="" value="<?php echo $nombreProducto?>">
         <tr>
       <tr>
-        <h4>Fecha de Elaboraciòn </h4>
+        <h4>Fecha de Elaboración </h4>
       <input type="date" class="form-control" id="txt-fecha" placeholder="Fecha de registro">
      
       <tr>

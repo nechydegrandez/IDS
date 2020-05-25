@@ -60,7 +60,7 @@ session_start();
       <th class="text-center">Nombre Sucursal</th>
       <th class="text-center">Empresa</th>
       <th class="text-center">Municipio</th>
-      <th class="text-center">Telefono</th>
+      <th class="text-center">Teléfono</th>
       <th class="text-center">Gerente</th>
     </tr>
   </thead>
@@ -108,7 +108,7 @@ session_start();
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Telefono:</label>
+                  <label>Teléfono:</label>
                   <input type="text" class="form-control" id="txt-telefono-tienda" placeholder="Telefono">
                 </div>
                 <div class="form-group">
@@ -147,7 +147,7 @@ session_start();
                   <input type="text" name="" id="txt-empresa-editar" class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                  <label>Telefono:</label>
+                  <label>Teléfono:</label>
                   <input type="text" class="form-control" id="txt-telefono-editar" placeholder="Telefono">
                 </div>
                 <div class="form-group">

@@ -59,9 +59,9 @@ session_start();
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo</th>
+      <th class="text-center">Código</th>
       <th class="text-center">Insumo</th>
-      <th class="text-center">Fecha de Adquisicion</th>
+      <th class="text-center">Fecha de Adquisición</th>
       <th class="text-center">Cantidad</th>
     </tr>
   </thead>
@@ -102,7 +102,7 @@ session_start();
                   </select>
               </div>
               <div class="form-group">
-                  <label>Fecha de Adquisicion:</label>
+                  <label>Fecha de Adquisición:</label>
                   <input type="date" class="form-control" id="txt-fecha-adquisicion">
               </div>
               <div class="form-group">

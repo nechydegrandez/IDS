@@ -107,7 +107,7 @@ session_start();
                 </div>
                
                 <div class="form-group">
-                  <label>Fecha de Emision:</label>
+                  <label>Fecha de Emisión:</label>
                   <input type="date" class="form-control" id="txt-fecha" placeholder="Direccion">
                 </div>
                 <div class="form-group">

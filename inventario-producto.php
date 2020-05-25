@@ -58,7 +58,7 @@ session_start();
   <table class="table table-striped">
   <thead>
     <tr>
-      <th class="text-center">Codigo</th>
+      <th class="text-center">Código</th>
       <th class="text-center">Producto</th>
       <th class="text-center">Empresa</th>
       <th class="text-center">Cantidad</th>

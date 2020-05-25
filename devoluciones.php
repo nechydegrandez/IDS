@@ -102,7 +102,7 @@ session_start();
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Fecha de Devolucion:</label>
+                  <label>Fecha de Devolución:</label>
                   <input type="date" class="form-control" id="txt-fecha-devolucion" placeholder="Direccion" required>
                 </div>
                 <div class="form-group">
@@ -114,14 +114,14 @@ session_start();
                   </select>
                 </div>
                 <div class="card-content">
-                  <label>Total Devolucion:</label>
+                  <label>Total Devolución:</label>
                   <input type="number" class="form-control" id="txt-total-devolucion"  min="1" pattern="^[0-9]+"  placeholder="Total Devolucion" required>
                   </div>
                 </div>
               </form>
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button id="btn-agregar-devolucion" type="submit" class="btn btn-primary">Registrar Devolucion</button>
+              <button id="btn-agregar-devolucion" type="submit" class="btn btn-primary">Registrar Devolución</button>
             </div>
             </div>
             
