@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 25-05-2020 a las 03:02:22
+-- Tiempo de generación: 25-05-2020 a las 20:12:29
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `detalle_factura` (
   PRIMARY KEY (`idDetalle_factura`),
   KEY `fk_detalle_factura_facturas1_idx` (`facturas_idfacturas`),
   KEY `fk_detalle_factura_productos1_idx` (`productos_idProductos`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_factura`
@@ -148,7 +148,9 @@ INSERT INTO `detalle_factura` (`idDetalle_factura`, `cantidad`, `facturas_idfact
 (7, 6, 0004, 9818011),
 (8, 7, 0004, 9831052),
 (10, 30, 0005, 127035240765),
-(11, 30, 0005, 700000000016);
+(11, 30, 0005, 700000000016),
+(13, 8, 0006, 700000000016),
+(14, 4, 0006, 127035240765);
 
 -- --------------------------------------------------------
 
@@ -260,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `facturas` (
   PRIMARY KEY (`idfacturas`),
   KEY `fk_facturas_empresa1_idx` (`empresa_idEmpresa`),
   KEY `fk_facturas_sucursal1_idx` (`sucursal_idSucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `facturas`
@@ -271,7 +273,8 @@ INSERT INTO `facturas` (`idfacturas`, `fecha_factura`, `empresa_idEmpresa`, `suc
 (0002, '2020-05-19', 08019995224132, 2),
 (0003, '2020-05-14', 08019995224132, 1),
 (0004, '0001-01-01', 08019995224132, 5),
-(0005, '2020-05-25', 08019995224132, 1);
+(0005, '2020-05-25', 08019995224132, 1),
+(0006, '2020-05-19', 08019995224132, 7);
 
 -- --------------------------------------------------------
 
@@ -286,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   `precio` double DEFAULT NULL,
   `proveedor` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idInsumos`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `insumos`
@@ -298,7 +301,8 @@ INSERT INTO `insumos` (`idInsumos`, `nombreInsumo`, `precio`, `proveedor`) VALUE
 (3, 'Gas', 1550, 'Servigas'),
 (4, 'Colorante Alimenticio', 300, 'Casa de la Azucar'),
 (5, 'Manteca', 540, 'Bodega MARDEL'),
-(6, 'Harina', 760, 'Molino Arinero Sula');
+(6, 'Harina', 760, 'Molino Arinero Sula'),
+(7, '11', 111, '1111');
 
 -- --------------------------------------------------------
 
@@ -314,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `inventario_insumos` (
   `Insumos_idInsumos` int(11) NOT NULL,
   PRIMARY KEY (`idInventario_Insumos`),
   KEY `fk_Inventario_Insumos_Insumos1_idx` (`Insumos_idInsumos`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `inventario_insumos`
@@ -328,7 +332,9 @@ INSERT INTO `inventario_insumos` (`idInventario_Insumos`, `cantidad`, `fechaLleg
 (5, 50, '2020-03-14', 6),
 (6, 20, '2020-04-28', 3),
 (7, 50, '2020-01-01', 2),
-(8, 5, '0001-02-01', 2);
+(8, 5, '0001-02-01', 2),
+(9, 4, '2020-05-25', 1),
+(10, 1, '2020-05-25', 1);
 
 -- --------------------------------------------------------
 
@@ -350,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `inventario_producto` (
 --
 
 INSERT INTO `inventario_producto` (`idinventario_Producto`, `cantidadBandejas`, `Productos_idProductos`) VALUES
-(1, '150', 127035240765),
+(1, '153', 127035240765),
 (2, '100', 700000000016),
 (3, '64', 9818011),
 (4, '118', 9831052),
@@ -525,6 +531,8 @@ CREATE TABLE IF NOT EXISTS `productos` (
 --
 
 INSERT INTO `productos` (`idProductos`, `nombre`, `precioVenta`, `empresa`) VALUES
+(5, 'prueba', '500.00', 08019995224132),
+(5485, '2151', '885.00', 08019995224132),
 (9818011, 'Bandeja de Espumilla 12 unds', '15.00', 08019999176681),
 (9831052, 'Bandeja de Espumillita', '25.00', 08019999176681),
 (70599438, 'Bolsas de Pan para Torreja', '32.00', 08019999176681),
@@ -580,7 +588,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   PRIMARY KEY (`idSucursal`),
   KEY `fk_Sucursal_Municipio1_idx` (`Municipio_idMunicipio`),
   KEY `FK_empresaSucursal` (`Empresa_idEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `sucursal`
@@ -596,7 +604,9 @@ INSERT INTO `sucursal` (`idSucursal`, `nombreTienda`, `telefonoTienda`, `Empresa
 (8, 'prueba', 'sdsdsd', 08019999176681, 109, 'sdsdsd'),
 (9, '111', '1', 08019995224132, 107, '1'),
 (10, '54545454', 'dsd', 08019995224132, 101, 'sd'),
-(11, 'fsfs', 'sfsf', 08019995224132, 101, '');
+(11, 'fsfs', 'sfsf', 08019995224132, 101, ''),
+(12, 'pruebammm', '1111111111', 08019995224132, 101, ''),
+(13, 'pruebammm', '1111111111', 08019995224132, 101, 'sdsd');
 
 -- --------------------------------------------------------
 
@@ -643,10 +653,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `contrasenia`, `idtipousuario`, `estado`, `personas`, `usuario`) VALUES
-(1, 'asd.456', 2, 'a', 1, 'rafa'),
-(2, 'asd.456', 1, 'a', 10, 'nechy'),
-(3, 'asd.456', 2, 'a', 8, 'Majo'),
-(4, 'asd.456', 2, 'i', 7, 'Yuvini');
+(1, 'bcdcb29ed2aab16d48c11485264df665e906bdd9', 2, 'a', 1, 'rafa'),
+(2, 'bcdcb29ed2aab16d48c11485264df665e906bdd9', 1, 'a', 10, 'nechy'),
+(3, 'bcdcb29ed2aab16d48c11485264df665e906bdd9', 2, 'a', 8, 'Majo'),
+(4, 'bcdcb29ed2aab16d48c11485264df665e906bdd9', 2, 'i', 7, 'Yuvini');
 
 --
 -- Restricciones para tablas volcadas
