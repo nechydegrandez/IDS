@@ -35,14 +35,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><img src="img/usuario.png" class="img-fluid" style="width: auto;height:auto;"></span>
                     </div>
-                    <input type="text" class="form-control" id="txt-Usuario" placeholder="Usuario" required>
+                    <input type="text" class="form-control" id="txt-Usuario" name="user" placeholder="Usuario" required>
 
                 </div>
                 <div class="input-group form-group">
                     <div class="input-group-prepend mt-3">
                         <span class="input-group-text"><img src="img/password.png" class="img-fluid" style="width: auto;height:auto;"></span>
                     </div>
-                    <input type="password" id="txt-Password" class="form-control mt-3" placeholder="Contraseña" required>
+                    <input type="password" id="txt-Password" name="pass" class="form-control mt-3" placeholder="Contraseña" required>
                 </div>
                 <div class="form-group">
                 <button class="btn btn-primary" type="submit"  id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesion</button>
@@ -54,8 +54,9 @@
                </div>
            </div>
        </div>
+       </form>
    </div>
-  </form>
+  
    <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/login.js"></script>
