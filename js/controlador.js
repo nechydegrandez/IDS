@@ -140,7 +140,33 @@ $(document).ready(function(){
     });
 
 
+//obtener pedidos
+$.ajax({
+    url:"ajax/api.php?accion=obtener-lista-pedidos",
+    method: "GET",
+    dataType: "json",
+    success:function(respuesta){
+        for(var i=0;i<respuesta.length;i++){
+            $('#body-pedidos').append(
+                '<tr>'+
+                '<td class="text-left">'+respuesta[i].idPedidos+'</td>'+
+                '<td class="text-center">'+respuesta[i].fechaPedido+'</td>'+
+                '<td class="text-center">'+respuesta[i].fechaLimite+'</td>'+
+                '<td class="text-center"> L. '+respuesta[i].totalPedido+'</td>'+
+                '<td class="text-center"> '+respuesta[i].nombreTienda+'</td>'+
+                '<td class="text-center">'+
+                '</tr>'
+            );
+        }
+        
+    },
+    error:function(e){
+        console.log(e);
+    }
+});
 
+
+//
     $.ajax({
         url: "ajax/api.php?accion=obtener-lista-productos",
         method: "GET",
@@ -322,7 +348,23 @@ $(document).ready(function(){
 
     $('#btn-agregar-sucursal').click(function(){
          var parametros = "Sucursal=" + $('#txt-nombre-sucursal').val() + "&" + "Municipio=" + $('#slc-municipio-sucursal').val() + "&" + "Empresa=" + $('#slc-empresa-sucursal').val() + "&" + "Telefono=" + $('#txt-telefono-tienda').val() + "&" + "Gerente=" + $('#txt-nombre-gerente').val();
+//estas son las validaciones 
+        var nombresucursal = document.getElementById('txt-nombre-sucursal').value;
+        var telefono = document.getElementById('txt-telefono-tienda').value;
+        let soloTexto = /[A-Za-z ñ]+/;
+        let soloNumeros = /[0-9]{9,12}$/;
+        if (nombresucursal==''){
+            alert("Nombre Vacio");
+        }
+        else if (!soloTexto.test(nombresucursal)) {
+            alert ("solo texto!")
+        }else if (!soloNumeros.test(telefono)){
+            alert ("solo numero!")
 
+        } else {
+
+       
+        
          alert(parametros);
 
         $.ajax({
@@ -337,7 +379,8 @@ $(document).ready(function(){
             error:function(e){
                 console.log(e);
             }
-        });
+        }); 
+    }
     });
 
     $.ajax({
